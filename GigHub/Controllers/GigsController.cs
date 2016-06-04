@@ -30,8 +30,9 @@ namespace GigHub.Controllers
             return View(viewModel);
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(GigFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -39,7 +40,6 @@ namespace GigHub.Controllers
                 viewModel.Genres = _context.Genres.ToList();
                 return View("Create", viewModel);
             }
-                
 
             var gig = new Gig()
             {
