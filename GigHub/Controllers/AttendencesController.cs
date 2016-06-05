@@ -10,8 +10,6 @@ using System.Web.Http;
 
 namespace GigHub.Controllers
 {
-    
-
     [Authorize]
     public class AttendancesController : ApiController
     {
