@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 namespace GigHub.Controllers
 {
@@ -17,6 +18,27 @@ namespace GigHub.Controllers
         public GigsController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        [Authorize]
+        public ActionResult Attending()
+        {
+            string userId = User.Identity.GetUserId();
+            var gigs = _context.Attendances
+                .Where(x => x.AttendeeId == userId)
+                .Select(x => x.Gig)
+                .Include(x => x.Artist)
+                .Include(x => x.Genre)
+                .ToList();
+
+            var viewModel = new GigsViewModel
+            {
+                UpcomingGigs = gigs,
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "Gigs I'm Attending"
+            };
+
+            return View("Gigs", viewModel);
         }
 
         [Authorize]
