@@ -54,6 +54,16 @@ textarea {
     color: #fff;
 }
 
+.navbar-inverse .notifications {
+    position: relative;
+}
+    .navbar-inverse .notifications .badge {
+        position: absolute;
+        top: 8px;
+        right: 0;
+        background-color: #a80a0a;
+    }
+
 .navbar-brand {
     font-weight: 700;
 }
@@ -62,12 +72,11 @@ textarea {
     background-color: rgba(205, 40, 39, 0.55);
 }
 
-@media (max-width: 767px){
+@media (max-width: 500px){
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
         color: #fff;
     }
 }
-
 
 .dropdown-menu{
     box-shadow: none;
@@ -162,3 +171,26 @@ textarea {
 .gigs > li:hover .actions {
     display: block;
 }
+
+.popover-notifications .popover-content{
+    padding: 0;
+}
+
+    .popover-notifications ul.notifications {
+        list-style: none;
+        padding-left: 0;
+
+    }
+
+    .popover-notifications ul.notifications > li {
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .popover-notifications ul.notifications > li:last-child {
+        border-bottom: none;
+    }
+
+    .popover-notifications ul.notifications .highlight {
+        font-weight: bold;
+    }
