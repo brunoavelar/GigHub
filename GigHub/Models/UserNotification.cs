@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace GigHub.Models
 {
@@ -21,7 +18,7 @@ namespace GigHub.Models
 
         public Notification Notification { get; private set; }
 
-        public bool IsRead { get; set; }
+        public bool IsRead { get; private set; }
 
         protected UserNotification()
         {
@@ -33,11 +30,22 @@ namespace GigHub.Models
             if (user == null)
                 throw new ArgumentNullException("user");
 
-            if(notification == null)
+            if (notification == null)
                 throw new ArgumentNullException("notification");
 
             this.User = user;
             this.Notification = notification;
         }
+
+        public void Read()
+        {
+            IsRead = true;
+        }
+
+        public void UnRead()
+        {
+            IsRead = false;
+        }
+
     }
 }

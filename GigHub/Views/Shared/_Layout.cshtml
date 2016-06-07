@@ -47,7 +47,6 @@
                     <li><span class="highlight"><%=notification.gig.artist.name%></span> has canceled the gig at <%=notification.gig.venue%> at <%= moment(notification.gig.datetime).format("D MMM HH:mm") %></li>
                 <% }
 
-                console.log(notification)
                 if(notification.type == 2){
                     var changes = [],
                         originalValues = [],
@@ -98,10 +97,22 @@
                     placement: "bottom",
                     title: "Notifications",
                     template: '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+                }).on("shown.bs.popover", function () {
+                    markAsRead();
                 });
             })
 
             
+            var markAsRead = function(){
+                $.post("/api/notifications", function () {
+                    $(".js-notifications-count")
+                        .addClass("animated zoomOut")
+                        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){ 
+                            $(this).text("0");
+                        });
+                        
+                })
+            }
         })
     </script>
 </body>

@@ -1,13 +1,10 @@
 ﻿using GigHub.Models;
 using GigHub.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace GigHub.Controllers
 {
@@ -24,9 +21,9 @@ namespace GigHub.Controllers
         {
             var userId = User.Identity.GetUserId();
             var gigs = _context.Gigs
-                .Where(x => 
-                    x.ArtistId == userId && 
-                    x.Datetime > DateTime.Now && 
+                .Where(x =>
+                    x.ArtistId == userId &&
+                    x.Datetime > DateTime.Now &&
                     !x.IsCanceled)
                 .Include(x => x.Genre)
                 .ToList();
@@ -129,7 +126,7 @@ namespace GigHub.Controllers
                 .Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
 
             gig.Update(viewModel.GetDateTime(), viewModel.Venue, viewModel.Genre);
-            
+
             _context.SaveChanges();
 
             return RedirectToAction("Mine", "Gigs");

@@ -2,12 +2,9 @@
 using GigHub.Dtos;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace GigHub.Controllers.Api
@@ -33,6 +30,19 @@ namespace GigHub.Controllers.Api
                 .ToList();
 
             return notifications.Select(n => Mapper.Map<Notification, NotificationDto>(n));
+        }
+
+        [HttpPost]
+        public IHttpActionResult MarkAsRead()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var userNotifications = _context.UserNotifications.Where(un => un.UserId == userId && !un.IsRead).ToList();
+            userNotifications.ForEach(x => x.Read());
+
+            _context.SaveChanges();
+
+            return Ok();
         }
     }
 }
