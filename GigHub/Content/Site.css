@@ -170,3 +170,6 @@ textarea {
 .popover-notifications ul.notifications > li:last-child {
   border-bottom: none;
 }
+#searchGigs {
+  width: 300px;
+}

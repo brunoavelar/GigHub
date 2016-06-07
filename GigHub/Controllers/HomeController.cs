@@ -1,10 +1,8 @@
 ﻿using GigHub.Models;
 using GigHub.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GigHub.Controllers
@@ -18,18 +16,27 @@ namespace GigHub.Controllers
             _context = new ApplicationDbContext();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
             var upcomingGigs = _context.Gigs
                 .Include(x => x.Artist)
                 .Include(x => x.Genre)
                 .Where(x => x.Datetime > DateTime.Now && !x.IsCanceled);
 
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                upcomingGigs = upcomingGigs.Where(g =>
+                                    g.Artist.Name.Contains(query) ||
+                                    g.Genre.Name.Contains(query) ||
+                                    g.Venue.Contains(query));
+            }
+
             var viewModel = new GigsViewModel
             {
                 UpcomingGigs = upcomingGigs,
                 ShowActions = User.Identity.IsAuthenticated,
-                Heading = "Upcoming Gigs"
+                Heading = "Upcoming Gigs",
+                SearchTerm = query
             };
 
             return View("Gigs", viewModel);
