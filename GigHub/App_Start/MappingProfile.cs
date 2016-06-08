@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using GigHub.Dtos;
-using GigHub.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using GigHub.Core.Dtos;
+using GigHub.Core.Models;
 
 namespace GigHub.App_Start
 {
@@ -12,7 +8,7 @@ namespace GigHub.App_Start
     {
         public MappingProfile()
         {
-            
+
         }
 
         protected override void Configure()

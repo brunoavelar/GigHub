@@ -73,9 +73,9 @@ textarea {
 	font-weight: 700;
 }
 @media (max-width: 500px) {
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a { 
-        color: @white;
-    }
+	.navbar-inverse .navbar-nav .open .dropdown-menu > li > a { 
+		color: @white;
+	}
 }
 
 .dropdown-menu {
@@ -153,7 +153,9 @@ textarea {
 			font-weight: bold;
 		}
 		.genre {
-			font-size: 15px;
+			font-size: 14px;
+			display: block;
+			margin-bottom: 4px;
 		}
 	}
 	.actions {
@@ -166,6 +168,16 @@ textarea {
 		}
 	}
 }
+
+/* Bootstrap overrides */
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+
+  src: url('fonts/glyphicons-halflings-regular.eot');
+  src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
 .popover-notifications {
 	.popover-content {
 		padding: 0;
@@ -188,5 +200,5 @@ textarea {
 }
 
 #searchGigs{
-    width: 300px;
+	width: 300px;
 }

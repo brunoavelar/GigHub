@@ -1,4 +1,4 @@
-﻿@model GigHub.ViewModels.GigsViewModel
+﻿@model GigHub.Core.ViewModels.GigsViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -17,7 +17,7 @@
     </div>
 }
 
-<ul class="gigs voffset-40">
+<ul id="gigs" class="gigs voffset-40">
     @foreach (var gig in Model.UpcomingGigs)
     {
         <li>
@@ -38,18 +38,13 @@
                     {
                         <span class="label label-warning">Canceled</span>
                     }
-
-                    @if (Model.ShowActions)
-                    {
-                        <button class="btn btn-link btn-xs js-toggle-following" data-user-id="@gig.ArtistId">Follow</button>
-                    }
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
                 @if (Model.ShowActions && !gig.IsCanceled)
                 {
-                    <button data-gig-id="@gig.Id" class="btn btn-default btn-xs pull-right js-toggle-attendance">Going?</button>
+                    <button data-gig-id="@gig.Id" class="btn @(Model.Attendances.Contains(gig.Id) ? "btn-info" : "btn-default") btn-xs js-toggle-attendance">Going?</button>
                 }
             </div>
         </li>
@@ -60,34 +55,7 @@
 {
     <script>
         $(document).ready(function () {
-            $(".js-toggle-attendance").click(function (event) {
-
-                var button = $(event.target);
-
-                $.post("/api/attendances", { gigid: button.attr("data-gig-id") })
-                .done(function () {
-                    button
-                        .removeClass("btn-default")
-                        .addClass("btn-info")
-                        .text("Going");
-                })
-                .fail(function () {
-                    alert('Something Failed')
-                });
-            });
-
-            $(".js-toggle-following").click(function (event) {
-
-                var button = $(event.target);
-
-                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
-                .done(function () {
-                    button.text("Following");
-                })
-                .fail(function () {
-                    alert('Something Failed')
-                });
-            });
+            GigsController.init("#gigs");
         });
     </script>
 }

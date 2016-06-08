@@ -1,33 +1,29 @@
 ﻿using AutoMapper;
-using GigHub.Dtos;
-using GigHub.Models;
+using GigHub.Core;
+using GigHub.Core.Dtos;
+using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using WebGrease.Css.Extensions;
 
 namespace GigHub.Controllers.Api
 {
     [Authorize]
     public class NotificationsController : ApiController
     {
-        private ApplicationDbContext _context;
+        private IUnitOfWork unitOfWork;
 
-        public NotificationsController()
+        public NotificationsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            this.unitOfWork = unitOfWork;
         }
 
         public IEnumerable<NotificationDto> GetNewNotifications()
         {
             string userId = User.Identity.GetUserId();
-
-            var notifications = _context.UserNotifications
-                .Where(un => un.UserId == userId && !un.IsRead)
-                .Select(un => un.Notification)
-                .Include(n => n.Gig.Artist)
-                .ToList();
+            IEnumerable<Notification> notifications = unitOfWork.Notifications.GetNewNotificationsFor(userId);
 
             return notifications.Select(n => Mapper.Map<Notification, NotificationDto>(n));
         }
@@ -37,10 +33,10 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var userNotifications = _context.UserNotifications.Where(un => un.UserId == userId && !un.IsRead).ToList();
+            IEnumerable<UserNotification> userNotifications = unitOfWork.UserNotifications.GetUserNotificationsFor(userId);
             userNotifications.ForEach(x => x.Read());
 
-            _context.SaveChanges();
+            unitOfWork.Complete();
 
             return Ok();
         }
