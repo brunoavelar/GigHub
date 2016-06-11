@@ -284,6 +284,7 @@
     <Compile Include="Persistence\EntityConfiguration\GigConfiguration.cs" />
     <Compile Include="Persistence\EntityConfiguration\NotificationConfiguration.cs" />
     <Compile Include="Persistence\EntityConfiguration\UserNotificationConfiguration.cs" />
+    <Compile Include="Persistence\IApplicationDbContext.cs" />
     <Compile Include="Persistence\Migrations\201606022329030_InitialModel.cs" />
     <Compile Include="Persistence\Migrations\201606022329030_InitialModel.Designer.cs">
       <DependentUpon>201606022329030_InitialModel.cs</DependentUpon>
