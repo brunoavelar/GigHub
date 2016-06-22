@@ -17,7 +17,7 @@ namespace GigHub.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        public ActionResult Mine()
+        public ViewResult Mine()
         {
             var userId = User.Identity.GetUserId();
             IEnumerable<Gig> gigs = unitOfWork.Gigs.GetUpcomingGigsByArtist(userId);
