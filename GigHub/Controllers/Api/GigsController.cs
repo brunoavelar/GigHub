@@ -1,5 +1,10 @@
-﻿using GigHub.Core;
+﻿using AutoMapper;
+using GigHub.Core;
+using GigHub.Core.Dtos;
+using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace GigHub.Controllers.Api
@@ -12,6 +17,15 @@ namespace GigHub.Controllers.Api
         public GigsController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        [HttpGet]
+        public IEnumerable<GigDto> GetAll()
+        {
+            var upcomingGigs = unitOfWork.Gigs.GetUpcomingGigs();
+
+            return upcomingGigs.Select(g => Mapper.Map<Gig, GigDto>(g));
+
         }
 
         [HttpDelete]

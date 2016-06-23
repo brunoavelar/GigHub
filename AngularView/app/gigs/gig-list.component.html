@@ -1,0 +1,16 @@
+<ul class="gigs voffset-40">
+    <li *ngFor="#gig of gigs">
+         <div class="date">
+            <div class="month">
+                {{gig.date | date:'MMM'}}
+            </div>
+            <div class="day">
+                {{gig.date | date:'dd' }}
+            </div>
+        </div>
+        <div class="details">
+            <span class="artist">{{gig.artist.name}}</span>
+            <span class="genre">{{gig.genre.name}}</span>
+        </div>
+    </li>
+</ul>

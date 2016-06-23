@@ -1,0 +1,38 @@
+body {
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  padding-bottom: 20px;
+  padding-top: 90px;
+}
+
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+li {
+    font-size: large;
+}
+
+div.panel-heading {
+   font-size: x-large; 
+}
+
+.voffset-2 {
+  margin-top: 2px;
+}
+.voffset-5 {
+  margin-top: 5px;
+}
+.voffset-10 {
+  margin-top: 10px;
+}
+.voffset-20 {
+  margin-top: 20px;
+}
+.voffset-40 {
+  margin-top: 40px;
+}
+.voffset-80 {
+  margin-top: 80px;
+}
