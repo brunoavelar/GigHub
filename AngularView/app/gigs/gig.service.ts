@@ -7,27 +7,44 @@ import { AuthorizedHttp } from '../shared/authorized.http';
 
 @Injectable()
 export class GigService {
-    private gigUrl = 'http://localhost:53009/api/gigs';
+    private gigsUrl = 'http://localhost:53009/api/gigs';
+    private gigUrl = 'http://localhost:53009/api/gigs/:id';
     
-    constructor(private _http: AuthorizedHttp){
+    constructor(private http: AuthorizedHttp){
         
     }   
     
-    getGigs(): Observable<IGig[]> {
-        return this._http.get(this.gigUrl)
-            .map((response: Response) => this.parseGig(response))
+    getGig(gigId:number):Promise<IGig> {
+        return this.http.get(this.gigUrl.replace(":id", gigId.toString()))
+                .map((response:Response) => {
+                    let gig = <IGig>response.json();
+                    this.setGigDate(gig);
+                    return gig;
+                })
+                .toPromise()
+                .catch(this.handleError);
+    }
+
+    getGigs(): Promise<IGig[]> {
+        return this.http.get(this.gigsUrl)
+            .map((response) => this.parseGig(response))
+            .toPromise()
             .catch(this.handleError);
     }
 
     parseGig(response: Response): IGig[]{
         var gigs:IGig[] = <IGig[]>response.json();
         gigs.forEach(gig => {
-            gig.date = new Date(gig.datetime);
+            this.setGigDate(gig);
         });
         return gigs;
     }
+
+    setGigDate(gig: IGig){
+        gig.date = new Date(gig.datetime);
+    }
     
     private handleError(error: Response) {
-        return Observable.throw(error.json().error || 'Server error');
+        return Promise.reject(error);
     }
 }

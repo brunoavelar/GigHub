@@ -29,12 +29,25 @@ System.register(['angular2/core', './gig.service', 'angular2/router'], function(
                     this.gigService = gigService;
                     this.routeParams = routeParams;
                     this.router = router;
-                    console.log(this.routeParams.get('id'));
+                    this.gig = {
+                        gigId: 0,
+                        venue: '',
+                        artist: { id: '', name: '' },
+                        genre: { id: '', name: '' },
+                        datetime: '',
+                        date: new Date(),
+                        isCanceled: false
+                    };
                 }
                 GigDetailComponent.prototype.onBack = function () {
                     this.router.navigate(['Gigs']);
                 };
                 GigDetailComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    var gigId = +this.routeParams.get('id');
+                    this.gigService.getGig(gigId)
+                        .then(function (gig) { return _this.gig = gig; })
+                        .catch(function (error) { return console.log(error); });
                 };
                 GigDetailComponent = __decorate([
                     core_1.Component({

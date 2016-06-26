@@ -6,5 +6,6 @@ export interface IGig {
     artist: IdName;
     genre:IdName;
     datetime: string;
-    date: Date
+    date: Date;
+    isCanceled: boolean;
 }

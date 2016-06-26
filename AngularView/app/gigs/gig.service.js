@@ -1,4 +1,4 @@
-System.register(["angular2/core", 'rxjs/Observable', '../shared/authorized.http'], function(exports_1, context_1) {
+System.register(["angular2/core", '../shared/authorized.http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,40 +10,54 @@ System.register(["angular2/core", 'rxjs/Observable', '../shared/authorized.http'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, Observable_1, authorized_http_1;
+    var core_1, authorized_http_1;
     var GigService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (Observable_1_1) {
-                Observable_1 = Observable_1_1;
-            },
             function (authorized_http_1_1) {
                 authorized_http_1 = authorized_http_1_1;
             }],
         execute: function() {
             GigService = (function () {
-                function GigService(_http) {
-                    this._http = _http;
-                    this.gigUrl = 'http://localhost:53009/api/gigs';
+                function GigService(http) {
+                    this.http = http;
+                    this.gigsUrl = 'http://localhost:53009/api/gigs';
+                    this.gigUrl = 'http://localhost:53009/api/gigs/:id';
                 }
+                GigService.prototype.getGig = function (gigId) {
+                    var _this = this;
+                    return this.http.get(this.gigUrl.replace(":id", gigId.toString()))
+                        .map(function (response) {
+                        var gig = response.json();
+                        _this.setGigDate(gig);
+                        return gig;
+                    })
+                        .toPromise()
+                        .catch(this.handleError);
+                };
                 GigService.prototype.getGigs = function () {
                     var _this = this;
-                    return this._http.get(this.gigUrl)
+                    return this.http.get(this.gigsUrl)
                         .map(function (response) { return _this.parseGig(response); })
+                        .toPromise()
                         .catch(this.handleError);
                 };
                 GigService.prototype.parseGig = function (response) {
+                    var _this = this;
                     var gigs = response.json();
                     gigs.forEach(function (gig) {
-                        gig.date = new Date(gig.datetime);
+                        _this.setGigDate(gig);
                     });
                     return gigs;
                 };
+                GigService.prototype.setGigDate = function (gig) {
+                    gig.date = new Date(gig.datetime);
+                };
                 GigService.prototype.handleError = function (error) {
-                    return Observable_1.Observable.throw(error.json().error || 'Server error');
+                    return Promise.reject(error);
                 };
                 GigService = __decorate([
                     core_1.Injectable(), 

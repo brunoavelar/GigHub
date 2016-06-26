@@ -22,10 +22,8 @@ export class GigListComponent implements OnInit {
     
     ngOnInit(): void {
         this.gigService.getGigs()
-            .subscribe(
-                gigs => this.gigs = gigs,
-                error => this.errorMessage = <any>error
-            );
+            .then((gigs) => this.gigs = gigs)
+            .catch((error) => console.log(error));
     }
     
 }

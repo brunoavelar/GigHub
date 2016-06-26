@@ -36,7 +36,8 @@ System.register(['angular2/core', 'angular2/router', './gig.service', './gigs-fi
                 GigListComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this.gigService.getGigs()
-                        .subscribe(function (gigs) { return _this.gigs = gigs; }, function (error) { return _this.errorMessage = error; });
+                        .then(function (gigs) { return _this.gigs = gigs; })
+                        .catch(function (error) { return console.log(error); });
                 };
                 GigListComponent = __decorate([
                     core_1.Component({

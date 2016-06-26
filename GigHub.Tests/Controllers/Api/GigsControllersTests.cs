@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using AutoMapper;
+using FluentAssertions;
+using GigHub.App_Start;
 using GigHub.Controllers.Api;
 using GigHub.Core;
 using GigHub.Core.Models;
@@ -20,6 +22,8 @@ namespace GigHub.Tests.Controllers.Api
         [TestInitialize]
         public void TestInitialize()
         {
+            Mapper.Initialize(c => c.AddProfile(new MappingProfile()));
+
             repository = new Mock<IGigRepository>();
 
             var mockUoW = new Mock<IUnitOfWork>();
@@ -80,6 +84,29 @@ namespace GigHub.Tests.Controllers.Api
 
             var result = controller.Cancel(1);
             result.Should().BeOfType<OkResult>();
+        }
+
+        [TestMethod]
+        public void Get_WithValidId_ShouldReturnGig()
+        {
+            int gigId = 1;
+            var gig = new Gig()
+            {
+                Id = gigId,
+                Artist = new ApplicationUser(),
+                Genre = new Genre(),
+            };
+
+            repository.Setup(x => x.GetGig(gigId)).Returns(gig);
+            var result = controller.Get(gigId);
+
+        }
+
+        [TestMethod]
+        public void Get_NoGigWithGivenIdExists_ShouldReturnNotFound()
+        {
+            var result = controller.Get(1);
+            result.Should().BeOfType<NotFoundResult>();
         }
     }
 }

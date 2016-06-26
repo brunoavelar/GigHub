@@ -31,7 +31,19 @@ namespace GigHub.Controllers.Api
             var upcomingGigs = unitOfWork.Gigs.GetUpcomingGigs();
 
             return upcomingGigs.Select(g => Mapper.Map<Gig, GigDto>(g));
+        }
 
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            var gig = unitOfWork.Gigs.GetGig(id);
+
+            if (gig == null)
+                return NotFound();
+
+
+            var gigDto = Mapper.Map<Gig, GigDto>(gig);
+            return Ok(gigDto);
         }
 
         [HttpDelete]

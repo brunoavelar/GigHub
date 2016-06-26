@@ -76,8 +76,8 @@ namespace GigHub.IntegrationTests.Controllers
             //Assert
             context.Entry(gig).Reload();
             gig.Datetime.Should().Be(DateTime.Today.AddMonths(1).AddHours(21));
-            gig.Venue.Should().Be("venue");
-            gig.Genre.Should().Be(2);
+            gig.Venue.Should().Be("Venue");
+            gig.GenreId.Should().Be(2);
         }
     }
 }

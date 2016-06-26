@@ -24,7 +24,6 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 GigFilterPipe.prototype.transform = function (value, args) {
                     if (!value)
                         return value;
-                    console.log(value);
                     var filter = args ? args[0].toLowerCase() : null;
                     var filteredArray = value.filter(function (gig) {
                         var foundInArtist = gig.artist.name.toLowerCase().indexOf(filter) >= 0;

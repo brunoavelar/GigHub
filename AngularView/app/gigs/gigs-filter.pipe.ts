@@ -9,9 +9,6 @@ export class GigFilterPipe implements PipeTransform {
     transform(value: IGig[], args: string[]){
         if(!value)
         return value;
-        
-        console.log(value);
-        
 
         let filter = args ? args[0].toLowerCase() : null;
 

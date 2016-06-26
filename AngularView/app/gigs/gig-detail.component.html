@@ -1,0 +1,16 @@
+<div id="details" class="details">
+    <h2 class="artist">
+        {{gig.artist.name}}
+
+        <span *ngIf="gig.isCanceled" class="label label-warning">Canceled</span>
+
+        <button class="btn btn-info btn-xs js-toggle-following">Following</button>
+        <button class="btn btn-default btn-xs js-toggle-following">Follow</button>
+
+    </h2>
+    <p>
+        Performing at {{gig.venue}} on {{gig.date | date:'dd MMM'}} at {{gig.date | date:'HH:mm'}}
+    </p>
+
+    <p>You are going to this event</p>
+</div>
