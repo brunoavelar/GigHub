@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx', './gigs/gig.service', './account/login.service', './nav-bar.component', './gigs/gig-list.component', './account/login.component', './account/user-info', './account/logged-in-router-outlet'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx', './gigs/gig.service', './account/login.service', './nav-bar.component', './gigs/gig-list.component', './gigs/gig-detail.component', './account/login.component', './account/user-info', './account/logged-in-router-outlet', './shared/authorized.http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, router_1, gig_service_1, login_service_1, nav_bar_component_1, gig_list_component_1, login_component_1, user_info_1, logged_in_router_outlet_1;
+    var core_1, http_1, router_1, gig_service_1, login_service_1, nav_bar_component_1, gig_list_component_1, gig_detail_component_1, login_component_1, user_info_1, logged_in_router_outlet_1, authorized_http_1;
     var AppComponent;
     return {
         setters:[
@@ -36,6 +36,9 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
             function (gig_list_component_1_1) {
                 gig_list_component_1 = gig_list_component_1_1;
             },
+            function (gig_detail_component_1_1) {
+                gig_detail_component_1 = gig_detail_component_1_1;
+            },
             function (login_component_1_1) {
                 login_component_1 = login_component_1_1;
             },
@@ -44,6 +47,9 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
             },
             function (logged_in_router_outlet_1_1) {
                 logged_in_router_outlet_1 = logged_in_router_outlet_1_1;
+            },
+            function (authorized_http_1_1) {
+                authorized_http_1 = authorized_http_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -56,13 +62,15 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
                         providers: [gig_service_1.GigService,
                             user_info_1.UserInfo,
                             login_service_1.LoginService,
+                            authorized_http_1.AuthorizedHttp,
                             http_1.HTTP_PROVIDERS,
                             router_1.ROUTER_PROVIDERS],
                         directives: [logged_in_router_outlet_1.LoggedInRouterOutlet, nav_bar_component_1.NavBarComponent]
                     }),
                     router_1.RouteConfig([
                         { path: '/gigs', name: 'Gigs', component: gig_list_component_1.GigListComponent, useAsDefault: true },
-                        { path: '/login', name: 'Login', component: login_component_1.LoginComponent }
+                        { path: '/login', name: 'Login', component: login_component_1.LoginComponent },
+                        { path: '/gig', name: 'GigDetail', component: gig_detail_component_1.GigDetailComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

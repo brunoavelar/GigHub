@@ -28,6 +28,10 @@ System.register(['angular2/core', 'angular2/router', './account/login.service'],
                 function NavBarComponent(loginService) {
                     this.loginService = loginService;
                 }
+                NavBarComponent.prototype.test = function () {
+                    console.log(this.loginService.isLoggedIn());
+                    console.log(this.loginService.getUserName());
+                };
                 NavBarComponent.prototype.logout = function () {
                     this.loginService.logout();
                 };

@@ -1,16 +1,27 @@
-<ul class="gigs voffset-40">
-    <li *ngFor="#gig of gigs">
-         <div class="date">
-            <div class="month">
-                {{gig.date | date:'MMM'}}
-            </div>
-            <div class="day">
-                {{gig.date | date:'dd' }}
-            </div>
+<div class="row">
+    <div class="form-group md-col-6">
+        <div id="searchGigs" class="input-group">
+            <input [(ngModel)]='searchTerm' class="form-control"  type="text" placeholder="Search by artist, genre or location" />
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
         </div>
-        <div class="details">
-            <span class="artist">{{gig.artist.name}}</span>
-            <span class="genre">{{gig.genre.name}}</span>
-        </div>
-    </li>
-</ul>
+    </div>
+
+    <ul class="gigs voffset-40">
+        <li *ngFor="#gig of gigs | gigFilter:searchTerm">
+            <div class="date">
+                <div class="month">
+                    {{gig.date | date:'MMM'}}
+                </div>
+                <div class="day">
+                    {{gig.date | date:'dd' }}
+                </div>
+            </div>
+            <div class="details">
+                <a [routerLink]="['GigDetail', {id: gig.id}]" class="artist">{{gig.artist.name}}</a>
+                <span class="genre">{{gig.genre.name}}</span>
+            </div>
+        </li>
+    </ul>
+</div>

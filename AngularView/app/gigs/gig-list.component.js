@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './gig.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './gig.service', './gigs-filter.pipe'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './gig.service'], function(
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, gig_service_1;
+    var core_1, router_1, gig_service_1, gigs_filter_pipe_1;
     var GigListComponent;
     return {
         setters:[
@@ -22,12 +22,16 @@ System.register(['angular2/core', 'angular2/router', './gig.service'], function(
             },
             function (gig_service_1_1) {
                 gig_service_1 = gig_service_1_1;
+            },
+            function (gigs_filter_pipe_1_1) {
+                gigs_filter_pipe_1 = gigs_filter_pipe_1_1;
             }],
         execute: function() {
             GigListComponent = (function () {
                 function GigListComponent(gigService) {
                     this.gigService = gigService;
                     this.pageTitle = 'Gig list';
+                    this.searchTerm = '';
                 }
                 GigListComponent.prototype.ngOnInit = function () {
                     var _this = this;
@@ -38,7 +42,8 @@ System.register(['angular2/core', 'angular2/router', './gig.service'], function(
                     core_1.Component({
                         templateUrl: 'app/gigs/gig-list.component.html',
                         styleUrls: ['app/gigs/gig-list.component.css'],
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        directives: [router_1.ROUTER_DIRECTIVES],
+                        pipes: [gigs_filter_pipe_1.GigFilterPipe]
                     }), 
                     __metadata('design:paramtypes', [gig_service_1.GigService])
                 ], GigListComponent);

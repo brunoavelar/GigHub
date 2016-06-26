@@ -2,24 +2,19 @@ import { Injectable } from "angular2/core";
 import { IGig } from "./gig";
 import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
+import { AuthorizedHttp } from '../shared/authorized.http';
 
 
 @Injectable()
 export class GigService {
-    //private gigUrl = 'api/gigs/gigs.json';
     private gigUrl = 'http://localhost:53009/api/gigs';
     
-    constructor(private _http: Http){
+    constructor(private _http: AuthorizedHttp){
         
     }   
     
     getGigs(): Observable<IGig[]> {
-        let headers:Headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Authorization', 'bearer '+ localStorage.getItem('access_token'));
-        let options:RequestOptions = new RequestOptions({ headers: headers });
-
-        return this._http.get(this.gigUrl, options)
+        return this._http.get(this.gigUrl)
             .map((response: Response) => this.parseGig(response))
             .catch(this.handleError);
     }

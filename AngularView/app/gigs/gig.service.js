@@ -1,4 +1,4 @@
-System.register(["angular2/core", 'angular2/http', 'rxjs/Observable'], function(exports_1, context_1) {
+System.register(["angular2/core", 'rxjs/Observable', '../shared/authorized.http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,33 +10,28 @@ System.register(["angular2/core", 'angular2/http', 'rxjs/Observable'], function(
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, Observable_1;
+    var core_1, Observable_1, authorized_http_1;
     var GigService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (http_1_1) {
-                http_1 = http_1_1;
-            },
             function (Observable_1_1) {
                 Observable_1 = Observable_1_1;
+            },
+            function (authorized_http_1_1) {
+                authorized_http_1 = authorized_http_1_1;
             }],
         execute: function() {
             GigService = (function () {
                 function GigService(_http) {
                     this._http = _http;
-                    //private gigUrl = 'api/gigs/gigs.json';
                     this.gigUrl = 'http://localhost:53009/api/gigs';
                 }
                 GigService.prototype.getGigs = function () {
                     var _this = this;
-                    var headers = new http_1.Headers();
-                    headers.append('Accept', 'application/json');
-                    headers.append('Authorization', 'bearer ' + localStorage.getItem('access_token'));
-                    var options = new http_1.RequestOptions({ headers: headers });
-                    return this._http.get(this.gigUrl, options)
+                    return this._http.get(this.gigUrl)
                         .map(function (response) { return _this.parseGig(response); })
                         .catch(this.handleError);
                 };
@@ -52,7 +47,7 @@ System.register(["angular2/core", 'angular2/http', 'rxjs/Observable'], function(
                 };
                 GigService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http])
+                    __metadata('design:paramtypes', [authorized_http_1.AuthorizedHttp])
                 ], GigService);
                 return GigService;
             }());

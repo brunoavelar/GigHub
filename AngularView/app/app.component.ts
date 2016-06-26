@@ -8,9 +8,11 @@ import { GigService } from './gigs/gig.service';
 import { LoginService } from './account/login.service';
 import { NavBarComponent } from './nav-bar.component';
 import { GigListComponent } from './gigs/gig-list.component';
+import { GigDetailComponent } from './gigs/gig-detail.component';
 import { LoginComponent } from './account/login.component';
 import { UserInfo } from './account/user-info';
 import { LoggedInRouterOutlet } from './account/logged-in-router-outlet';
+import {AuthorizedHttp} from './shared/authorized.http';
 
 
 @Component({
@@ -26,13 +28,15 @@ import { LoggedInRouterOutlet } from './account/logged-in-router-outlet';
     providers: [GigService, 
                 UserInfo,
                 LoginService,
+                AuthorizedHttp,
                 HTTP_PROVIDERS,
                 ROUTER_PROVIDERS],
     directives: [LoggedInRouterOutlet, NavBarComponent]
 })
 @RouteConfig([
     { path: '/gigs', name: 'Gigs', component: GigListComponent, useAsDefault: true },
-    { path: '/login', name: 'Login', component: LoginComponent }
+    { path: '/login', name: 'Login', component: LoginComponent },
+    { path: '/gig', name: 'GigDetail', component: GigDetailComponent }
     // { path: '/product/:id', name: 'ProductDetail', component: ProductDetailComponent }, 
     // { path: '/secretfriend', name: 'SecretFriend', component: SecretFriendComponent }
 ])

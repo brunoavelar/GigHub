@@ -55,3 +55,7 @@
 .gigs > li:hover .actions {
   display: block;
 }
+
+#searchGigs {
+  width: 300px;
+}
