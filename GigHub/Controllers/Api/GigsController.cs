@@ -2,6 +2,7 @@
 using GigHub.Core;
 using GigHub.Core.Dtos;
 using GigHub.Core.Models;
+using GigHub.Persistence;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ namespace GigHub.Controllers.Api
     public class GigsController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
+
+        public GigsController()
+        {
+            unitOfWork = new UnitOfWork(new ApplicationDbContext());
+        }
 
         public GigsController(IUnitOfWork unitOfWork)
         {

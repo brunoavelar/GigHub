@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 
 namespace GigHub
@@ -11,17 +10,28 @@ namespace GigHub
     {
         public static void Register(HttpConfiguration config)
         {
-            var settings = GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings;
-            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            settings.Formatting = Formatting.Indented;
-            
+            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+
+            config.Formatters.Clear();
+            config.Formatters.Add(new JsonMediaTypeFormatter());
+            config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings()
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                defaults: new
+                {
+                    id = RouteParameter.Optional
+                }
             );
+
+            //var cors = new EnableCorsAttribute("*", "*", "GET, POST, OPTIONS, PUT, DELETE, TOKEN");
+            //config.EnableCors(cors);
         }
     }
 }
