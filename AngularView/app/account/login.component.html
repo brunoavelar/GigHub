@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-6">
+        <section id="loginForm" class="form-horizontal">
+            <h4>Use a local account to log in.</h4>
+            <hr />
+            
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="Email">Email</label>
+                <div class="col-md-10">
+                    <input class="form-control valid" id="email" type="text" [(ngModel)]='userName' placeholder="user@domain.com">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="Password">Password</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="password" type="password" [(ngModel)]='password' placeholder="password">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="checkbox">
+                        <input id="RememberMe" name="RememberMe" type="checkbox" value="true">
+                        <input name="RememberMe" type="hidden" value="false">
+                        <label for="RememberMe">Remember me?</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button (click)="login()" class="btn btn-default">Log in</button>
+                </div>
+            </div>
+
+            <p><a href="#">Register as a new user</a></p>
+        </section>
+    </div>
+    <div class="col-md-6">
+        
+    </div>
+</div>

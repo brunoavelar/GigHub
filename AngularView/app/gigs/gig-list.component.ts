@@ -13,12 +13,12 @@ export class GigListComponent implements OnInit {
     gigs: IGig[];
     errorMessage: string;
 
-    constructor(private _gigService: GigService){
+    constructor(private gigService: GigService){
         
     }
     
     ngOnInit(): void {
-        this._gigService.getGigs()
+        this.gigService.getGigs()
             .subscribe(
                 gigs => this.gigs = gigs,
                 error => this.errorMessage = <any>error

@@ -12,7 +12,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">Add a Gig</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul *ngIf="loginService.isLoggedIn()" class="nav navbar-nav navbar-right">
                 <li class="notifications">
                     <a href="#">
                         <i class="glyphicon glyphicon-globe"></i>
@@ -21,7 +21,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        UserName
+                        {{loginService.getUserName()}}
                     <span class="caret"></span></a>
                     
                     <ul class="dropdown-menu">
@@ -29,9 +29,14 @@
                         <li><a href="#">Gig's I'm Going</a></li>
                         <li><a href="#">Artists I'm Following</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Log off</a></li>
+                        <li><a (click)="logout()" href="#">Log off</a></li>
                     </ul>
                 </li>
+            </ul>
+            
+            <ul *ngIf="!loginService.isLoggedIn()" class="nav navbar-nav navbar-right">
+                <li><a href="#" id="registerLink">Register</a></li>
+                <li><a [routerLink]="['Login']">Log in</a></li>
             </ul>
         </div>
     </div>

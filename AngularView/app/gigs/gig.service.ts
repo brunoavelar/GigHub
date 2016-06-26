@@ -1,21 +1,26 @@
 import { Injectable } from "angular2/core";
 import { IGig } from "./gig";
-import { Http, Response } from 'angular2/http';
+import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
 export class GigService {
-    private _productUrl = 'api/gigs/gigs.json';
+    //private gigUrl = 'api/gigs/gigs.json';
+    private gigUrl = 'http://localhost:53009/api/gigs';
     
     constructor(private _http: Http){
         
     }   
     
     getGigs(): Observable<IGig[]> {
-        return this._http.get(this._productUrl)
+        let headers:Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Authorization', 'bearer '+ localStorage.getItem('access_token'));
+        let options:RequestOptions = new RequestOptions({ headers: headers });
+
+        return this._http.get(this.gigUrl, options)
             .map((response: Response) => this.parseGig(response))
-            //.do(data => console.log(JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -28,8 +33,6 @@ export class GigService {
     }
     
     private handleError(error: Response) {
-        console.error(error);
-        
         return Observable.throw(error.json().error || 'Server error');
     }
 }

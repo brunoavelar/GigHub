@@ -25,13 +25,13 @@ System.register(['angular2/core', 'angular2/router', './gig.service'], function(
             }],
         execute: function() {
             GigListComponent = (function () {
-                function GigListComponent(_gigService) {
-                    this._gigService = _gigService;
+                function GigListComponent(gigService) {
+                    this.gigService = gigService;
                     this.pageTitle = 'Gig list';
                 }
                 GigListComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this._gigService.getGigs()
+                    this.gigService.getGigs()
                         .subscribe(function (gigs) { return _this.gigs = gigs; }, function (error) { return _this.errorMessage = error; });
                 };
                 GigListComponent = __decorate([

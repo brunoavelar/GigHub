@@ -27,11 +27,16 @@ System.register(["angular2/core", 'angular2/http', 'rxjs/Observable'], function(
             GigService = (function () {
                 function GigService(_http) {
                     this._http = _http;
-                    this._productUrl = 'api/gigs/gigs.json';
+                    //private gigUrl = 'api/gigs/gigs.json';
+                    this.gigUrl = 'http://localhost:53009/api/gigs';
                 }
                 GigService.prototype.getGigs = function () {
                     var _this = this;
-                    return this._http.get(this._productUrl)
+                    var headers = new http_1.Headers();
+                    headers.append('Accept', 'application/json');
+                    headers.append('Authorization', 'bearer ' + localStorage.getItem('access_token'));
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this._http.get(this.gigUrl, options)
                         .map(function (response) { return _this.parseGig(response); })
                         .catch(this.handleError);
                 };
@@ -43,7 +48,6 @@ System.register(["angular2/core", 'angular2/http', 'rxjs/Observable'], function(
                     return gigs;
                 };
                 GigService.prototype.handleError = function (error) {
-                    console.error(error);
                     return Observable_1.Observable.throw(error.json().error || 'Server error');
                 };
                 GigService = __decorate([
