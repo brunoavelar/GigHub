@@ -33,6 +33,9 @@ export class GigDetailComponent implements OnInit {
         this.gigService.getGig(gigId)
             .then((gig) => this.gig = gig)
             .catch((error) => console.log(error));
+
+        this.gigService.getAttendance(gigId)
+            .then(result => this.isAttending = result);
     }
 
 }

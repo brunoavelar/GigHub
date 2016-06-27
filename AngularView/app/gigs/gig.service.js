@@ -26,7 +26,22 @@ System.register(["angular2/core", '../shared/authorized.http'], function(exports
                     this.http = http;
                     this.gigsUrl = 'http://localhost:53009/api/gigs';
                     this.gigUrl = 'http://localhost:53009/api/gigs/:id';
+                    this.attendanceUrl = 'http://localhost:53009/api/attendances/:id';
                 }
+                GigService.prototype.getAttendance = function (gigId) {
+                    return this.http.get(this.attendanceUrl.replace(":id", gigId.toString()))
+                        .map(function (response) {
+                        console.log(response);
+                        return true;
+                    })
+                        .toPromise()
+                        .catch(function (error) {
+                        if (error.status === 404)
+                            return false;
+                        else
+                            Promise.reject(error);
+                    });
+                };
                 GigService.prototype.getGig = function (gigId) {
                     var _this = this;
                     return this.http.get(this.gigUrl.replace(":id", gigId.toString()))

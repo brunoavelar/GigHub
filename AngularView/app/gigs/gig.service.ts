@@ -9,11 +9,29 @@ import { AuthorizedHttp } from '../shared/authorized.http';
 export class GigService {
     private gigsUrl = 'http://localhost:53009/api/gigs';
     private gigUrl = 'http://localhost:53009/api/gigs/:id';
-    
+    private attendanceUrl = 'http://localhost:53009/api/attendances/:id';
+
     constructor(private http: AuthorizedHttp){
         
     }   
     
+    getAttendance(gigId:number):Promise<boolean> {
+        return this.http.get(this.attendanceUrl.replace(":id", gigId.toString()))
+                .map((response:Response) => {
+                    console.log(response);
+                    
+                    
+                    return true;
+                })
+                .toPromise()
+                .catch(error => {
+                    if(error.status === 404)
+                        return false
+                    else
+                        Promise.reject(error)
+                });
+    }
+
     getGig(gigId:number):Promise<IGig> {
         return this.http.get(this.gigUrl.replace(":id", gigId.toString()))
                 .map((response:Response) => {

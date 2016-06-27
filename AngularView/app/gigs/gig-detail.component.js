@@ -48,6 +48,8 @@ System.register(['angular2/core', './gig.service', 'angular2/router'], function(
                     this.gigService.getGig(gigId)
                         .then(function (gig) { return _this.gig = gig; })
                         .catch(function (error) { return console.log(error); });
+                    this.gigService.getAttendance(gigId)
+                        .then(function (result) { return _this.isAttending = result; });
                 };
                 GigDetailComponent = __decorate([
                     core_1.Component({

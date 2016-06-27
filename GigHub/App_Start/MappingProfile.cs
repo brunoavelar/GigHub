@@ -14,6 +14,7 @@ namespace GigHub.App_Start
         protected override void Configure()
         {
             CreateMap<ApplicationUser, UserDto>();
+            CreateMap<Attendance, AttendanceDto>();
             CreateMap<Notification, NotificationDto>();
             CreateMap<Genre, GenreDto>();
             CreateMap<Gig, GigDto>();

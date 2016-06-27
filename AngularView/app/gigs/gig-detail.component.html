@@ -12,5 +12,5 @@
         Performing at {{gig.venue}} on {{gig.date | date:'dd MMM'}} at {{gig.date | date:'HH:mm'}}
     </p>
 
-    <p>You are going to this event</p>
+    <p *ngIf='isAttending'>You are going to this event</p>
 </div>

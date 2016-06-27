@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using AutoMapper;
+using FluentAssertions;
+using GigHub.App_Start;
 using GigHub.Controllers.Api;
 using GigHub.Core;
 using GigHub.Core.Dtos;
@@ -21,6 +23,8 @@ namespace GigHub.Tests.Controllers.Api
         [TestInitialize]
         public void TestInitialize()
         {
+            Mapper.Initialize(c => c.AddProfile(new MappingProfile()));
+
             repository = new Mock<IAttendanceRepository>();
 
             var mockUoW = new Mock<IUnitOfWork>();
@@ -81,6 +85,38 @@ namespace GigHub.Tests.Controllers.Api
 
             var result = controller.DeleteAttendance(gigId);
             result.Should().BeOfType<OkResult>();
+        }
+
+        [TestMethod]
+        public void Get_WithValidId_ShouldReturnAttendanceDto()
+        {
+            int gigId = 1;
+            var attendance = new Attendance()
+            {
+                AttendeeId = userId,
+                GigId = gigId
+            };
+
+            repository.Setup(x => x.GetAttendance(userId, gigId)).Returns(attendance);
+
+            var result = controller.Get(gigId) as OkNegotiatedContentResult<AttendanceDto>;
+            result.Content.GigId.Should().Be(gigId);
+        }
+
+        [TestMethod]
+        public void Get_NoAttendanceWithGivenGigIdExists_ShouldReturnNotFound()
+        {
+            int gigId = 1;
+            var attendance = new Attendance()
+            {
+                AttendeeId = userId,
+                GigId = gigId
+            };
+
+            repository.Setup(x => x.GetAttendance(userId, gigId)).Returns(attendance);
+
+            var result = controller.Get(gigId + 1);
+            result.Should().BeOfType<NotFoundResult>();
         }
     }
 }

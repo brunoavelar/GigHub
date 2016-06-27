@@ -3,6 +3,7 @@ using FluentAssertions;
 using GigHub.App_Start;
 using GigHub.Controllers.Api;
 using GigHub.Core;
+using GigHub.Core.Dtos;
 using GigHub.Core.Models;
 using GigHub.Core.Repositories;
 using GigHub.Tests.Extensions;
@@ -98,14 +99,24 @@ namespace GigHub.Tests.Controllers.Api
             };
 
             repository.Setup(x => x.GetGig(gigId)).Returns(gig);
-            var result = controller.Get(gigId);
-
+            var result = controller.Get(gigId) as OkNegotiatedContentResult<GigDto>;
+            result.Content.Id.Should().Be(gigId);
         }
 
         [TestMethod]
         public void Get_NoGigWithGivenIdExists_ShouldReturnNotFound()
         {
-            var result = controller.Get(1);
+            int gigId = 1;
+            var gig = new Gig()
+            {
+                Id = gigId,
+                Artist = new ApplicationUser(),
+                Genre = new Genre(),
+            };
+
+            repository.Setup(x => x.GetGig(gigId)).Returns(gig);
+
+            var result = controller.Get(gigId + 1);
             result.Should().BeOfType<NotFoundResult>();
         }
     }
