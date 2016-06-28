@@ -2,7 +2,6 @@
 using GigHub.Core;
 using GigHub.Core.Dtos;
 using GigHub.Core.Models;
-using GigHub.Persistence;
 using Microsoft.AspNet.Identity;
 using System.Web.Http;
 
@@ -17,12 +16,6 @@ namespace GigHub.Controllers.Api
         {
             this.unitOfWork = unitOfWork;
         }
-
-        public AttendancesController()
-        {
-            unitOfWork = new UnitOfWork(new ApplicationDbContext());
-        }
-
 
         [HttpGet]
         public IHttpActionResult Get(int id)

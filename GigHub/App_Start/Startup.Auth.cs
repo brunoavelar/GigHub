@@ -13,10 +13,6 @@ namespace GigHub
 {
     public partial class Startup
     {
-        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
-
-        public static string PublicClientId { get; private set; }
-
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -51,29 +47,6 @@ namespace GigHub
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-
-            // Configure the application for OAuth based flow
-            PublicClientId = "self";
-            OAuthOptions = new OAuthAuthorizationServerOptions
-            {
-                TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider(PublicClientId),
-                AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                // In production mode set AllowInsecureHttp = false
-                AllowInsecureHttp = true
-            };
-
-            // Enable the application to use bearer tokens to authenticate users
-            app.UseOAuthAuthorizationServer(OAuthOptions);
-            app.UseOAuthBearerAuthentication
-            (
-                new OAuthBearerAuthenticationOptions
-                {
-                    Provider = new OAuthBearerAuthenticationProvider()
-                }
-            );
-
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
@@ -92,6 +65,31 @@ namespace GigHub
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+        }
+
+        public void ConfigureOAuth(IAppBuilder app)
+        {
+            // Configure the application for OAuth based flow
+            string PublicClientId = "self";
+            OAuthAuthorizationServerOptions OAuthOptions = new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/Token"),
+                Provider = new ApplicationOAuthProvider(PublicClientId),
+                AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                // In production mode set AllowInsecureHttp = false
+                AllowInsecureHttp = true
+            };
+
+            // Enable the application to use bearer tokens to authenticate users
+            app.UseOAuthAuthorizationServer(OAuthOptions);
+            app.UseOAuthBearerAuthentication
+            (
+                new OAuthBearerAuthenticationOptions
+                {
+                    Provider = new OAuthBearerAuthenticationProvider()
+                }
+            );
         }
     }
 }

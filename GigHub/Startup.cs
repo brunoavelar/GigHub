@@ -13,9 +13,9 @@ namespace GigHub
             app.UseCors(CorsOptions.AllowAll);
 
             ConfigureAuth(app);
+            ConfigureOAuth(app);
 
             HttpConfiguration config = new HttpConfiguration();
-            WebApiConfig.Register(config);
             app.UseWebApi(config);
         }
     }
