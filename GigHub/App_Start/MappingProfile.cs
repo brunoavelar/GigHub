@@ -15,6 +15,7 @@ namespace GigHub.App_Start
         {
             CreateMap<ApplicationUser, UserDto>();
             CreateMap<Attendance, AttendanceDto>();
+            CreateMap<Following, FollowingDto>();
             CreateMap<Notification, NotificationDto>();
             CreateMap<Genre, GenreDto>();
             CreateMap<Gig, GigDto>();

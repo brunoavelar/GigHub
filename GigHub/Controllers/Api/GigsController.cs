@@ -9,7 +9,6 @@ using System.Web.Http;
 
 namespace GigHub.Controllers.Api
 {
-    [Authorize]
     public class GigsController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -19,7 +18,6 @@ namespace GigHub.Controllers.Api
             this.unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
         public IEnumerable<GigDto> GetAll()
         {
             var upcomingGigs = unitOfWork.Gigs.GetUpcomingGigs();
@@ -27,7 +25,6 @@ namespace GigHub.Controllers.Api
             return upcomingGigs.Select(g => Mapper.Map<Gig, GigDto>(g));
         }
 
-        [HttpGet]
         public IHttpActionResult Get(int id)
         {
             var gig = unitOfWork.Gigs.GetGig(id);
@@ -40,6 +37,7 @@ namespace GigHub.Controllers.Api
             return Ok(gigDto);
         }
 
+        [Authorize]
         [HttpDelete]
         public IHttpActionResult Cancel(int id)
         {

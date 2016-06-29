@@ -1,4 +1,5 @@
-﻿using GigHub.Core;
+﻿using AutoMapper;
+using GigHub.Core;
 using GigHub.Core.Dtos;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
@@ -16,9 +17,25 @@ namespace GigHub.Controllers.Api
             this.unitOfWork = unitOfWork;
         }
 
+        [HttpGet]
+        public IHttpActionResult Get(string id)
+        {
+            string userId = User.Identity.GetUserId();
+            var following = unitOfWork.Followings.GetFollowing(userId, id);
+
+            if (following == null)
+                return NotFound();
+
+            var followingDto = Mapper.Map<Following, FollowingDto>(following);
+            return Ok(followingDto);
+        }
+
         public IHttpActionResult Follow(FollowingDto dto)
         {
             string userId = User.Identity.GetUserId();
+
+            if (dto == null)
+                return BadRequest("Invalid content body");
 
             if (unitOfWork.Followings.GetFollowing(userId, dto.FolloweeId) != null)
                 return BadRequest("Following already exists.");

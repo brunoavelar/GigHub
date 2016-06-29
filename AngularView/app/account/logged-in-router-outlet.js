@@ -37,7 +37,7 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service']
                 function LoggedInRouterOutlet(_elementRef, _loader, router, nameAttr, loginService) {
                     _super.call(this, _elementRef, _loader, router, nameAttr);
                     this.loginService = loginService;
-                    this.publicRoutes = ['', 'login'];
+                    this.publicRoutes = ['', 'login', 'gigs', 'gig/'];
                     this.router = router;
                 }
                 LoggedInRouterOutlet.prototype.activate = function (instruction) {
@@ -47,6 +47,7 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service']
                     this.router.navigate(['Login']);
                 };
                 LoggedInRouterOutlet.prototype._canActivate = function (url) {
+                    console.log(url + " - " + this.publicRoutes.indexOf(url));
                     return this.publicRoutes.indexOf(url) !== -1 || this.loginService.isLoggedIn() || localStorage.getItem('isLoggedIn') === 'true';
                 };
                 LoggedInRouterOutlet = __decorate([

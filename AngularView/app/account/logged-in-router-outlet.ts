@@ -15,7 +15,7 @@ export class LoggedInRouterOutlet extends RouterOutlet {
         @Attribute('name') nameAttr: string, private loginService: LoginService) {
         super(_elementRef, _loader, router, nameAttr);
 
-        this.publicRoutes = ['', 'login'];
+        this.publicRoutes = ['', 'login', 'gigs', 'gig/'];
         this.router = router;
     }
 
@@ -29,6 +29,8 @@ export class LoggedInRouterOutlet extends RouterOutlet {
     }
 
     _canActivate(url) {
+        console.log(url+" - "+this.publicRoutes.indexOf(url));
+        
         return this.publicRoutes.indexOf(url) !== -1 || this.loginService.isLoggedIn() || localStorage.getItem('isLoggedIn') === 'true'
     }
 }

@@ -70,7 +70,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
                     router_1.RouteConfig([
                         { path: '/gigs', name: 'Gigs', component: gig_list_component_1.GigListComponent, useAsDefault: true },
                         { path: '/login', name: 'Login', component: login_component_1.LoginComponent },
-                        { path: '/gig', name: 'GigDetail', component: gig_detail_component_1.GigDetailComponent }
+                        { path: '/gig/:id', name: 'GigDetail', component: gig_detail_component_1.GigDetailComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

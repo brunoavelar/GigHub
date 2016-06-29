@@ -17,11 +17,6 @@ export class NavBarComponent {
     constructor(private loginService: LoginService){
         
     }
-    
-    test(){
-        console.log(this.loginService.isLoggedIn());
-        console.log(this.loginService.getUserName());
-    }
 
     logout(){
         this.loginService.logout();

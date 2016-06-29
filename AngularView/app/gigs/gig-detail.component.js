@@ -1,4 +1,4 @@
-System.register(['angular2/core', './gig.service', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/core', './gig.service', 'angular2/router', "../shared/follow-button.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './gig.service', 'angular2/router'], function(
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, gig_service_1, router_1;
+    var core_1, gig_service_1, router_1, follow_button_component_1;
     var GigDetailComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', './gig.service', 'angular2/router'], function(
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (follow_button_component_1_1) {
+                follow_button_component_1 = follow_button_component_1_1;
             }],
         execute: function() {
             GigDetailComponent = (function () {
@@ -46,14 +49,17 @@ System.register(['angular2/core', './gig.service', 'angular2/router'], function(
                     var _this = this;
                     var gigId = +this.routeParams.get('id');
                     this.gigService.getGig(gigId)
-                        .then(function (gig) { return _this.gig = gig; })
+                        .then(function (gig) {
+                        _this.gig = gig;
+                    })
                         .catch(function (error) { return console.log(error); });
                     this.gigService.getAttendance(gigId)
                         .then(function (result) { return _this.isAttending = result; });
                 };
                 GigDetailComponent = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/gigs/gig-detail.component.html'
+                        templateUrl: 'app/gigs/gig-detail.component.html',
+                        directives: [follow_button_component_1.FollowButtonComponent]
                     }), 
                     __metadata('design:paramtypes', [gig_service_1.GigService, router_1.RouteParams, router_1.Router])
                 ], GigDetailComponent);

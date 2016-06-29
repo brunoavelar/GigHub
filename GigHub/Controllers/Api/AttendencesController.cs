@@ -24,9 +24,7 @@ namespace GigHub.Controllers.Api
             var attendance = unitOfWork.Attendances.GetAttendance(userId, id);
 
             if (attendance == null)
-            {
                 return NotFound();
-            }
 
             var attendanceDto = Mapper.Map<Attendance, AttendanceDto>(attendance);
             return Ok(attendanceDto);

@@ -7,9 +7,10 @@ import { AuthorizedHttp } from '../shared/authorized.http';
 
 @Injectable()
 export class GigService {
-    private gigsUrl = 'http://localhost:53009/api/gigs';
-    private gigUrl = 'http://localhost:53009/api/gigs/:id';
-    private attendanceUrl = 'http://localhost:53009/api/attendances/:id';
+    private gigsUrl = '/gigs';
+    private gigUrl = '/gigs/:id';
+    private attendanceUrl = '/attendances/:id';
+    private followingUrl = '/followings/:id';
 
     constructor(private http: AuthorizedHttp){
         
@@ -18,9 +19,20 @@ export class GigService {
     getAttendance(gigId:number):Promise<boolean> {
         return this.http.get(this.attendanceUrl.replace(":id", gigId.toString()))
                 .map((response:Response) => {
-                    console.log(response);
-                    
-                    
+                    return true;
+                })
+                .toPromise()
+                .catch(error => {
+                    if(error.status === 404)
+                        return false
+                    else
+                        Promise.reject(error)
+                });
+    }
+
+    getFollowing(artistId:string):Promise<boolean> {
+        return this.http.get(this.followingUrl.replace(":id", artistId))
+                .map((response:Response) => {
                     return true;
                 })
                 .toPromise()

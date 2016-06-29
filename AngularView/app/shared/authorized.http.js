@@ -11,7 +11,7 @@ System.register(["angular2/core", 'angular2/http'], function(exports_1, context_
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1;
-    var AuthorizedHttp;
+    var rootUrl, AuthorizedHttp;
     return {
         setters:[
             function (core_1_1) {
@@ -21,19 +21,21 @@ System.register(["angular2/core", 'angular2/http'], function(exports_1, context_
                 http_1 = http_1_1;
             }],
         execute: function() {
+            rootUrl = 'http://localhost:53009/api/';
             AuthorizedHttp = (function () {
                 function AuthorizedHttp(http) {
                     this.http = http;
                 }
                 AuthorizedHttp.prototype.createHeaders = function () {
                     var headers = new http_1.Headers();
+                    headers.append('Content-Type', 'application/json');
                     this.appendAuthorization(headers);
                     return headers;
                 };
                 AuthorizedHttp.prototype.appendAuthorization = function (headers) {
                     headers.append('Authorization', 'bearer ' + localStorage.getItem('access_token'));
                 };
-                AuthorizedHttp.prototype.ManageRequestOptions = function (defaultOptions) {
+                AuthorizedHttp.prototype.manageRequestOptions = function (defaultOptions) {
                     if (defaultOptions && defaultOptions.headers) {
                         this.appendAuthorization(defaultOptions.headers);
                     }
@@ -43,8 +45,16 @@ System.register(["angular2/core", 'angular2/http'], function(exports_1, context_
                     return defaultOptions;
                 };
                 AuthorizedHttp.prototype.get = function (url, defaultOptions) {
-                    var options = this.ManageRequestOptions(defaultOptions);
-                    return this.http.get(url, options);
+                    var options = this.manageRequestOptions(defaultOptions);
+                    return this.http.get(rootUrl + url, options);
+                };
+                AuthorizedHttp.prototype.post = function (url, body, defaultOptions) {
+                    var options = this.manageRequestOptions(defaultOptions);
+                    return this.http.post(rootUrl + url, body, options);
+                };
+                AuthorizedHttp.prototype.delete = function (url, defaultOptions) {
+                    var options = this.manageRequestOptions(defaultOptions);
+                    return this.http.delete(rootUrl + url, options);
                 };
                 AuthorizedHttp = __decorate([
                     core_1.Injectable(), 

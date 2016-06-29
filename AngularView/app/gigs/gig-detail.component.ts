@@ -2,9 +2,11 @@ import { Component, OnInit } from 'angular2/core';
 import { GigService } from './gig.service';
 import { RouteParams, Router} from 'angular2/router';
 import { IGig } from "./gig";
+import { FollowButtonComponent } from "../shared/follow-button.component";
 
 @Component({
-    templateUrl: 'app/gigs/gig-detail.component.html'
+    templateUrl: 'app/gigs/gig-detail.component.html',
+    directives: [FollowButtonComponent]
 })
 export class GigDetailComponent implements OnInit {
     private gig:IGig;
@@ -31,7 +33,9 @@ export class GigDetailComponent implements OnInit {
         let gigId:number = +this.routeParams.get('id');
 
         this.gigService.getGig(gigId)
-            .then((gig) => this.gig = gig)
+            .then((gig) => {
+                this.gig = gig;
+            })
             .catch((error) => console.log(error));
 
         this.gigService.getAttendance(gigId)

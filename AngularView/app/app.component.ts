@@ -36,9 +36,7 @@ import {AuthorizedHttp} from './shared/authorized.http';
 @RouteConfig([
     { path: '/gigs', name: 'Gigs', component: GigListComponent, useAsDefault: true },
     { path: '/login', name: 'Login', component: LoginComponent },
-    { path: '/gig', name: 'GigDetail', component: GigDetailComponent }
-    // { path: '/product/:id', name: 'ProductDetail', component: ProductDetailComponent }, 
-    // { path: '/secretfriend', name: 'SecretFriend', component: SecretFriendComponent }
+    { path: '/gig/:id', name: 'GigDetail', component: GigDetailComponent }
 ])
 export class AppComponent {
 

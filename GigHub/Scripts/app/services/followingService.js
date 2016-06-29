@@ -1,6 +1,6 @@
 ﻿var FollowingService = function () {
     var follow = function (artistId, done, fail) {
-        $.post("/api/followings", { followeeId: artistId })
+        $.post("/api/followings/"+artistId)
         .done(done)
         .fail(fail);
     }
