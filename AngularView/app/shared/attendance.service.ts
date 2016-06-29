@@ -13,8 +13,7 @@ export class AttendanceService {
     }   
 
     getAttendance(gigId:string):Promise<boolean> {
-        let getUrl:string = this.attendanceUrl.replace(":id", gigId);
-
+        let getUrl:string = this.attendanceUrl.replace(":id", gigId);        
         return this.http.get(getUrl)
                 .map((response:Response) => {
                     return true;

@@ -1,5 +1,5 @@
 import { Injectable } from "angular2/core";
-import { IGig } from "./gig";
+import { Gig } from "./gig";
 import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthorizedHttp } from '../shared/authorized.http';
@@ -44,34 +44,30 @@ export class GigService {
                 });
     }
 
-    getGig(gigId:number):Promise<IGig> {
+    getGig(gigId:number):Promise<Gig> {
         return this.http.get(this.gigUrl.replace(":id", gigId.toString()))
                 .map((response:Response) => {
-                    let gig = <IGig>response.json();
-                    this.setGigDate(gig);
+                    let gig = new Gig(response.json());
                     return gig;
                 })
                 .toPromise()
                 .catch(this.handleError);
     }
 
-    getGigs(): Promise<IGig[]> {
+    getGigs(): Promise<Gig[]> {
         return this.http.get(this.gigsUrl)
-            .map((response) => this.parseGig(response))
+            .map((response) => this.parseGigs(response))
             .toPromise()
             .catch(this.handleError);
     }
 
-    parseGig(response: Response): IGig[]{
-        var gigs:IGig[] = <IGig[]>response.json();
-        gigs.forEach(gig => {
-            this.setGigDate(gig);
+    parseGigs(response: Response): Gig[]{
+        let gigs:Gig[] = [];
+        response.json().forEach(element => {
+            var gig:Gig = new Gig(element);
+            gigs.push(gig);
         });
         return gigs;
-    }
-
-    setGigDate(gig: IGig){
-        gig.date = new Date(gig.datetime);
     }
     
     private handleError(error: Response) {

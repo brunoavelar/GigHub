@@ -1,4 +1,4 @@
-System.register(['angular2/core', './gig.service', 'angular2/router', "../shared/follow-button.component"], function(exports_1, context_1) {
+System.register(['angular2/core', './gig.service', 'angular2/router', "./gig", "../shared/follow-button.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './gig.service', 'angular2/router', "../shared
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, gig_service_1, router_1, follow_button_component_1;
+    var core_1, gig_service_1, router_1, gig_1, follow_button_component_1;
     var GigDetailComponent;
     return {
         setters:[
@@ -23,6 +23,9 @@ System.register(['angular2/core', './gig.service', 'angular2/router', "../shared
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (gig_1_1) {
+                gig_1 = gig_1_1;
+            },
             function (follow_button_component_1_1) {
                 follow_button_component_1 = follow_button_component_1_1;
             }],
@@ -32,15 +35,8 @@ System.register(['angular2/core', './gig.service', 'angular2/router', "../shared
                     this.gigService = gigService;
                     this.routeParams = routeParams;
                     this.router = router;
-                    this.gig = {
-                        gigId: 0,
-                        venue: '',
-                        artist: { id: '', name: '' },
-                        genre: { id: '', name: '' },
-                        datetime: '',
-                        date: new Date(),
-                        isCanceled: false
-                    };
+                    this.gig = new gig_1.Gig();
+                    this.gig = new gig_1.Gig();
                 }
                 GigDetailComponent.prototype.onBack = function () {
                     this.router.navigate(['Gigs']);

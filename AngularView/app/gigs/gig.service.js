@@ -1,4 +1,4 @@
-System.register(["angular2/core", '../shared/authorized.http'], function(exports_1, context_1) {
+System.register(["angular2/core", "./gig", '../shared/authorized.http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,15 @@ System.register(["angular2/core", '../shared/authorized.http'], function(exports
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, authorized_http_1;
+    var core_1, gig_1, authorized_http_1;
     var GigService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (gig_1_1) {
+                gig_1 = gig_1_1;
             },
             function (authorized_http_1_1) {
                 authorized_http_1 = authorized_http_1_1;
@@ -56,11 +59,9 @@ System.register(["angular2/core", '../shared/authorized.http'], function(exports
                     });
                 };
                 GigService.prototype.getGig = function (gigId) {
-                    var _this = this;
                     return this.http.get(this.gigUrl.replace(":id", gigId.toString()))
                         .map(function (response) {
-                        var gig = response.json();
-                        _this.setGigDate(gig);
+                        var gig = new gig_1.Gig(response.json());
                         return gig;
                     })
                         .toPromise()
@@ -69,20 +70,17 @@ System.register(["angular2/core", '../shared/authorized.http'], function(exports
                 GigService.prototype.getGigs = function () {
                     var _this = this;
                     return this.http.get(this.gigsUrl)
-                        .map(function (response) { return _this.parseGig(response); })
+                        .map(function (response) { return _this.parseGigs(response); })
                         .toPromise()
                         .catch(this.handleError);
                 };
-                GigService.prototype.parseGig = function (response) {
-                    var _this = this;
-                    var gigs = response.json();
-                    gigs.forEach(function (gig) {
-                        _this.setGigDate(gig);
+                GigService.prototype.parseGigs = function (response) {
+                    var gigs = [];
+                    response.json().forEach(function (element) {
+                        var gig = new gig_1.Gig(element);
+                        gigs.push(gig);
                     });
                     return gigs;
-                };
-                GigService.prototype.setGigDate = function (gig) {
-                    gig.date = new Date(gig.datetime);
                 };
                 GigService.prototype.handleError = function (error) {
                     return Promise.reject(error);

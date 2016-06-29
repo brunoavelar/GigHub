@@ -1,7 +1,7 @@
 import { Component, OnInit } from 'angular2/core';
 import { GigService } from './gig.service';
 import { RouteParams, Router} from 'angular2/router';
-import { IGig } from "./gig";
+import { Gig } from "./gig";
 import { FollowButtonComponent } from "../shared/follow-button.component";
 
 @Component({
@@ -10,20 +10,12 @@ import { FollowButtonComponent } from "../shared/follow-button.component";
     directives: [FollowButtonComponent]
 })
 export class GigDetailComponent implements OnInit {
-    private gig:IGig;
+    private gig:Gig = new Gig();
     private isAttending: boolean;
     private isFollowing: boolean;
 
     constructor(private gigService: GigService, private routeParams: RouteParams, private router: Router) { 
-        this.gig = {
-            gigId: 0,
-            venue: '',
-            artist: {id: '', name: ''},
-            genre: {id: '', name: ''},
-            datetime: '',
-            date: new Date(),
-            isCanceled: false
-        };
+        this.gig = new Gig();
     }
     
     onBack(): void {

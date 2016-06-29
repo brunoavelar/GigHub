@@ -1,6 +1,6 @@
 import { Component, OnInit } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
-import { IGig } from './gig';
+import { Gig } from './gig';
 import { GigService } from './gig.service';
 import { GigFilterPipe } from './gigs-filter.pipe'
 import { AttendanceButtonComponent } from '../shared/attendance-button.component'
@@ -14,7 +14,7 @@ import { AttendanceButtonComponent } from '../shared/attendance-button.component
 })
 export class GigListComponent implements OnInit {
     pageTitle: string = 'Gig list';
-    gigs: IGig[];
+    gigs: Gig[];
     errorMessage: string;
     searchTerm:string = '';
 

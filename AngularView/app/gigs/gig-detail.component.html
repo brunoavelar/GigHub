@@ -7,7 +7,7 @@
         <follow-button *ngIf='gig.artist.id' [followee]='gig.artist.id'></follow-button>
     </h2>
     <p>
-        Performing at {{gig.venue}} on {{gig.date | date:'dd MMM'}} at {{gig.date | date:'HH:mm'}}
+        Performing at {{gig.venue}} on {{gig.datetime | date:'dd MMM'}} at {{gig.datetime | date:'HH:mm'}}
     </p>
 
     <p *ngIf='isAttending'>You are going to this event</p>
