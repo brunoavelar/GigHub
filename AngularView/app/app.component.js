@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx', './gigs/gig.service', './account/login.service', './nav-bar.component', './gigs/gig-list.component', './gigs/gig-detail.component', './account/login.component', './account/user-info', './account/logged-in-router-outlet', './shared/authorized.http'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx', './gigs/gig.service', './account/login.service', './nav-bar/nav-bar.component', './gigs/gig-list.component', './gigs/gig-detail.component', './account/login.component', './account/user-info', './account/logged-in-router-outlet', './shared/authorized.http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

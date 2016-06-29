@@ -1,8 +1,8 @@
-import { Component, Input } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
-import { LoginService } from './account/login.service';
-import { UserInfo } from './account/user-info';
+import { LoginService } from '../account/login.service';
+import { UserInfo } from '../account/user-info';
 
 @Component({
     moduleId: __moduleName,
@@ -12,8 +12,13 @@ import { UserInfo } from './account/user-info';
     directives: [ROUTER_DIRECTIVES]
 })
 export class NavBarComponent {
-    isLoggedIn: boolean;
-    userName: string;
+    get isLoggedIn():boolean {
+        return this.loginService.isLoggedIn();
+    }
+    
+    get userName():string {
+        return this.loginService.getUserName();
+    }
 
     constructor(private loginService: LoginService){
         
