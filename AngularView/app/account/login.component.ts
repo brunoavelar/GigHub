@@ -4,8 +4,9 @@ import { UserInfo } from './user-info'
 import { Router } from 'angular2/router';
 
 @Component({
-    templateUrl: 'app/account/login.component.html',
-    styleUrls: ['app/account/login.component.css']
+    moduleId: __moduleName,
+    templateUrl: 'login.component.html',
+    styleUrls: ['login.component.css']
 })
 export class LoginComponent {
     userName: string;

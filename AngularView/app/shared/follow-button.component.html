@@ -1,2 +1,1 @@
-<button *ngIf='isFollowing' (click)="unfollow()" class="btn btn-info btn-xs js-toggle-following">Following</button>
-<button *ngIf='!isFollowing' (click)="follow()" class="btn btn-default btn-xs js-toggle-following">Follow</button>
+<button (click)="toggleFollow()" class="btn btn-xs {{activeClass}}">{{btnText}}</button>

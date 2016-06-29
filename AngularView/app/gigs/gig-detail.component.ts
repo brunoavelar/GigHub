@@ -5,7 +5,8 @@ import { IGig } from "./gig";
 import { FollowButtonComponent } from "../shared/follow-button.component";
 
 @Component({
-    templateUrl: 'app/gigs/gig-detail.component.html',
+    moduleId: __moduleName,
+    templateUrl: 'gig-detail.component.html',
     directives: [FollowButtonComponent]
 })
 export class GigDetailComponent implements OnInit {
@@ -31,7 +32,7 @@ export class GigDetailComponent implements OnInit {
     
     ngOnInit(): void { 
         let gigId:number = +this.routeParams.get('id');
-
+        
         this.gigService.getGig(gigId)
             .then((gig) => {
                 this.gig = gig;

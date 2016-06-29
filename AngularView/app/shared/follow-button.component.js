@@ -25,12 +25,32 @@ System.register(['angular2/core', './follow.service'], function(exports_1, conte
                 function FollowButtonComponent(followService) {
                     this.followService = followService;
                 }
-                FollowButtonComponent.prototype.onBack = function () {
-                };
+                Object.defineProperty(FollowButtonComponent.prototype, "btnText", {
+                    get: function () {
+                        return this.isFollowing ? "Following" : "Follow";
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(FollowButtonComponent.prototype, "activeClass", {
+                    get: function () {
+                        return this.isFollowing ? "btn-info" : "btn-default";
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 FollowButtonComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this.followService.getFollowing(this.followee)
                         .then(function (result) { return _this.isFollowing = result; });
+                };
+                FollowButtonComponent.prototype.toggleFollow = function () {
+                    if (this.isFollowing) {
+                        this.unfollow();
+                    }
+                    else {
+                        this.follow();
+                    }
                 };
                 FollowButtonComponent.prototype.follow = function () {
                     var _this = this;
@@ -48,8 +68,9 @@ System.register(['angular2/core', './follow.service'], function(exports_1, conte
                 ], FollowButtonComponent.prototype, "followee", void 0);
                 FollowButtonComponent = __decorate([
                     core_1.Component({
+                        moduleId: __moduleName,
                         selector: 'follow-button',
-                        templateUrl: 'app/shared/follow-button.component.html',
+                        templateUrl: 'follow-button.component.html',
                         providers: [follow_service_1.FollowService]
                     }), 
                     __metadata('design:paramtypes', [follow_service_1.FollowService])

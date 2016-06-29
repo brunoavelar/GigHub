@@ -42,8 +42,9 @@ System.register(['angular2/core', './login.service', 'angular2/router'], functio
                 };
                 LoginComponent = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/account/login.component.html',
-                        styleUrls: ['app/account/login.component.css']
+                        moduleId: __moduleName,
+                        templateUrl: 'login.component.html',
+                        styleUrls: ['login.component.css']
                     }), 
                     __metadata('design:paramtypes', [login_service_1.LoginService, router_1.Router])
                 ], LoginComponent);

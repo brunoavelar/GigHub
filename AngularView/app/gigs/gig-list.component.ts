@@ -3,11 +3,13 @@ import { ROUTER_DIRECTIVES } from 'angular2/router';
 import { IGig } from './gig';
 import { GigService } from './gig.service';
 import { GigFilterPipe } from './gigs-filter.pipe'
+import { AttendanceButtonComponent } from '../shared/attendance-button.component'
 
 @Component({
-    templateUrl: 'app/gigs/gig-list.component.html',
-    styleUrls: ['app/gigs/gig-list.component.css'],
-    directives: [ROUTER_DIRECTIVES],
+    moduleId: __moduleName,
+    templateUrl: 'gig-list.component.html',
+    styleUrls: ['gig-list.component.css'],
+    directives: [ROUTER_DIRECTIVES, AttendanceButtonComponent],
     pipes: [GigFilterPipe]
 })
 export class GigListComponent implements OnInit {

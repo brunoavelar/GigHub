@@ -5,9 +5,10 @@ import { LoginService } from './account/login.service';
 import { UserInfo } from './account/user-info';
 
 @Component({
+    moduleId: __moduleName,
     selector: 'nav-bar',
-    templateUrl: 'app/nav-bar.component.html',
-    styleUrls: ['app/nav-bar.component.css'],
+    templateUrl: 'nav-bar.component.html',
+    styleUrls: ['nav-bar.component.css'],
     directives: [ROUTER_DIRECTIVES]
 })
 export class NavBarComponent {

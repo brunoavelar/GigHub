@@ -33,9 +33,10 @@ System.register(['angular2/core', 'angular2/router', './account/login.service'],
                 };
                 NavBarComponent = __decorate([
                     core_1.Component({
+                        moduleId: __moduleName,
                         selector: 'nav-bar',
-                        templateUrl: 'app/nav-bar.component.html',
-                        styleUrls: ['app/nav-bar.component.css'],
+                        templateUrl: 'nav-bar.component.html',
+                        styleUrls: ['nav-bar.component.css'],
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [login_service_1.LoginService])

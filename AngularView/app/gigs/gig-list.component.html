@@ -21,6 +21,7 @@
             <div class="details">
                 <a [routerLink]="['GigDetail', {id: gig.id}]" class="artist">{{gig.artist.name}}</a>
                 <span class="genre">{{gig.genre.name}}</span>
+                <attendance-button [gigId]='gig.id'></attendance-button>
             </div>
         </li>
     </ul>

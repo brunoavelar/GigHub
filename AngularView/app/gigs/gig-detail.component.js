@@ -58,7 +58,8 @@ System.register(['angular2/core', './gig.service', 'angular2/router', "../shared
                 };
                 GigDetailComponent = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/gigs/gig-detail.component.html',
+                        moduleId: __moduleName,
+                        templateUrl: 'gig-detail.component.html',
                         directives: [follow_button_component_1.FollowButtonComponent]
                     }), 
                     __metadata('design:paramtypes', [gig_service_1.GigService, router_1.RouteParams, router_1.Router])
