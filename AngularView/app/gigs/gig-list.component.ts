@@ -24,7 +24,8 @@ export class GigListComponent implements OnInit {
     
     ngOnInit(): void {
         this.gigService.getGigs()
-            .then((gigs) => this.gigs = gigs)
+            .then((gigs) => {this.gigs = gigs
+                })
             .catch((error) => console.log(error));
     }
     

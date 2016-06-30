@@ -6,11 +6,11 @@ import { Gig } from './gig';
 })
 export class GigFilterPipe implements PipeTransform {
     
-    transform(value: Gig[], args: string[]){
-        if(!value)
+    transform(value:Gig[], args:string):Gig[] {
+        if(!value || !args)
             return value;
 
-        let filter = args ? args[0].toLowerCase() : null;
+        let filter:string = args.toLowerCase();
 
         let filteredArray: Gig[] = value.filter((gig: Gig) => {  
             let foundInArtist:boolean = gig.artist.name.toLowerCase().indexOf(filter) >= 0;

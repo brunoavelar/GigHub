@@ -2,14 +2,14 @@ import { Component } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
 import { LoginService } from '../account/login.service';
-import { UserInfo } from '../account/user-info';
+import { NotificationsComponent } from './notifications.component';
 
 @Component({
     moduleId: __moduleName,
     selector: 'nav-bar',
     templateUrl: 'nav-bar.component.html',
     styleUrls: ['nav-bar.component.css'],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, NotificationsComponent]
 })
 export class NavBarComponent {
     get isLoggedIn():boolean {

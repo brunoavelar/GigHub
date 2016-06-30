@@ -34,8 +34,8 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service']
         execute: function() {
             LoggedInRouterOutlet = (function (_super) {
                 __extends(LoggedInRouterOutlet, _super);
-                function LoggedInRouterOutlet(_elementRef, _loader, router, nameAttr, loginService) {
-                    _super.call(this, _elementRef, _loader, router, nameAttr);
+                function LoggedInRouterOutlet(_viewContainerRef, _loader, router, nameAttr, loginService) {
+                    _super.call(this, _viewContainerRef, _loader, router, nameAttr);
                     this.loginService = loginService;
                     this.publicRoutes = ['', 'login'];
                     this.router = router;
@@ -54,7 +54,7 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service']
                         selector: 'router-outlet'
                     }),
                     __param(3, core_1.Attribute('name')), 
-                    __metadata('design:paramtypes', [core_1.ElementRef, core_1.DynamicComponentLoader, router_1.Router, String, login_service_1.LoginService])
+                    __metadata('design:paramtypes', [core_1.ViewContainerRef, core_1.DynamicComponentLoader, router_1.Router, String, login_service_1.LoginService])
                 ], LoggedInRouterOutlet);
                 return LoggedInRouterOutlet;
             }(router_1.RouterOutlet));

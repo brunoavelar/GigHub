@@ -9,7 +9,7 @@
     </div>
 
     <ul class="gigs voffset-40">
-        <li *ngFor="#gig of gigs | gigFilter:searchTerm">
+        <li *ngFor="let gig of gigs | gigFilter:searchTerm">
             <div class="date">
                 <div class="month">
                     {{gig.datetime | date:'MMM'}}

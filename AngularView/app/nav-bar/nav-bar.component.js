@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../account/login.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../account/login.service', './notifications.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service']
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, login_service_1;
+    var core_1, router_1, login_service_1, notifications_component_1;
     var NavBarComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service']
             },
             function (login_service_1_1) {
                 login_service_1 = login_service_1_1;
+            },
+            function (notifications_component_1_1) {
+                notifications_component_1 = notifications_component_1_1;
             }],
         execute: function() {
             NavBarComponent = (function () {
@@ -51,7 +54,7 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service']
                         selector: 'nav-bar',
                         templateUrl: 'nav-bar.component.html',
                         styleUrls: ['nav-bar.component.css'],
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        directives: [router_1.ROUTER_DIRECTIVES, notifications_component_1.NotificationsComponent]
                     }), 
                     __metadata('design:paramtypes', [login_service_1.LoginService])
                 ], NavBarComponent);

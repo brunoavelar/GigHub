@@ -22,9 +22,9 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function GigFilterPipe() {
                 }
                 GigFilterPipe.prototype.transform = function (value, args) {
-                    if (!value)
+                    if (!value || !args)
                         return value;
-                    var filter = args ? args[0].toLowerCase() : null;
+                    var filter = args.toLowerCase();
                     var filteredArray = value.filter(function (gig) {
                         var foundInArtist = gig.artist.name.toLowerCase().indexOf(filter) >= 0;
                         var foundInVenue = gig.venue.toLowerCase().indexOf(filter) >= 0;

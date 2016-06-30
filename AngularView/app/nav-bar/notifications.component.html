@@ -1,0 +1,36 @@
+<a href="#" (click)="togglePopOver($event)">
+    <i class="glyphicon glyphicon-globe"></i>
+    <span *ngIf="showBadge" class="badge">{{notifications.length}}</span>
+</a>
+
+<div *ngIf="showPopOver" class="popover popover-notifications">
+    <div class="arrow"></div>
+    <h3 class="popover-title"></h3>
+    <div class="popover-content">
+        <ul class="notifications">
+            <li *ngFor="let notification of notifications">
+                <div *ngIf="notification.type == 1">
+                    <span class="highlight">{{notification.gig.artist.name}}</span> 
+                    has canceled the gig at {{notification.gig.venue}} at {{notification.gig.datetime | date:'dd MMM HH:mm' }}
+                </div>
+
+                <div *ngIf="notification.type == 2">
+                    <span class="highlight">{{notification.gig.artist.name}}</span> 
+                    has changed the 
+                    <span *ngIf="notification.venueChanged">venue</span>
+                    <span *ngIf="notification.venueChanged && notification.datetimeChanged">and</span>
+                    <span *ngIf="notification.datetimeChanged">datime</span>
+                    from
+                    <span *ngIf="notification.venueChanged">{{notification.originalVenue}}</span>
+                    <span *ngIf="notification.venueChanged && notification.datetimeChanged">at</span>
+                    <span *ngIf="notification.datetimeChanged">{{notification.originalDatetime | date:'dd MMM HH:mm'}}</span>
+                    to
+                    <span *ngIf="notification.venueChanged">{{notification.gig.venue}}</span>
+                    <span *ngIf="notification.venueChanged && notification.datetimeChanged">at</span>
+                    <span *ngIf="notification.datetimeChanged">{{notification.gig.datetime | date:'dd MMM HH:mm'}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
