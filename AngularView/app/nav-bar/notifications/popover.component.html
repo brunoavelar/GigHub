@@ -1,0 +1,15 @@
+<div>
+    <a href="#" (click)="toggle($event)">
+        <ng-content select="popover-activator"></ng-content>
+    </a>
+    
+    <div *ngIf="!closed" class="popover popover-notifications fade bottom in" role="tooltip">
+        <div class="arrow"></div>
+        <h3 class="popover-title"><ng-content select="popover-title"></ng-content></h3>
+        
+        <div class="popover-content">
+            <ng-content select="popover-content"></ng-content>
+        </div>
+    </div>
+    
+</div>

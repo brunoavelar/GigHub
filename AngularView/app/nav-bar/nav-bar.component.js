@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../account/login.service', './notifications.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../account/login.service', './notifications/notifications.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -30,6 +30,7 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service',
             NavBarComponent = (function () {
                 function NavBarComponent(loginService) {
                     this.loginService = loginService;
+                    this.clickedOutside = this.clickedOutside.bind(this);
                 }
                 Object.defineProperty(NavBarComponent.prototype, "isLoggedIn", {
                     get: function () {
@@ -45,6 +46,9 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service',
                     enumerable: true,
                     configurable: true
                 });
+                NavBarComponent.prototype.clickedOutside = function () {
+                    console.log("clicked outside");
+                };
                 NavBarComponent.prototype.logout = function () {
                     this.loginService.logout();
                 };

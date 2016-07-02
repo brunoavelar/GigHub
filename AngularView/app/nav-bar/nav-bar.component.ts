@@ -2,7 +2,7 @@ import { Component } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
 import { LoginService } from '../account/login.service';
-import { NotificationsComponent } from './notifications.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @Component({
     moduleId: __moduleName,
@@ -12,6 +12,10 @@ import { NotificationsComponent } from './notifications.component';
     directives: [ROUTER_DIRECTIVES, NotificationsComponent]
 })
 export class NavBarComponent {
+    constructor(private loginService: LoginService){
+        this.clickedOutside = this.clickedOutside.bind(this);
+    }
+
     get isLoggedIn():boolean {
         return this.loginService.isLoggedIn();
     }
@@ -20,8 +24,8 @@ export class NavBarComponent {
         return this.loginService.getUserName();
     }
 
-    constructor(private loginService: LoginService){
-        
+    clickedOutside(){
+        console.log("clicked outside");
     }
 
     logout(){

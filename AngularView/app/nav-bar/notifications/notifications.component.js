@@ -1,4 +1,4 @@
-System.register(['angular2/core', './notifications.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './notifications.service', './popover.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './notifications.service'], function(exports_1
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, notifications_service_1;
+    var core_1, notifications_service_1, popover_component_1;
     var NotificationsComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', './notifications.service'], function(exports_1
             },
             function (notifications_service_1_1) {
                 notifications_service_1 = notifications_service_1_1;
+            },
+            function (popover_component_1_1) {
+                popover_component_1 = popover_component_1_1;
             }],
         execute: function() {
             NotificationsComponent = (function () {
@@ -40,15 +43,21 @@ System.register(['angular2/core', './notifications.service'], function(exports_1
                 };
                 NotificationsComponent.prototype.togglePopOver = function (event) {
                     event.preventDefault();
-                    this.showPopOver = !this.showPopOver;
+                    event.stopPropagation();
+                    this.popover.toggle();
                 };
+                __decorate([
+                    core_1.ViewChild(popover_component_1.PopoverComponent), 
+                    __metadata('design:type', popover_component_1.PopoverComponent)
+                ], NotificationsComponent.prototype, "popover", void 0);
                 NotificationsComponent = __decorate([
                     core_1.Component({
                         moduleId: __moduleName,
                         selector: 'notifications',
                         templateUrl: 'notifications.component.html',
                         styleUrls: ['notifications.component.css'],
-                        providers: [notifications_service_1.NotificationsService]
+                        providers: [notifications_service_1.NotificationsService],
+                        directives: [popover_component_1.PopoverComponent]
                     }), 
                     __metadata('design:paramtypes', [notifications_service_1.NotificationsService])
                 ], NotificationsComponent);

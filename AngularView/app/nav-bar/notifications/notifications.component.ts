@@ -1,17 +1,21 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit, Input, HostListener, ViewChild, ElementRef } from 'angular2/core';
 import { NotificationsService } from './notifications.service';
 import { Notification } from './notification';
+import { PopoverComponent } from './popover.component';
 
 @Component({
     moduleId: __moduleName,
     selector: 'notifications',
     templateUrl: 'notifications.component.html',
     styleUrls: ['notifications.component.css'],
-    providers: [NotificationsService]
+    providers: [NotificationsService],
+    directives: [PopoverComponent]
 })
 export class NotificationsComponent implements OnInit {
     notifications:Notification[] = [];
-    showPopOver:boolean;
+
+    @ViewChild(PopoverComponent)
+    private popover:PopoverComponent;
 
     get showBadge():boolean {
         return this.notifications.length > 0;
@@ -26,9 +30,11 @@ export class NotificationsComponent implements OnInit {
             .then(notifications => this.notifications = notifications);
     }
 
-    togglePopOver(event:Event):void {
+    togglePopOver(event:MouseEvent):void {
         event.preventDefault();
-        this.showPopOver = !this.showPopOver;
+        event.stopPropagation();
+
+        this.popover.toggle();
     }
     
 }

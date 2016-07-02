@@ -1,4 +1,4 @@
-import { Gig } from '../gigs/gig';
+import { Gig } from '../../gigs/gig';
 
 export class Notification {
     type:number;
