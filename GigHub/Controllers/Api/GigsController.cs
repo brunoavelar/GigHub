@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace GigHub.Controllers.Api
 {
+    [RoutePrefix("api/gigs")]
     public class GigsController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -18,9 +19,18 @@ namespace GigHub.Controllers.Api
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<GigDto> GetAll()
+        public IEnumerable<GigDto> GetGigs()
         {
             var upcomingGigs = unitOfWork.Gigs.GetUpcomingGigs();
+
+            return upcomingGigs.Select(g => Mapper.Map<Gig, GigDto>(g));
+        }
+
+        [Route("artist")]
+        public IEnumerable<GigDto> GetGigsForArtist()
+        {
+            string userId = User.Identity.GetUserId();
+            var upcomingGigs = unitOfWork.Gigs.GetUpcomingGigsByArtist(userId);
 
             return upcomingGigs.Select(g => Mapper.Map<Gig, GigDto>(g));
         }

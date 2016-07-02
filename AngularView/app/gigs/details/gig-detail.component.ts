@@ -1,8 +1,10 @@
 import { Component, OnInit } from 'angular2/core';
-import { GigService } from './gig.service';
 import { RouteParams, Router} from 'angular2/router';
-import { Gig } from "./gig";
-import { FollowButtonComponent } from "../shared/follow-button.component";
+
+import { FollowButtonComponent } from "../../shared/follow-button.component";
+import { Gig } from "../gig";
+import { GigService } from '../gig.service';
+
 
 @Component({
     moduleId: __moduleName,

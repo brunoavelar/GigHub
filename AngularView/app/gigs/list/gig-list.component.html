@@ -10,14 +10,7 @@
 
     <ul class="gigs voffset-40">
         <li *ngFor="let gig of gigs | gigFilter:searchTerm">
-            <div class="date">
-                <div class="month">
-                    {{gig.datetime | date:'MMM'}}
-                </div>
-                <div class="day">
-                    {{gig.datetime | date:'dd' }}
-                </div>
-            </div>
+            <gig-date [datetime]="gig.datetime"></gig-date>
             <div class="details">
                 <a [routerLink]="['GigDetail', {id: gig.gigId}]" class="artist">{{gig.artist.name}}</a>
                 <span class="genre">{{gig.genre.name}}</span>

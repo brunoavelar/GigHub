@@ -1,13 +1,15 @@
 import { Injectable } from "angular2/core";
-import { Gig } from "./gig";
 import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
+
 import { AuthorizedHttp } from '../shared/authorized.http';
+import { Gig } from "./index";
 
 
 @Injectable()
 export class GigService {
     private gigsUrl = '/gigs';
+    private myGigsUrl = '/gigs/artist';
     private gigUrl = '/gigs/:id';
     private attendanceUrl = '/attendances/:id';
     private followingUrl = '/followings/:id';
@@ -56,6 +58,13 @@ export class GigService {
 
     getGigs(): Promise<Gig[]> {
         return this.http.get(this.gigsUrl)
+            .map((response) => this.parseGigs(response))
+            .toPromise()
+            .catch(this.handleError);
+    }
+
+    getMyGigs(): Promise<Gig[]> {
+        return this.http.get(this.myGigsUrl)
             .map((response) => this.parseGigs(response))
             .toPromise()
             .catch(this.handleError);

@@ -1,0 +1,17 @@
+<div class="row">
+    <h2>My Upcoming Gigs</h2>
+
+    <ul class="gigs voffset-40">
+        <li *ngFor="let gig of gigs | gigFilter:searchTerm">
+            <gig-date [datetime]="gig.datetime"></gig-date>
+            <div class="details">
+                <a [routerLink]="['GigDetail', {id: gig.gigId}]" class="artist">{{gig.venue}}</a>
+                <span class="genre">{{gig.genre.name}}</span>
+                <div class="actions">
+                    <a href="#">Edit</a> | 
+                    <a href="#">Cancel</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

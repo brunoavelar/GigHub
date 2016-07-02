@@ -9,6 +9,8 @@ using GigHub.Core.Repositories;
 using GigHub.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http.Results;
 
 namespace GigHub.Tests.Controllers.Api
@@ -118,6 +120,34 @@ namespace GigHub.Tests.Controllers.Api
 
             var result = controller.Get(gigId + 1);
             result.Should().BeOfType<NotFoundResult>();
+        }
+
+        [TestMethod]
+        public void GetGigs_WithValidId_ShouldReturnAllGig()
+        {
+            var gigs = new List<Gig>
+            {
+                new Gig { ArtistId = "1" },
+                new Gig { ArtistId = "2" },
+            };
+
+            repository.Setup(r => r.GetUpcomingGigs(null)).Returns(gigs);
+            var result = controller.GetGigs().ToList();
+            result.Count.Should().Be(2);
+        }
+
+        [TestMethod]
+        public void GetGigsForArtist_WithValidId_ShouldReturnGigsWithArtistId()
+        {
+            var gigs = new List<Gig>
+            {
+                new Gig { ArtistId = "1" },
+                new Gig { ArtistId = "1" },
+            };
+
+            repository.Setup(r => r.GetUpcomingGigsByArtist("1")).Returns(gigs);
+            var result = controller.GetGigsForArtist().ToList();
+            result.Count.Should().Be(2);
         }
     }
 }

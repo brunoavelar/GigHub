@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './gig.service', './gigs-filter.pipe', '../shared/attendance-button.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../../shared/attendance-button.component', '../gig.service', './../gigs-filter.pipe', "./../gig-date.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './gig.service', './gigs-fi
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, gig_service_1, gigs_filter_pipe_1, attendance_button_component_1;
+    var core_1, router_1, attendance_button_component_1, gig_service_1, gigs_filter_pipe_1, gig_date_component_1;
     var GigListComponent;
     return {
         setters:[
@@ -20,28 +20,27 @@ System.register(['angular2/core', 'angular2/router', './gig.service', './gigs-fi
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (attendance_button_component_1_1) {
+                attendance_button_component_1 = attendance_button_component_1_1;
+            },
             function (gig_service_1_1) {
                 gig_service_1 = gig_service_1_1;
             },
             function (gigs_filter_pipe_1_1) {
                 gigs_filter_pipe_1 = gigs_filter_pipe_1_1;
             },
-            function (attendance_button_component_1_1) {
-                attendance_button_component_1 = attendance_button_component_1_1;
+            function (gig_date_component_1_1) {
+                gig_date_component_1 = gig_date_component_1_1;
             }],
         execute: function() {
             GigListComponent = (function () {
                 function GigListComponent(gigService) {
                     this.gigService = gigService;
-                    this.pageTitle = 'Gig list';
-                    this.searchTerm = '';
                 }
                 GigListComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this.gigService.getGigs()
-                        .then(function (gigs) {
-                        _this.gigs = gigs;
-                    })
+                        .then(function (gigs) { return _this.gigs = gigs; })
                         .catch(function (error) { return console.log(error); });
                 };
                 GigListComponent = __decorate([
@@ -49,7 +48,7 @@ System.register(['angular2/core', 'angular2/router', './gig.service', './gigs-fi
                         moduleId: __moduleName,
                         templateUrl: 'gig-list.component.html',
                         styleUrls: ['gig-list.component.css'],
-                        directives: [router_1.ROUTER_DIRECTIVES, attendance_button_component_1.AttendanceButtonComponent],
+                        directives: [router_1.ROUTER_DIRECTIVES, attendance_button_component_1.AttendanceButtonComponent, gig_date_component_1.GigDateComponent],
                         pipes: [gigs_filter_pipe_1.GigFilterPipe]
                     }), 
                     __metadata('design:paramtypes', [gig_service_1.GigService])

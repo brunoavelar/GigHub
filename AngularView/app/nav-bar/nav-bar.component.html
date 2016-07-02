@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">GigHub</a>
+            <a [routerLink]="['Gigs']" class="navbar-brand">GigHub</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -22,7 +22,7 @@
                     <span class="caret"></span></a>
                     
                     <ul class="dropdown-menu">
-                        <li><a href="#">My Upcoming Gigs</a></li>
+                        <li><a [routerLink]="['MyGigs']">My Upcoming Gigs</a></li>
                         <li><a href="#">Gig's I'm Going</a></li>
                         <li><a href="#">Artists I'm Following</a></li>
                         <li role="separator" class="divider"></li>

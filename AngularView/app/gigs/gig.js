@@ -1,12 +1,12 @@
-System.register(['./id.name'], function(exports_1, context_1) {
+System.register(['./index'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var id_name_1;
+    var index_1;
     var Gig;
     return {
         setters:[
-            function (id_name_1_1) {
-                id_name_1 = id_name_1_1;
+            function (index_1_1) {
+                index_1 = index_1_1;
             }],
         execute: function() {
             Gig = (function () {
@@ -20,8 +20,8 @@ System.register(['./id.name'], function(exports_1, context_1) {
                         this.isCanceled = object.isCanceled;
                     }
                     else {
-                        this.artist = new id_name_1.IdName();
-                        this.genre = new id_name_1.IdName();
+                        this.artist = new index_1.IdName();
+                        this.genre = new index_1.IdName();
                         this.datetime = new Date();
                     }
                 }

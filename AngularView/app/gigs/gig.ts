@@ -1,4 +1,4 @@
-import { IdName } from './id.name'
+import { IdName } from './index'
 
 export class Gig {
     gigId: number;

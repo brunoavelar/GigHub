@@ -1,5 +1,6 @@
 import { PipeTransform, Pipe } from 'angular2/core';
-import { Gig } from './gig';
+
+import { Gig } from './index';
 
 @Pipe({
     name: 'gigFilter'

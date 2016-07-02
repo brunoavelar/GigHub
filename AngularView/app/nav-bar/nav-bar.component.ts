@@ -12,9 +12,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     directives: [ROUTER_DIRECTIVES, NotificationsComponent]
 })
 export class NavBarComponent {
-    constructor(private loginService: LoginService){
-        this.clickedOutside = this.clickedOutside.bind(this);
-    }
+    constructor(private loginService: LoginService){ }
 
     get isLoggedIn():boolean {
         return this.loginService.isLoggedIn();
@@ -22,10 +20,6 @@ export class NavBarComponent {
     
     get userName():string {
         return this.loginService.getUserName();
-    }
-
-    clickedOutside(){
-        console.log("clicked outside");
     }
 
     logout(){

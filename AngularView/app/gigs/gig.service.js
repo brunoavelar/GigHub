@@ -1,4 +1,4 @@
-System.register(["angular2/core", "./gig", '../shared/authorized.http'], function(exports_1, context_1) {
+System.register(["angular2/core", '../shared/authorized.http', "./index"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,24 +10,25 @@ System.register(["angular2/core", "./gig", '../shared/authorized.http'], functio
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, gig_1, authorized_http_1;
+    var core_1, authorized_http_1, index_1;
     var GigService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (gig_1_1) {
-                gig_1 = gig_1_1;
-            },
             function (authorized_http_1_1) {
                 authorized_http_1 = authorized_http_1_1;
+            },
+            function (index_1_1) {
+                index_1 = index_1_1;
             }],
         execute: function() {
             GigService = (function () {
                 function GigService(http) {
                     this.http = http;
                     this.gigsUrl = '/gigs';
+                    this.myGigsUrl = '/gigs/artist';
                     this.gigUrl = '/gigs/:id';
                     this.attendanceUrl = '/attendances/:id';
                     this.followingUrl = '/followings/:id';
@@ -61,7 +62,7 @@ System.register(["angular2/core", "./gig", '../shared/authorized.http'], functio
                 GigService.prototype.getGig = function (gigId) {
                     return this.http.get(this.gigUrl.replace(":id", gigId.toString()))
                         .map(function (response) {
-                        var gig = new gig_1.Gig(response.json());
+                        var gig = new index_1.Gig(response.json());
                         return gig;
                     })
                         .toPromise()
@@ -74,10 +75,17 @@ System.register(["angular2/core", "./gig", '../shared/authorized.http'], functio
                         .toPromise()
                         .catch(this.handleError);
                 };
+                GigService.prototype.getMyGigs = function () {
+                    var _this = this;
+                    return this.http.get(this.myGigsUrl)
+                        .map(function (response) { return _this.parseGigs(response); })
+                        .toPromise()
+                        .catch(this.handleError);
+                };
                 GigService.prototype.parseGigs = function (response) {
                     var gigs = [];
                     response.json().forEach(function (element) {
-                        var gig = new gig_1.Gig(element);
+                        var gig = new index_1.Gig(element);
                         gigs.push(gig);
                     });
                     return gigs;

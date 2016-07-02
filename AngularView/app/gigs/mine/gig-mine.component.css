@@ -7,29 +7,6 @@
   position: relative;
 }
 
-.gigs > li .date {
-  -ms-border-radius: 8px;
-  background: red;
-  border-radius: 8px;
-  color: white;
-  text-align: center;
-  width: 60px;
-}
-
-.gigs > li .date .month {
-  font-size: 14px;
-  font-weight: bold;
-  padding: 2px 6px;
-  text-transform: uppercase;
-}
-
-.gigs > li .date .day {
-  background: #f7f7f7;
-  color: #333333;
-  font-size: 20px;
-  padding: 6px 12px;
-}
-
 .gigs > li .details {
   left: 70px;
   position: absolute;
@@ -54,8 +31,4 @@
 
 .gigs > li:hover .actions {
   display: block;
-}
-
-#searchGigs {
-  width: 300px;
 }

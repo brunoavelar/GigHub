@@ -1,0 +1,29 @@
+.gigs {
+  list-style: none;
+}
+
+.gigs > li {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.gigs > li .details {
+  left: 70px;
+  position: absolute;
+  top: 0;
+}
+
+.gigs > li .details .artist {
+  display: block;
+  font-weight: bold;
+}
+
+.gigs > li .details .genre {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+#searchGigs {
+  width: 300px;
+}

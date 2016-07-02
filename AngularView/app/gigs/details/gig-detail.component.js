@@ -1,4 +1,4 @@
-System.register(['angular2/core', './gig.service', 'angular2/router', "./gig", "../shared/follow-button.component"], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', "../../shared/follow-button.component", "../gig", '../gig.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,24 +10,24 @@ System.register(['angular2/core', './gig.service', 'angular2/router', "./gig", "
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, gig_service_1, router_1, gig_1, follow_button_component_1;
+    var core_1, router_1, follow_button_component_1, gig_1, gig_service_1;
     var GigDetailComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (gig_service_1_1) {
-                gig_service_1 = gig_service_1_1;
-            },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (follow_button_component_1_1) {
+                follow_button_component_1 = follow_button_component_1_1;
             },
             function (gig_1_1) {
                 gig_1 = gig_1_1;
             },
-            function (follow_button_component_1_1) {
-                follow_button_component_1 = follow_button_component_1_1;
+            function (gig_service_1_1) {
+                gig_service_1 = gig_service_1_1;
             }],
         execute: function() {
             GigDetailComponent = (function () {
