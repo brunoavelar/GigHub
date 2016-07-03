@@ -39,7 +39,8 @@ System.register(['angular2/core', './notifications.service', './popover.componen
                 NotificationsComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this.notificationsService.getNotifications()
-                        .then(function (notifications) { return _this.notifications = notifications; });
+                        .then(function (notifications) { return _this.notifications = notifications; })
+                        .catch(function (error) { return console.log('notificationsService.getNotifications: ' + error); });
                 };
                 NotificationsComponent.prototype.togglePopOver = function (event) {
                     event.preventDefault();

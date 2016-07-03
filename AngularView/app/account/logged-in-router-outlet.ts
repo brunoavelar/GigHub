@@ -15,7 +15,7 @@ export class LoggedInRouterOutlet extends RouterOutlet {
         @Attribute('name') nameAttr: string, private loginService: LoginService) {
         super(_viewContainerRef, _loader, router, nameAttr);
 
-        this.publicRoutes = ['', 'login'];
+        this.publicRoutes = ['', 'login', 'gigs'];
         this.router = router;
     }
 

@@ -2,13 +2,13 @@ import { Injectable } from "angular2/core";
 import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 import { AuthorizedHttp } from '../shared/authorized.http';
-
+import { FakeHttp } from '../api/fake.http';
 
 @Injectable()
 export class AttendanceService {
-    private attendanceUrl = '/attendances/:id';
+    private attendanceUrl = '/api/attendances/:id';
 
-    constructor(private http: AuthorizedHttp){
+    constructor(private http: Http){
         
     }   
 
@@ -16,7 +16,7 @@ export class AttendanceService {
         let getUrl:string = this.attendanceUrl.replace(":id", gigId);        
         return this.http.get(getUrl)
                 .map((response:Response) => {
-                    return true;
+                    return !!response;
                 })
                 .toPromise()
                 .catch(error => {

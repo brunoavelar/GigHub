@@ -27,7 +27,7 @@ System.register(["angular2/core", './../../shared/authorized.http', './notificat
             NotificationsService = (function () {
                 function NotificationsService(http) {
                     this.http = http;
-                    this.serviceUrl = '/notifications/';
+                    this.serviceUrl = '/api/notifications/';
                 }
                 NotificationsService.prototype.getNotifications = function () {
                     var _this = this;

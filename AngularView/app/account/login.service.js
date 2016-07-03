@@ -1,4 +1,4 @@
-System.register(["angular2/core", 'angular2/http', 'rxjs/Observable', './user-info'], function(exports_1, context_1) {
+System.register(["angular2/core", 'angular2/http', './user-info'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,8 +10,8 @@ System.register(["angular2/core", 'angular2/http', 'rxjs/Observable', './user-in
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, Observable_1, user_info_1;
-    var LoginService;
+    var core_1, http_1, user_info_1;
+    var LoginResponse, LoginService;
     return {
         setters:[
             function (core_1_1) {
@@ -20,26 +20,31 @@ System.register(["angular2/core", 'angular2/http', 'rxjs/Observable', './user-in
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (Observable_1_1) {
-                Observable_1 = Observable_1_1;
-            },
             function (user_info_1_1) {
                 user_info_1 = user_info_1_1;
             }],
         execute: function() {
+            LoginResponse = (function () {
+                function LoginResponse(success, errorMessage) {
+                    this.success = success;
+                    this.errorMessage = errorMessage;
+                }
+                return LoginResponse;
+            }());
+            exports_1("LoginResponse", LoginResponse);
             LoginService = (function () {
                 function LoginService(http, userInfo) {
                     this.http = http;
                     this.userInfo = userInfo;
                     this.apiUrl = 'http://localhost:53009/token';
                 }
-                LoginService.prototype.loginUser = function (userName, password) {
+                LoginService.prototype.login = function (userName, password) {
                     var _this = this;
                     var headers = new http_1.Headers();
                     headers.append('Accept', 'application/json');
                     var options = new http_1.RequestOptions({ headers: headers });
                     var body = "grant_type=password&username=" + userName + "&password=" + password;
-                    return this.http.post(this.apiUrl, body, options)
+                    var response = this.http.post(this.apiUrl, body, options)
                         .do(function (response) {
                         var responseData = response.json();
                         localStorage.setItem('access_token', responseData.access_token);
@@ -49,12 +54,11 @@ System.register(["angular2/core", 'angular2/http', 'rxjs/Observable', './user-in
                         _this.userInfo = new user_info_1.UserInfo();
                     })
                         .map(function (response) {
-                        return true;
+                        var data = response.json();
+                        return new LoginResponse(response.ok, data.error_description);
                     })
-                        .catch(this.handleError);
-                };
-                LoginService.prototype.handleError = function (error) {
-                    return Observable_1.Observable.throw(error.json());
+                        .toPromise();
+                    return response;
                 };
                 LoginService.prototype.logout = function () {
                     localStorage.removeItem('access_token');
@@ -64,10 +68,10 @@ System.register(["angular2/core", 'angular2/http', 'rxjs/Observable', './user-in
                     this.userInfo = new user_info_1.UserInfo();
                 };
                 LoginService.prototype.isLoggedIn = function () {
-                    return this.userInfo && this.userInfo.isLoggedIn;
+                    return this.userInfo && this.userInfo.IsLoggedIn;
                 };
                 LoginService.prototype.getUserName = function () {
-                    return this.userInfo.userName || "";
+                    return this.userInfo.UserName || "";
                 };
                 LoginService = __decorate([
                     core_1.Injectable(), 

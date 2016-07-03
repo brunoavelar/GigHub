@@ -2,17 +2,15 @@ import { Injectable } from "angular2/core";
 
 @Injectable()
 export class UserInfo {
-    access_token: string;
-    token_type: string;
-    userName: string;
-    isLoggedIn:boolean = false;
-    error: string;
-    error_description: string;
+    AccessToken: string;
+    TokenType: string;
+    UserName: string;
+    IsLoggedIn:boolean = false;
 
     constructor() {
-        this.access_token = localStorage.getItem('access_token');
-        this.token_type = localStorage.getItem('token_type');
-        this.userName = localStorage.getItem('userName');
-        this.isLoggedIn = !!localStorage.getItem('isLoggedIn');
+        this.AccessToken = localStorage.getItem('access_token');
+        this.TokenType = localStorage.getItem('token_type');
+        this.UserName = localStorage.getItem('userName');
+        this.IsLoggedIn = !!localStorage.getItem('isLoggedIn');
     }
 }

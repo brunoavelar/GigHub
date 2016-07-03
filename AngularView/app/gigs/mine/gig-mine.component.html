@@ -5,7 +5,7 @@
         <li *ngFor="let gig of gigs | gigFilter:searchTerm">
             <gig-date [datetime]="gig.datetime"></gig-date>
             <div class="details">
-                <a [routerLink]="['GigDetail', {id: gig.gigId}]" class="artist">{{gig.venue}}</a>
+                <a [routerLink]="['GigDetail', {id: gig.id}]" class="artist">{{gig.venue}}</a>
                 <span class="genre">{{gig.genre.name}}</span>
                 <div class="actions">
                     <a href="#">Edit</a> | 

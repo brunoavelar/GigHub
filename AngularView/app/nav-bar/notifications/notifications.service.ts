@@ -6,7 +6,7 @@ import { Notification } from './notification';
 
 @Injectable()
 export class NotificationsService {
-    private serviceUrl = '/notifications/';
+    private serviceUrl = '/api/notifications/';
 
     constructor(private http: AuthorizedHttp){
         

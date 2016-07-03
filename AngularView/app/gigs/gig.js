@@ -12,7 +12,7 @@ System.register(['./index'], function(exports_1, context_1) {
             Gig = (function () {
                 function Gig(object) {
                     if (object) {
-                        this.gigId = object.id;
+                        this.id = object.id;
                         this.venue = object.venue;
                         this.artist = object.artist;
                         this.genre = object.genre;

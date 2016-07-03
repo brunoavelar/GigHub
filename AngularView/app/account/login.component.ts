@@ -1,5 +1,5 @@
 import { Component } from 'angular2/core';
-import { LoginService } from './login.service';
+import { LoginService, LoginResponse } from './login.service';
 import { UserInfo } from './user-info'
 import { Router } from 'angular2/router';
 
@@ -16,18 +16,21 @@ export class LoginComponent {
     }   
 
     login(){
-        this.loginService.loginUser(this.userName, this.password)
-            .subscribe(
-                success => this.redirect(),
-                error => this.handleError(error)
-            );
+        this.loginService.login(this.userName, this.password)
+            .then((login:LoginResponse) => {
+                if(login.success){
+                    this.redirect();
+                }else{
+                    console.log('error_message: ', login.errorMessage);
+                }
+            }).catch(this.handleError)
     }
 
     private redirect():void{
         this.router.navigate(['Gigs']);
     }
 
-    private handleError(error:UserInfo):void{
-        console.log(error.error_description);
+    private handleError(error):void{
+        console.log(error);
     }
 }

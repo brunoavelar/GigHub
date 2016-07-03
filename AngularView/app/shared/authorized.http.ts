@@ -2,6 +2,9 @@ import { Injectable } from "angular2/core";
 import { Http, Response, Headers, RequestOptions, ConnectionBackend } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 
+const fakeRootUrl = '/api'
+const availableFakeRoutes:string[] = ['/gigs'];
+
 const rootUrl = 'http://localhost:53009/api/'
 
 @Injectable()

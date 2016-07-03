@@ -20,11 +20,11 @@ System.register(["angular2/core"], function(exports_1, context_1) {
         execute: function() {
             UserInfo = (function () {
                 function UserInfo() {
-                    this.isLoggedIn = false;
-                    this.access_token = localStorage.getItem('access_token');
-                    this.token_type = localStorage.getItem('token_type');
-                    this.userName = localStorage.getItem('userName');
-                    this.isLoggedIn = !!localStorage.getItem('isLoggedIn');
+                    this.IsLoggedIn = false;
+                    this.AccessToken = localStorage.getItem('access_token');
+                    this.TokenType = localStorage.getItem('token_type');
+                    this.UserName = localStorage.getItem('userName');
+                    this.IsLoggedIn = !!localStorage.getItem('isLoggedIn');
                 }
                 UserInfo = __decorate([
                     core_1.Injectable(), 

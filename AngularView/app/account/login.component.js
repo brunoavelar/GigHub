@@ -31,14 +31,21 @@ System.register(['angular2/core', './login.service', 'angular2/router'], functio
                 }
                 LoginComponent.prototype.login = function () {
                     var _this = this;
-                    this.loginService.loginUser(this.userName, this.password)
-                        .subscribe(function (success) { return _this.redirect(); }, function (error) { return _this.handleError(error); });
+                    this.loginService.login(this.userName, this.password)
+                        .then(function (login) {
+                        if (login.success) {
+                            _this.redirect();
+                        }
+                        else {
+                            console.log('error_message: ', login.errorMessage);
+                        }
+                    }).catch(this.handleError);
                 };
                 LoginComponent.prototype.redirect = function () {
                     this.router.navigate(['Gigs']);
                 };
                 LoginComponent.prototype.handleError = function (error) {
-                    console.log(error.error_description);
+                    console.log(error);
                 };
                 LoginComponent = __decorate([
                     core_1.Component({

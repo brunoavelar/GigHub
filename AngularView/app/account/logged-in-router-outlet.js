@@ -37,7 +37,7 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service']
                 function LoggedInRouterOutlet(_viewContainerRef, _loader, router, nameAttr, loginService) {
                     _super.call(this, _viewContainerRef, _loader, router, nameAttr);
                     this.loginService = loginService;
-                    this.publicRoutes = ['', 'login'];
+                    this.publicRoutes = ['', 'login', 'gigs'];
                     this.router = router;
                 }
                 LoggedInRouterOutlet.prototype.activate = function (instruction) {

@@ -1,4 +1,4 @@
-System.register(["angular2/core", '../shared/authorized.http'], function(exports_1, context_1) {
+System.register(["angular2/core", 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,27 +10,27 @@ System.register(["angular2/core", '../shared/authorized.http'], function(exports
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, authorized_http_1;
+    var core_1, http_1;
     var AttendanceService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (authorized_http_1_1) {
-                authorized_http_1 = authorized_http_1_1;
+            function (http_1_1) {
+                http_1 = http_1_1;
             }],
         execute: function() {
             AttendanceService = (function () {
                 function AttendanceService(http) {
                     this.http = http;
-                    this.attendanceUrl = '/attendances/:id';
+                    this.attendanceUrl = '/api/attendances/:id';
                 }
                 AttendanceService.prototype.getAttendance = function (gigId) {
                     var getUrl = this.attendanceUrl.replace(":id", gigId);
                     return this.http.get(getUrl)
                         .map(function (response) {
-                        return true;
+                        return !!response;
                     })
                         .toPromise()
                         .catch(function (error) {
@@ -58,7 +58,7 @@ System.register(["angular2/core", '../shared/authorized.http'], function(exports
                 };
                 AttendanceService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [authorized_http_1.AuthorizedHttp])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], AttendanceService);
                 return AttendanceService;
             }());

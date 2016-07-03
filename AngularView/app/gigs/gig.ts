@@ -1,7 +1,7 @@
 import { IdName } from './index'
 
 export class Gig {
-    gigId: number;
+    id: number;
     venue: string;
     artist: IdName;
     genre:IdName;
@@ -10,7 +10,7 @@ export class Gig {
 
     constructor(object?:any){
         if(object){
-            this.gigId = object.id;
+            this.id = object.id;
             this.venue = object.venue;
             this.artist = object.artist;
             this.genre = object.genre;

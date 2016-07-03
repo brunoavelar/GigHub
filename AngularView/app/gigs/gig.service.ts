@@ -1,21 +1,23 @@
-import { Injectable } from "angular2/core";
-import { Http, Response, Headers, RequestOptions } from 'angular2/http';
+import { Injectable, Injector, ReflectiveInjector, provide } from "angular2/core";
+import { Http, Response, Headers, RequestOptions, BaseRequestOptions, ConnectionBackend } from 'angular2/http';
+import { MockBackend, MockConnection } from 'angular2/http/testing';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthorizedHttp } from '../shared/authorized.http';
+import { FakeHttp } from '../shared/fake.http';
 import { Gig } from "./index";
 
 
 @Injectable()
 export class GigService {
-    private gigsUrl = '/gigs';
-    private myGigsUrl = '/gigs/artist';
-    private gigUrl = '/gigs/:id';
-    private attendanceUrl = '/attendances/:id';
-    private followingUrl = '/followings/:id';
+    private gigsUrl = '/api/gigs';
+    private myGigsUrl = '/api/gigs/artist';
+    private gigUrl = '/api/gigs/:id';
+    private attendanceUrl = '/api/attendances/:id';
+    private followingUrl = '/api/followings/:id';
 
-    constructor(private http: AuthorizedHttp){
-        
+    constructor(private http: Http){
+
     }   
     
     getAttendance(gigId:number):Promise<boolean> {

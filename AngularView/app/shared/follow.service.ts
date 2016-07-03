@@ -6,7 +6,7 @@ import { AuthorizedHttp } from '../shared/authorized.http';
 
 @Injectable()
 export class FollowService {
-    private followingUrl = '/followings/:id';
+    private followingUrl = '/api/followings/:id';
 
     constructor(private http: AuthorizedHttp){
         

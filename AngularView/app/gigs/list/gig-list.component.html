@@ -12,9 +12,9 @@
         <li *ngFor="let gig of gigs | gigFilter:searchTerm">
             <gig-date [datetime]="gig.datetime"></gig-date>
             <div class="details">
-                <a [routerLink]="['GigDetail', {id: gig.gigId}]" class="artist">{{gig.artist.name}}</a>
+                <a [routerLink]="['GigDetail', {id: gig.id}]" class="artist">{{gig.artist.name}}</a>
                 <span class="genre">{{gig.genre.name}}</span>
-                <attendance-button [gigId]='gig.gigId'></attendance-button>
+                <attendance-button [gigId]='gig.id'></attendance-button>
             </div>
         </li>
     </ul>
