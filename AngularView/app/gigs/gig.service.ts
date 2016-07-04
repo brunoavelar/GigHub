@@ -4,7 +4,6 @@ import { MockBackend, MockConnection } from 'angular2/http/testing';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthorizedHttp } from '../shared/authorized.http';
-import { FakeHttp } from '../shared/fake.http';
 import { Gig } from "./index";
 
 

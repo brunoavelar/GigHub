@@ -1,5 +1,5 @@
 import { Injectable } from "angular2/core";
-import { Request, Response, ResponseOptions, Headers } from 'angular2/http';
+import { Request, RequestMethod, Response, ResponseOptions, Headers } from 'angular2/http';
 
 import { GigsApi, AttendanceApi, UserApi } from './apis'
 
@@ -13,14 +13,39 @@ export class FakeServer {
     getData(request:Request):Response{
         var response:Response;
         
+        switch (request.method) {
+            case RequestMethod.Get:
+                response = this.handleGets(request);
+                break;
+            case RequestMethod.Post:
+                response = this.handlePosts(request);
+                break;
+            default:
+                break;
+        }
+
+        return response;
+    }
+
+    handlePosts(request:Request):Response{
+        var response:Response;
+
+        if(/\/api\/attendances/.test(request.url)){
+            response = this.attendanceApi.attend(request);
+        }
+        
+        return response;
+    }
+
+    handleGets(request:Request):Response{
+        var response:Response;
+
         if(/\/token/.test(request.url)){
             response = this.userApi.loginUser(request);
         } else if(/\/api\/attendances\/\d+/.test(request.url)){
-            let data = this.attendanceApi.isAttending(request);
-            response = this.createResponse(data, request.url);
+            response = this.attendanceApi.isAttending(request);
         } else if(/\/api\/gigs/.test(request.url)){
-            let data = this.gigsApi.getGigs();
-            response = this.createResponse(data, request.url);
+            response = this.gigsApi.getGigs(request);
         } else{
             response = this.createResponse('', request.url);
         }

@@ -1,5 +1,5 @@
 import { Component } from 'angular2/core';
-import { ROUTER_DIRECTIVES } from 'angular2/router';
+import { ROUTER_DIRECTIVES, Router } from 'angular2/router';
 
 import { LoginService } from '../account/login.service';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -12,7 +12,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     directives: [ROUTER_DIRECTIVES, NotificationsComponent]
 })
 export class NavBarComponent {
-    constructor(private loginService: LoginService){ }
+    constructor(private loginService: LoginService,  private router: Router){ }
 
     get isLoggedIn():boolean {
         return this.loginService.isLoggedIn();
@@ -22,8 +22,10 @@ export class NavBarComponent {
         return this.loginService.getUserName();
     }
 
-    logout(){
+    logout(event:Event){
+        event.preventDefault();
         this.loginService.logout();
+        this.router.navigate(['Gigs']);
     }
     
 }

@@ -139,32 +139,32 @@ export let Attendances =
         },
         "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971",
         "attendee":{
-        "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-        "name":"Bruno Avelar"
-        }
-    },
-    {
-        "gigId":1,
-        "gig":{
-        "id":1,
-        "isCanceled":false,
-        "artist":{
             "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
             "name":"Bruno Avelar"
-        },
-        "datetime":"2017-01-02T22:00:00",
-        "venue":"NYC",
-        "genre":{
-            "id":3,
-            "name":"Rock"
-        }
-        },
-        "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "attendee":{
-        "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "name":"User 01"
         }
     },
+    // {
+    //     "gigId":1,
+    //     "gig":{
+    //     "id":1,
+    //     "isCanceled":false,
+    //     "artist":{
+    //         "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+    //         "name":"Bruno Avelar"
+    //     },
+    //     "datetime":"2017-01-02T22:00:00",
+    //     "venue":"NYC",
+    //     "genre":{
+    //         "id":3,
+    //         "name":"Rock"
+    //     }
+    //     },
+    //     "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+    //     "attendee":{
+    //         "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+    //         "name":"User 01"
+    //     }
+    // },
     {
         "gigId":2,
         "gig":{
@@ -183,8 +183,8 @@ export let Attendances =
         },
         "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971",
         "attendee":{
-        "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-        "name":"Bruno Avelar"
+            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+            "name":"Bruno Avelar"
         }
     },
     {
@@ -205,8 +205,8 @@ export let Attendances =
         },
         "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
         "attendee":{
-        "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "name":"User 01"
+            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+            "name":"User 01"
         }
     },
     {
@@ -227,8 +227,8 @@ export let Attendances =
         },
         "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971",
         "attendee":{
-        "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-        "name":"Bruno Avelar"
+            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+            "name":"Bruno Avelar"
         }
     },
     {
@@ -249,8 +249,8 @@ export let Attendances =
         },
         "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
         "attendee":{
-        "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "name":"User 01"
+            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+            "name":"User 01"
         }
     },
     {
@@ -271,8 +271,8 @@ export let Attendances =
         },
         "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971",
         "attendee":{
-        "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-        "name":"Bruno Avelar"
+            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+            "name":"Bruno Avelar"
         }
     },
     {
@@ -293,8 +293,8 @@ export let Attendances =
         },
         "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
         "attendee":{
-        "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "name":"User 01"
+            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+            "name":"User 01"
         }
     },
     {
@@ -315,8 +315,8 @@ export let Attendances =
         },
         "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
         "attendee":{
-        "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "name":"User 01"
+            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+            "name":"User 01"
         }
     }
 ];

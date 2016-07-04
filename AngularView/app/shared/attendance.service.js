@@ -30,15 +30,9 @@ System.register(["angular2/core", 'angular2/http'], function(exports_1, context_
                     var getUrl = this.attendanceUrl.replace(":id", gigId);
                     return this.http.get(getUrl)
                         .map(function (response) {
-                        return !!response;
+                        return !!response.ok;
                     })
-                        .toPromise()
-                        .catch(function (error) {
-                        if (error.status === 404)
-                            return false;
-                        else
-                            Promise.reject(error);
-                    });
+                        .toPromise();
                 };
                 AttendanceService.prototype.attend = function (gigId) {
                     var postUrl = this.attendanceUrl.replace(":id", '');

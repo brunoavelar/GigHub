@@ -16,15 +16,9 @@ export class AttendanceService {
         let getUrl:string = this.attendanceUrl.replace(":id", gigId);        
         return this.http.get(getUrl)
                 .map((response:Response) => {
-                    return !!response;
+                    return !!response.ok;
                 })
-                .toPromise()
-                .catch(error => {
-                    if(error.status === 404)
-                        return false
-                    else
-                        Promise.reject(error)
-                });
+                .toPromise();
     }
 
     attend(gigId:string):Promise<Response> {

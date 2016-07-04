@@ -28,8 +28,9 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service',
             }],
         execute: function() {
             NavBarComponent = (function () {
-                function NavBarComponent(loginService) {
+                function NavBarComponent(loginService, router) {
                     this.loginService = loginService;
+                    this.router = router;
                 }
                 Object.defineProperty(NavBarComponent.prototype, "isLoggedIn", {
                     get: function () {
@@ -45,8 +46,10 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service',
                     enumerable: true,
                     configurable: true
                 });
-                NavBarComponent.prototype.logout = function () {
+                NavBarComponent.prototype.logout = function (event) {
+                    event.preventDefault();
                     this.loginService.logout();
+                    this.router.navigate(['Gigs']);
                 };
                 NavBarComponent = __decorate([
                     core_1.Component({
@@ -56,7 +59,7 @@ System.register(['angular2/core', 'angular2/router', '../account/login.service',
                         styleUrls: ['nav-bar.component.css'],
                         directives: [router_1.ROUTER_DIRECTIVES, notifications_component_1.NotificationsComponent]
                     }), 
-                    __metadata('design:paramtypes', [login_service_1.LoginService])
+                    __metadata('design:paramtypes', [login_service_1.LoginService, router_1.Router])
                 ], NavBarComponent);
                 return NavBarComponent;
             }());
