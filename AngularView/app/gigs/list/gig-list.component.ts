@@ -6,6 +6,7 @@ import { Gig } from '../index';
 import { GigService } from '../gig.service';
 import { GigFilterPipe } from './../gigs-filter.pipe'
 import { GigDateComponent } from "./../gig-date.component";
+import { LoginService } from '../../account/login.service';
 
 @Component({
     moduleId: __moduleName,
@@ -18,7 +19,11 @@ export class GigListComponent implements OnInit {
     gigs: Gig[];
     errorMessage: string;
 
-    constructor(private gigService: GigService){
+    get isLoggedIn():boolean {
+        return this.loginService.isLoggedIn();
+    }
+
+    constructor(private gigService: GigService, private loginService:LoginService){
         
     }
     

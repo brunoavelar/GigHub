@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../../shared/attendance-button.component', '../gig.service', './../gigs-filter.pipe', "./../gig-date.component"], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../../shared/attendance-button.component', '../gig.service', './../gigs-filter.pipe', "./../gig-date.component", '../../account/login.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../../shared/attendance-bu
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, attendance_button_component_1, gig_service_1, gigs_filter_pipe_1, gig_date_component_1;
+    var core_1, router_1, attendance_button_component_1, gig_service_1, gigs_filter_pipe_1, gig_date_component_1, login_service_1;
     var GigListComponent;
     return {
         setters:[
@@ -31,12 +31,23 @@ System.register(['angular2/core', 'angular2/router', '../../shared/attendance-bu
             },
             function (gig_date_component_1_1) {
                 gig_date_component_1 = gig_date_component_1_1;
+            },
+            function (login_service_1_1) {
+                login_service_1 = login_service_1_1;
             }],
         execute: function() {
             GigListComponent = (function () {
-                function GigListComponent(gigService) {
+                function GigListComponent(gigService, loginService) {
                     this.gigService = gigService;
+                    this.loginService = loginService;
                 }
+                Object.defineProperty(GigListComponent.prototype, "isLoggedIn", {
+                    get: function () {
+                        return this.loginService.isLoggedIn();
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 GigListComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this.gigService.getGigs()
@@ -51,7 +62,7 @@ System.register(['angular2/core', 'angular2/router', '../../shared/attendance-bu
                         directives: [router_1.ROUTER_DIRECTIVES, attendance_button_component_1.AttendanceButtonComponent, gig_date_component_1.GigDateComponent],
                         pipes: [gigs_filter_pipe_1.GigFilterPipe]
                     }), 
-                    __metadata('design:paramtypes', [gig_service_1.GigService])
+                    __metadata('design:paramtypes', [gig_service_1.GigService, login_service_1.LoginService])
                 ], GigListComponent);
                 return GigListComponent;
             }());

@@ -49,7 +49,8 @@ export class GigsApi extends Api {
     }
 
     getGigs(request:Request):Response {
-        return this.createOkResponse(this.gigs, request.url);
+        let response = this.createOkResponse(this.gigs, request.url);
+        return response;
     }
 }
 

@@ -3,52 +3,42 @@ import { Request, RequestMethod, Response, ResponseOptions, Headers } from 'angu
 
 import { GigsApi, AttendanceApi, UserApi } from './apis'
 
+type RouteCallback = (request:Request) => Response; 
 
+class Route {
+    constructor(public method:RequestMethod, public urlRegex:RegExp, public callback:RouteCallback) {    }
+
+    public matches(request:Request):boolean {
+        if (this.method !== request.method) {
+            return false;
+        }
+
+        return this.urlRegex.test(request.url);
+    }
+}
 
 @Injectable()
 export class FakeServer {
+
+    private routes:Route[];
+
     constructor(private gigsApi:GigsApi, private userApi:UserApi, private attendanceApi:AttendanceApi) {
+        this.routes = [
+            new Route(RequestMethod.Post, /\/token/, this.userApi.loginUser.bind(this.userApi)),
+            new Route(RequestMethod.Get, /\/api\/attendances\/\d+/, this.attendanceApi.isAttending.bind(this.attendanceApi)),
+            new Route(RequestMethod.Get, /\/api\/gigs/, this.gigsApi.getGigs.bind(gigsApi)),
+            new Route(RequestMethod.Post, /\/api\/attendances/, this.attendanceApi.attend.bind(this.attendanceApi))
+        ]
     }
 
     getData(request:Request):Response{
         var response:Response;
-        
-        switch (request.method) {
-            case RequestMethod.Get:
-                response = this.handleGets(request);
-                break;
-            case RequestMethod.Post:
-                response = this.handlePosts(request);
-                break;
-            default:
-                break;
-        }
-
-        return response;
-    }
-
-    handlePosts(request:Request):Response{
-        var response:Response;
-
-        if(/\/api\/attendances/.test(request.url)){
-            response = this.attendanceApi.attend(request);
-        }
-        
-        return response;
-    }
-
-    handleGets(request:Request):Response{
-        var response:Response;
-
-        if(/\/token/.test(request.url)){
-            response = this.userApi.loginUser(request);
-        } else if(/\/api\/attendances\/\d+/.test(request.url)){
-            response = this.attendanceApi.isAttending(request);
-        } else if(/\/api\/gigs/.test(request.url)){
-            response = this.gigsApi.getGigs(request);
-        } else{
-            response = this.createResponse('', request.url);
-        }
+        this.routes.forEach((route:Route) => {
+            if(route.matches(request)){
+                response = route.callback(request);
+            }
+            
+        });
         
         return response;
     }
