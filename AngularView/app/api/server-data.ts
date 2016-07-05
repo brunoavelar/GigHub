@@ -334,7 +334,7 @@ export let Users =
         "name":"User 01",
         "email":"user01@user.com"
     }
-]
+];
 
 export let Tokens = 
 [
@@ -354,9 +354,236 @@ export let Tokens =
         ".issued": "Sun, 03 Jul 2016 16:34:40 GMT",
         ".expires": "Sun, 17 Jul 2016 16:34:40 GMT"
     }
-]
+];
 
 export const InvalidLogin = {
     "error": "invalid_grant",
     "error_description": "The user name or password is incorrect."
-}
+};
+
+export let UserNotifications = [
+      {
+         "user":{
+            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+            "name":"Bruno Avelar"
+         },
+         "notification":{
+            "id":8,
+            "dateTime":"2016-06-08T11:23:16.897",
+            "type":1,
+            "originalDateTime":null,
+            "originalVenue":null,
+            "gig":{
+               "id":1,
+               "isCanceled":false,
+               "artist":{
+                  "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+                  "name":"Bruno Avelar"
+               },
+               "datetime":"2017-01-02T22:00:00",
+               "venue":"NYC",
+               "genre":{
+                  "id":3,
+                  "name":"Rock"
+               }
+            }
+         },
+         "isRead":false
+      },
+      {
+         "user":{
+            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+            "name":"User 01"
+         },
+         "notification":{
+            "id":8,
+            "dateTime":"2016-06-08T11:23:16.897",
+            "type":1,
+            "originalDateTime":null,
+            "originalVenue":null,
+            "gig":{
+               "id":1,
+               "isCanceled":false,
+               "artist":{
+                  "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+                  "name":"Bruno Avelar"
+               },
+               "datetime":"2017-01-02T22:00:00",
+               "venue":"NYC",
+               "genre":{
+                  "id":3,
+                  "name":"Rock"
+               }
+            }
+         },
+         "isRead":false
+      },
+      {
+         "user":{
+            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+            "name":"Bruno Avelar"
+         },
+         "notification":{
+            "id":9,
+            "dateTime":"2016-06-08T11:23:28.177",
+            "type":2,
+            "originalDateTime":"2017-04-04T12:00:00",
+            "originalVenue":"San Francisco 4",
+            "gig":{
+               "id":3,
+               "isCanceled":false,
+               "artist":{
+                  "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+                  "name":"Bruno Avelar"
+               },
+               "datetime":"2017-01-04T12:00:00",
+               "venue":"San Francisco",
+               "genre":{
+                  "id":4,
+                  "name":"Country"
+               }
+            }
+         },
+         "isRead":false
+      },
+      {
+         "user":{
+            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+            "name":"User 01"
+         },
+         "notification":{
+            "id":9,
+            "dateTime":"2016-06-08T11:23:28.177",
+            "type":2,
+            "originalDateTime":"2017-04-04T12:00:00",
+            "originalVenue":"San Francisco 4",
+            "gig":{
+               "id":3,
+               "isCanceled":false,
+               "artist":{
+                  "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+                  "name":"Bruno Avelar"
+               },
+               "datetime":"2017-01-04T12:00:00",
+               "venue":"San Francisco",
+               "genre":{
+                  "id":4,
+                  "name":"Country"
+               }
+            }
+         },
+         "isRead":false
+      },
+      {
+         "user":{
+            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+            "name":"Bruno Avelar"
+         },
+         "notification":{
+            "id":1004,
+            "dateTime":"2016-06-23T11:19:07.787",
+            "type":2,
+            "originalDateTime":"2017-02-01T22:00:00",
+            "originalVenue":"NYC 2",
+            "gig":{
+               "id":1,
+               "isCanceled":false,
+               "artist":{
+                  "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+                  "name":"Bruno Avelar"
+               },
+               "datetime":"2017-01-02T22:00:00",
+               "venue":"NYC",
+               "genre":{
+                  "id":3,
+                  "name":"Rock"
+               }
+            }
+         },
+         "isRead":false
+      },
+      {
+         "user":{
+            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+            "name":"User 01"
+         },
+         "notification":{
+            "id":1004,
+            "dateTime":"2016-06-23T11:19:07.787",
+            "type":2,
+            "originalDateTime":"2017-02-01T22:00:00",
+            "originalVenue":"NYC 2",
+            "gig":{
+               "id":1,
+               "isCanceled":false,
+               "artist":{
+                  "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+                  "name":"Bruno Avelar"
+               },
+               "datetime":"2017-01-02T22:00:00",
+               "venue":"NYC",
+               "genre":{
+                  "id":3,
+                  "name":"Rock"
+               }
+            }
+         },
+         "isRead":false
+      },
+      {
+         "user":{
+            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+            "name":"Bruno Avelar"
+         },
+         "notification":{
+            "id":1005,
+            "dateTime":"2016-06-23T11:19:48.63",
+            "type":2,
+            "originalDateTime":"2017-02-01T22:00:00",
+            "originalVenue":"NYC",
+            "gig":{
+               "id":1,
+               "isCanceled":false,
+               "artist":{
+                  "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+                  "name":"Bruno Avelar"
+               },
+               "datetime":"2017-01-02T22:00:00",
+               "venue":"NYC",
+               "genre":{
+                  "id":3,
+                  "name":"Rock"
+               }
+            }
+         },
+         "isRead":false
+      },
+      {
+         "user":{
+            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
+            "name":"User 01"
+         },
+         "notification":{
+            "id":1005,
+            "dateTime":"2016-06-23T11:19:48.63",
+            "type":2,
+            "originalDateTime":"2017-02-01T22:00:00",
+            "originalVenue":"NYC",
+            "gig":{
+               "id":1,
+               "isCanceled":false,
+               "artist":{
+                  "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+                  "name":"Bruno Avelar"
+               },
+               "datetime":"2017-01-02T22:00:00",
+               "venue":"NYC",
+               "genre":{
+                  "id":3,
+                  "name":"Rock"
+               }
+            }
+         },
+         "isRead":false
+      }
+   ]

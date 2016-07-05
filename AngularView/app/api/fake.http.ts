@@ -4,7 +4,7 @@ import { MockBackend, MockConnection } from 'angular2/http/testing';
 import { Observable } from 'rxjs/Observable';
 
 import { FakeServer } from './fake-server'
-import { GigsApi, AttendanceApi, UserApi } from './apis'
+import { GigApi, AttendanceApi, UserApi, NotificationApi } from './apis'
 
 @Injectable() 
 export class FakeHttp extends Http {
@@ -39,12 +39,19 @@ export class FakeHttp extends Http {
                     deps: [MockBackend, BaseRequestOptions]
                 }
             ),
-            GigsApi,
+            GigApi,
             UserApi,
             provide(
                 AttendanceApi, 
                 {
                     useFactory: (userApi) => new AttendanceApi(userApi), 
+                    deps: [UserApi] 
+                }
+            ),
+            provide(
+                NotificationApi, 
+                {
+                    useFactory: (userApi) => new NotificationApi(userApi), 
                     deps: [UserApi] 
                 }
             ),

@@ -22,6 +22,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function PopoverComponent(elementRef) {
                     this.elementRef = elementRef;
                     this.closed = true;
+                    this.shown = new core_1.EventEmitter();
+                    this.hidden = new core_1.EventEmitter();
                 }
                 PopoverComponent.prototype.clickEventHandler = function (clickEvent) {
                     event.preventDefault();
@@ -44,13 +46,23 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 };
                 PopoverComponent.prototype.open = function () {
                     this.closed = false;
+                    this.shown.emit(null);
                 };
                 PopoverComponent.prototype.close = function () {
                     this.closed = true;
+                    this.hidden.emit(null);
                 };
                 PopoverComponent.prototype.toggle = function () {
                     this.closed ? this.open() : this.close();
                 };
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
+                ], PopoverComponent.prototype, "shown", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
+                ], PopoverComponent.prototype, "hidden", void 0);
                 __decorate([
                     core_1.HostListener('document:click', ['$event']), 
                     __metadata('design:type', Function), 

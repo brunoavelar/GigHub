@@ -37,15 +37,19 @@ System.register(['angular2/core', './notifications.service', './popover.componen
                     configurable: true
                 });
                 NotificationsComponent.prototype.ngOnInit = function () {
+                    this.fetchNotifications();
+                };
+                NotificationsComponent.prototype.fetchNotifications = function () {
                     var _this = this;
                     this.notificationsService.getNotifications()
                         .then(function (notifications) { return _this.notifications = notifications; })
                         .catch(function (error) { return console.log('notificationsService.getNotifications: ' + error); });
                 };
-                NotificationsComponent.prototype.togglePopOver = function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    this.popover.toggle();
+                NotificationsComponent.prototype.popoverShown = function () {
+                    this.notificationsService.markAsRead();
+                };
+                NotificationsComponent.prototype.popoverHidden = function () {
+                    this.fetchNotifications();
                 };
                 __decorate([
                     core_1.ViewChild(popover_component_1.PopoverComponent), 

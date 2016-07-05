@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from 'angular2/core';
+import { Component, ElementRef, HostListener, Output, EventEmitter } from 'angular2/core';
 
 @Component({
     moduleId: __moduleName,
@@ -8,6 +8,8 @@ import { Component, ElementRef, HostListener } from 'angular2/core';
 })
 export class PopoverComponent {
     private closed:boolean = true;
+    @Output() shown: EventEmitter<any> = new EventEmitter<any>();
+    @Output() hidden: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(private elementRef:ElementRef) { }
 
@@ -38,10 +40,12 @@ export class PopoverComponent {
 
     private open():void {
         this.closed = false;
+        this.shown.emit(null);
     }
 
     private close():void {
         this.closed = true;
+        this.hidden.emit(null);
     }
 
     public toggle(){

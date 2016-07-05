@@ -1,9 +1,10 @@
 import { Injectable } from "angular2/core";
 import { Request, Headers, ResponseOptions, Response } from 'angular2/http';
 
+import { Notification } from "../nav-bar/notifications/notification";
 import { Gig } from "../gigs/index";
-import { Gigs, Attendances, Users, Tokens, InvalidLogin } from './server-data'
-import { Attendance, User } from './interfaces'
+import { Gigs, Attendances, Users, Tokens, InvalidLogin, UserNotifications } from './server-data'
+import { Attendance, User, UserNotification } from './interfaces'
 
 @Injectable()
 class Api {
@@ -40,7 +41,7 @@ class Api {
 }
 
 @Injectable()
-export class GigsApi extends Api {
+export class GigApi extends Api {
     private gigs:Gig[];
 
     constructor(){
@@ -51,6 +52,43 @@ export class GigsApi extends Api {
     getGigs(request:Request):Response {
         let response = this.createOkResponse(this.gigs, request.url);
         return response;
+    }
+}
+
+@Injectable()
+export class NotificationApi extends Api {
+    private userNotifications:any[];
+
+    constructor(private userApi:UserApi){
+        super();
+
+        this.userNotifications = UserNotifications.map(un => {
+            return {
+                user: un.user,
+                notification: un.notification,
+                isRead: un.isRead
+            };
+        });
+    }
+    
+    private filterByUserIdNotRead(un:any):boolean{
+        return un.user.id === this.userApi.userId && !un.isRead;
+    }
+
+    getNotifications(request:Request):Response {
+        let notifications = this.userNotifications
+            .filter(un => this.filterByUserIdNotRead(un))
+            .map(un => un.notification);
+        
+        return this.createOkResponse(notifications, request.url);
+    }
+
+    markAsRead(request:Request):Response {
+        this.userNotifications
+            .filter (un => this.filterByUserIdNotRead(un))
+            .forEach(un => un.isRead = true);
+        
+        return this.createOkResponse('', request.url);
     }
 }
 

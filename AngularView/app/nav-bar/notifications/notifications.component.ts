@@ -26,16 +26,20 @@ export class NotificationsComponent implements OnInit {
     }
 
     ngOnInit():void {
+        this.fetchNotifications();
+    }
+
+    fetchNotifications():void {
         this.notificationsService.getNotifications()
             .then(notifications => this.notifications = notifications)
             .catch(error => console.log('notificationsService.getNotifications: '+error));
     }
 
-    togglePopOver(event:MouseEvent):void {
-        event.preventDefault();
-        event.stopPropagation();
-
-        this.popover.toggle();
+    popoverShown():void {
+        this.notificationsService.markAsRead();
     }
     
+    popoverHidden():void {
+        this.fetchNotifications();
+    }
 }

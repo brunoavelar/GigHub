@@ -23,12 +23,13 @@ export class NotificationsService {
         let notifications:Notification[] = [];
         response.json().forEach(element => {
             let notification:Notification = new Notification(element);
-             notifications.push(notification);
+            
+            notifications.push(notification);
         });
         return notifications;
     }
 
-    markAsRead():Promise<Response> {        
+    markAsRead():Promise<Response> {
         return this.http.post(this.serviceUrl, '')
                 .toPromise()
                 .catch(error => console.log(error));
