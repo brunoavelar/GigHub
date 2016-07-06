@@ -1,4 +1,4 @@
-import { Injectable } from "angular2/core";
+import { Injectable,Inject } from "angular2/core";
 import { Request, Headers, ResponseOptions, Response } from 'angular2/http';
 
 import { Notification } from "../nav-bar/notifications/notification";
@@ -96,7 +96,7 @@ export class NotificationApi extends Api {
 export class AttendanceApi extends Api {
     private attendances:Attendance[] = Attendances;
 
-    constructor(private userApi:UserApi) {
+    constructor(@Inject(UserApi)private userApi:UserApi) {
         super();
      }
 

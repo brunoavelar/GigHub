@@ -4,6 +4,7 @@ import { MockBackend, MockConnection } from 'angular2/http/testing';
 import { Observable } from 'rxjs/Observable';
 
 import { FakeServer } from './fake-server'
+import { Delay } from './delay'
 import { GigApi, AttendanceApi, UserApi, NotificationApi } from './apis'
 
 @Injectable() 
@@ -20,9 +21,12 @@ export class FakeHttp extends Http {
         this.server = injector.get(FakeServer);
 
         this.backend.connections.subscribe((connection:MockConnection) => {
-            let response:Response = this.server.getData(connection.request);
+            setTimeout(() => {
+                let response:Response = this.server.getData(connection.request);
             
-            connection.mockRespond(response);
+                connection.mockRespond(response);
+            }, Delay)
+            
         });
     } 
 
@@ -98,6 +102,5 @@ export class FakeHttp extends Http {
 
         return this.http.delete(url, options);
     }
-
     
 }
