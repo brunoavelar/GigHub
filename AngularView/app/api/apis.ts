@@ -53,6 +53,13 @@ export class GigApi extends Api {
         let response = this.createOkResponse(this.gigs, request.url);
         return response;
     }
+
+    getGig(request:Request):Response {
+        let gigId = /\d+/.exec(request.url)[0];
+        let gig = this.gigs.find(gig => gig.id.toString() === gigId);
+        
+        return this.createResponseBasedOnContent(gig, request.url);
+    }
 }
 
 @Injectable()

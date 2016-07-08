@@ -26,6 +26,7 @@ export class FakeServer {
         this.routes = [
             new Route(RequestMethod.Post, /\/token/, this.userApi.loginUser.bind(this.userApi)),
             new Route(RequestMethod.Get, /\/api\/attendances\/\d+/, this.attendanceApi.isAttending.bind(this.attendanceApi)),
+            new Route(RequestMethod.Get, /\/api\/gigs\/\d+/, this.gigsApi.getGig.bind(gigsApi)),
             new Route(RequestMethod.Get, /\/api\/gigs/, this.gigsApi.getGigs.bind(gigsApi)),
             new Route(RequestMethod.Post, /\/api\/attendances/, this.attendanceApi.attend.bind(this.attendanceApi)),
             new Route(RequestMethod.Get, /\/api\/notifications/, this.notificationApi.getNotifications.bind(this.notificationApi)),
@@ -39,6 +40,7 @@ export class FakeServer {
             var route = this.routes[i];
             if(route.matches(request)){
                 response = route.callback(request);
+                
                 break;
             }
         }
