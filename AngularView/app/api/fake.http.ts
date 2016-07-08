@@ -8,13 +8,12 @@ import { Delay } from './delay'
 import { GigApi, AttendanceApi, UserApi, NotificationApi } from './apis'
 
 @Injectable() 
-export class FakeHttp extends Http {
+export class FakeHttp{
     private http:Http;
     private server:FakeServer;
+    protected backend: MockBackend
 
-    constructor(protected backend?: MockBackend, protected _defaultOptions?: RequestOptions) {
-        super(backend, _defaultOptions);
-        
+    constructor() {
         let injector = this.setupInjector();
         this.http = injector.get(Http);
         this.backend = injector.get(MockBackend);
@@ -63,44 +62,19 @@ export class FakeHttp extends Http {
         ]); 
     }
 
-    private createHeaders():Headers {
-        let headers:Headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        this.appendAuthorization(headers);
-
-        return headers;
-    }
-
-    private appendAuthorization(headers:Headers):void {
-        headers.append('Authorization', 'bearer '+ localStorage.getItem('access_token'));
-    }
-
-    private manageRequestOptions(defaultOptions?:RequestOptions) {
-        if(defaultOptions && defaultOptions.headers){
-            this.appendAuthorization(defaultOptions.headers);
-        }else{
-            defaultOptions = new RequestOptions({ headers: this.createHeaders() }); 
-        }
-
-        return defaultOptions;
-    }
-
     get(url:string, defaultOptions?: RequestOptions): Observable<Response> {
-        let options:RequestOptions = this.manageRequestOptions(defaultOptions);
         
-        return this.http.get(url, options);
+        return this.http.get(url, defaultOptions);
     }
 
     post(url:string, body:any, defaultOptions?: RequestOptions): Observable<Response> {
-        let options:RequestOptions = this.manageRequestOptions(defaultOptions);
-
-        return this.http.post(url, body, options);
+        
+        return this.http.post(url, body, defaultOptions);
     }
 
     delete(url:string, defaultOptions?: RequestOptions): Observable<Response> {
-        let options:RequestOptions = this.manageRequestOptions(defaultOptions);
-
-        return this.http.delete(url, options);
+        
+        return this.http.delete(url, defaultOptions);
     }
     
 }
