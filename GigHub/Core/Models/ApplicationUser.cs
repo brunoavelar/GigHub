@@ -19,7 +19,7 @@ namespace GigHub.Core.Models
         public ApplicationUser()
         {
             Followees = new Collection<Following>();
-            Followees = new Collection<Following>();
+            Followers = new Collection<Following>();
             UserNotifications = new Collection<UserNotification>();
         }
 
