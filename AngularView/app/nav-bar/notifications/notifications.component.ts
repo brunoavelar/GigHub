@@ -32,7 +32,7 @@ export class NotificationsComponent implements OnInit {
     fetchNotifications():void {
         this.notificationsService.getNotifications()
             .then(notifications => this.notifications = notifications)
-            .catch(error => console.log('notificationsService.getNotifications: '+error));
+            .catch(error => console.log('fetchNotifications error', error));
     }
 
     popoverShown():void {

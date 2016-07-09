@@ -1,4 +1,4 @@
-System.register(["angular2/core", 'angular2/http', "./index"], function(exports_1, context_1) {
+System.register(["angular2/core", '../shared/authorized.http', "./index"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,15 @@ System.register(["angular2/core", 'angular2/http', "./index"], function(exports_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, index_1;
+    var core_1, authorized_http_1, index_1;
     var GigService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (http_1_1) {
-                http_1 = http_1_1;
+            function (authorized_http_1_1) {
+                authorized_http_1 = authorized_http_1_1;
             },
             function (index_1_1) {
                 index_1 = index_1_1;
@@ -27,11 +27,11 @@ System.register(["angular2/core", 'angular2/http', "./index"], function(exports_
             GigService = (function () {
                 function GigService(http) {
                     this.http = http;
-                    this.gigsUrl = '/api/gigs';
-                    this.myGigsUrl = '/api/gigs/artist';
-                    this.gigUrl = '/api/gigs/:id';
-                    this.attendanceUrl = '/api/attendances/:id';
-                    this.followingUrl = '/api/followings/:id';
+                    this.gigsUrl = '/gigs';
+                    this.myGigsUrl = '/gigs/artist';
+                    this.gigUrl = '/gigs/:id';
+                    this.attendanceUrl = '/attendances/:id';
+                    this.followingUrl = '/followings/:id';
                 }
                 GigService.prototype.getAttendance = function (gigId) {
                     return this.http.get(this.attendanceUrl.replace(":id", gigId.toString()))
@@ -95,7 +95,7 @@ System.register(["angular2/core", 'angular2/http', "./index"], function(exports_
                 };
                 GigService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http])
+                    __metadata('design:paramtypes', [authorized_http_1.AuthorizedHttp])
                 ], GigService);
                 return GigService;
             }());

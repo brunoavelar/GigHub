@@ -24,7 +24,7 @@ System.register(["angular2/core", '../shared/authorized.http'], function(exports
             FollowService = (function () {
                 function FollowService(http) {
                     this.http = http;
-                    this.followingUrl = '/api/followings/:id';
+                    this.followingUrl = '/followings/:id';
                 }
                 FollowService.prototype.getFollowing = function (artistId) {
                     var getUrl = this.followingUrl.replace(":id", artistId);

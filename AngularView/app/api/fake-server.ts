@@ -36,11 +36,11 @@ export class FakeServer {
 
     getData(request:Request):Response{
         var response:Response;
+        
         for (var i = 0; i < this.routes.length; i++) {
             var route = this.routes[i];
             if(route.matches(request)){
                 response = route.callback(request);
-                
                 break;
             }
         }

@@ -43,7 +43,7 @@ System.register(['angular2/core', './notifications.service', './popover.componen
                     var _this = this;
                     this.notificationsService.getNotifications()
                         .then(function (notifications) { return _this.notifications = notifications; })
-                        .catch(function (error) { return console.log('notificationsService.getNotifications: ' + error); });
+                        .catch(function (error) { return console.log('fetchNotifications error', error); });
                 };
                 NotificationsComponent.prototype.popoverShown = function () {
                     this.notificationsService.markAsRead();

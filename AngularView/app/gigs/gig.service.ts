@@ -1,6 +1,5 @@
-import { Injectable, Injector, ReflectiveInjector, provide } from "angular2/core";
-import { Http, Response, Headers, RequestOptions, BaseRequestOptions, ConnectionBackend } from 'angular2/http';
-import { MockBackend, MockConnection } from 'angular2/http/testing';
+import { Injectable } from "angular2/core";
+import { Http, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthorizedHttp } from '../shared/authorized.http';
@@ -9,13 +8,13 @@ import { Gig } from "./index";
 
 @Injectable()
 export class GigService {
-    private gigsUrl = '/api/gigs';
-    private myGigsUrl = '/api/gigs/artist';
-    private gigUrl = '/api/gigs/:id';
-    private attendanceUrl = '/api/attendances/:id';
-    private followingUrl = '/api/followings/:id';
+    private gigsUrl = '/gigs';
+    private myGigsUrl = '/gigs/artist';
+    private gigUrl = '/gigs/:id';
+    private attendanceUrl = '/attendances/:id';
+    private followingUrl = '/followings/:id';
 
-    constructor(private http: Http){
+    constructor(private http: AuthorizedHttp){
 
     }   
     

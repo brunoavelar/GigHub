@@ -11,7 +11,7 @@ System.register(["angular2/core", 'angular2/http'], function(exports_1, context_
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1;
-    var fakeRootUrl, availableFakeRoutes, rootUrl, AuthorizedHttp;
+    var rootUrl, AuthorizedHttp;
     return {
         setters:[
             function (core_1_1) {
@@ -21,9 +21,7 @@ System.register(["angular2/core", 'angular2/http'], function(exports_1, context_
                 http_1 = http_1_1;
             }],
         execute: function() {
-            fakeRootUrl = '/api';
-            availableFakeRoutes = ['/gigs'];
-            rootUrl = 'http://localhost:53009/api/';
+            rootUrl = 'http://localhost:53009/api';
             AuthorizedHttp = (function () {
                 function AuthorizedHttp(http) {
                     this.http = http;

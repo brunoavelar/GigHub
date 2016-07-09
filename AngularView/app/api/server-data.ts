@@ -1,121 +1,173 @@
 export let Gigs = 
-[      
-    {
-         "id":1,
-         "isCanceled":false,
-         "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-         },
-         "datetime":"2017-01-02T22:00:00",
-         "venue":"NYC",
-         "genre":{
-            "id":3,
-            "name":"Rock"
-         },
-         "attendances":[
-            {
-               "gigId":1,
-               "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971"
-            },
-            {
-               "gigId":1,
-               "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c"
-            }
-         ]
-      },
-      {
-         "id":2,
-         "isCanceled":false,
-         "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-         },
-         "datetime":"2017-01-03T22:00:00",
-         "venue":"Orlando",
-         "genre":{
-            "id":2,
-            "name":"Blues"
-         },
-         "attendances":[
-            {
-               "gigId":2,
-               "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971"
-            },
-            {
-               "gigId":2,
-               "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c"
-            }
-         ]
-      },
-      {
-         "id":3,
-         "isCanceled":false,
-         "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-         },
-         "datetime":"2017-01-04T12:00:00",
-         "venue":"San Francisco",
-         "genre":{
-            "id":4,
-            "name":"Country"
-         },
-         "attendances":[
-            {
-               "gigId":3,
-               "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971"
-            },
-            {
-               "gigId":3,
-               "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c"
-            }
-         ]
-      },
-      {
-         "id":4,
-         "isCanceled":false,
-         "artist":{
-            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-            "name":"User 01"
-         },
-         "datetime":"2017-01-01T11:30:00",
-         "venue":"Teste",
-         "genre":{
-            "id":1,
-            "name":"Jazz"
-         },
-         "attendances":[
-            {
-               "gigId":4,
-               "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971"
-            },
-            {
-               "gigId":4,
-               "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c"
-            }
-         ]
-      },
-      {
-         "id":5,
-         "isCanceled":false,
-         "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-         },
-         "datetime":"2017-01-01T20:00:00",
-         "venue":"Miami",
-         "genre":{
-            "id":1,
-            "name":"Jazz"
-         },
-         "attendances":[
-            {
-               "gigId":5,
-               "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c"
-            }
-         ]
-      }
+[
+  {
+    "id": 97,
+    "isCanceled": false,
+    "artist": {
+      "id": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+      "name": "Dream Theater"
+    },
+    "datetime": "2017-01-03T08:00:00",
+    "venue": "San Francisco",
+    "genre": {
+      "id": 2,
+      "name": "Progressive Rock"
+    }
+  },
+  {
+    "id": 98,
+    "isCanceled": false,
+    "artist": {
+      "id": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+      "name": "Dream Theater"
+    },
+    "datetime": "2017-01-05T08:00:00",
+    "venue": "New York",
+    "genre": {
+      "id": 2,
+      "name": "Progressive Rock"
+    }
+  },
+  {
+    "id": 99,
+    "isCanceled": false,
+    "artist": {
+      "id": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+      "name": "Dream Theater"
+    },
+    "datetime": "2017-01-08T08:00:00",
+    "venue": "Orlando",
+    "genre": {
+      "id": 2,
+      "name": "Progressive Rock"
+    }
+  },
+  {
+    "id": 100,
+    "isCanceled": false,
+    "artist": {
+      "id": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+      "name": "Dream Theater"
+    },
+    "datetime": "2017-01-13T08:00:00",
+    "venue": "São Paulo",
+    "genre": {
+      "id": 2,
+      "name": "Progressive Rock"
+    }
+  },
+  {
+    "id": 101,
+    "isCanceled": false,
+    "artist": {
+      "id": "8c479653-b10e-40ff-a31f-031a831023da",
+      "name": "Iron Maiden"
+    },
+    "datetime": "2017-01-03T08:00:00",
+    "venue": "San Francisco",
+    "genre": {
+      "id": 1,
+      "name": "Heavy Metal"
+    }
+  },
+  {
+    "id": 102,
+    "isCanceled": false,
+    "artist": {
+      "id": "8c479653-b10e-40ff-a31f-031a831023da",
+      "name": "Iron Maiden"
+    },
+    "datetime": "2017-01-05T08:00:00",
+    "venue": "New York",
+    "genre": {
+      "id": 1,
+      "name": "Heavy Metal"
+    }
+  },
+  {
+    "id": 103,
+    "isCanceled": false,
+    "artist": {
+      "id": "8c479653-b10e-40ff-a31f-031a831023da",
+      "name": "Iron Maiden"
+    },
+    "datetime": "2017-01-08T08:00:00",
+    "venue": "Orlando",
+    "genre": {
+      "id": 1,
+      "name": "Heavy Metal"
+    }
+  },
+  {
+    "id": 104,
+    "isCanceled": false,
+    "artist": {
+      "id": "8c479653-b10e-40ff-a31f-031a831023da",
+      "name": "Iron Maiden"
+    },
+    "datetime": "2017-01-13T08:00:00",
+    "venue": "São Paulo",
+    "genre": {
+      "id": 1,
+      "name": "Heavy Metal"
+    }
+  },
+  {
+    "id": 105,
+    "isCanceled": false,
+    "artist": {
+      "id": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+      "name": "Joe Satriani"
+    },
+    "datetime": "2017-01-03T08:00:00",
+    "venue": "San Francisco",
+    "genre": {
+      "id": 3,
+      "name": "Instrumental Rock"
+    }
+  },
+  {
+    "id": 106,
+    "isCanceled": false,
+    "artist": {
+      "id": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+      "name": "Joe Satriani"
+    },
+    "datetime": "2017-01-05T08:00:00",
+    "venue": "New York",
+    "genre": {
+      "id": 3,
+      "name": "Instrumental Rock"
+    }
+  },
+  {
+    "id": 107,
+    "isCanceled": false,
+    "artist": {
+      "id": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+      "name": "Joe Satriani"
+    },
+    "datetime": "2017-01-08T08:00:00",
+    "venue": "Orlando",
+    "genre": {
+      "id": 3,
+      "name": "Instrumental Rock"
+    }
+  },
+  {
+    "id": 108,
+    "isCanceled": false,
+    "artist": {
+      "id": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+      "name": "Joe Satriani"
+    },
+    "datetime": "2017-01-13T08:00:00",
+    "venue": "São Paulo",
+    "genre": {
+      "id": 3,
+      "name": "Instrumental Rock"
+    }
+  }
 ];
 
 
