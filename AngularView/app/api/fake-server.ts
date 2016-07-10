@@ -22,12 +22,13 @@ export class FakeServer {
 
     private routes:Route[];
 
-    constructor(private gigsApi:GigApi, private userApi:UserApi, private attendanceApi:AttendanceApi, private notificationApi:NotificationApi) {
+    constructor(private userApi:UserApi, private gigsApi:GigApi, private attendanceApi:AttendanceApi, private notificationApi:NotificationApi) {
         this.routes = [
             new Route(RequestMethod.Post, /\/token/, this.userApi.loginUser.bind(this.userApi)),
             new Route(RequestMethod.Get, /\/api\/attendances\/\d+/, this.attendanceApi.isAttending.bind(this.attendanceApi)),
             new Route(RequestMethod.Get, /\/api\/attendances/, this.attendanceApi.getAttendances.bind(this.attendanceApi)),
             new Route(RequestMethod.Get, /\/api\/gigs\/\d+/, this.gigsApi.getGig.bind(gigsApi)),
+            new Route(RequestMethod.Get, /\/api\/gigs\/artist/, this.gigsApi.getMyGigs.bind(gigsApi)),
             new Route(RequestMethod.Get, /\/api\/gigs/, this.gigsApi.getGigs.bind(gigsApi)),
             new Route(RequestMethod.Post, /\/api\/attendances/, this.attendanceApi.attend.bind(this.attendanceApi)),
             new Route(RequestMethod.Get, /\/api\/notifications/, this.notificationApi.getNotifications.bind(this.notificationApi)),

@@ -44,13 +44,20 @@ class Api {
 export class GigApi extends Api {
     private gigs:Gig[];
 
-    constructor(){
+    constructor(private userApi:UserApi){
         super();
         this.gigs = Gigs.map(value => new Gig(value));
     }
 
     getGigs(request:Request):Response {
         let response = this.createOkResponse(this.gigs, request.url);
+        return response;
+    }
+
+    getMyGigs(request:Request):Response {
+        let myGigs = this.gigs.filter((gig:Gig) => gig.artist.id === this.userApi.userId)
+
+        let response = this.createOkResponse(myGigs, request.url);
         return response;
     }
 

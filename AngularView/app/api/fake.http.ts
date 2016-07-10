@@ -42,8 +42,14 @@ export class FakeHttp{
                     deps: [MockBackend, BaseRequestOptions]
                 }
             ),
-            GigApi,
             UserApi,
+            provide(
+                GigApi,
+                {
+                    useFactory: (userApi) => new GigApi(userApi), 
+                    deps: [UserApi] 
+                }
+            ),
             provide(
                 AttendanceApi, 
                 {
