@@ -40,6 +40,6 @@ export class NotificationsComponent implements OnInit {
     }
     
     popoverHidden():void {
-        this.fetchNotifications();
+        //this.fetchNotifications();
     }
 }

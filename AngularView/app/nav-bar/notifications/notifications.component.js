@@ -49,7 +49,7 @@ System.register(['angular2/core', './notifications.service', './popover.componen
                     this.notificationsService.markAsRead();
                 };
                 NotificationsComponent.prototype.popoverHidden = function () {
-                    this.fetchNotifications();
+                    //this.fetchNotifications();
                 };
                 __decorate([
                     core_1.ViewChild(popover_component_1.PopoverComponent), 
