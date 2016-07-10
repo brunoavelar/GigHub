@@ -44,8 +44,10 @@ export class PopoverComponent {
     }
 
     private close():void {
-        this.closed = true;
-        this.hidden.emit(null);
+        if(!this.closed){
+            this.closed = true;
+            this.hidden.emit(null);
+        }
     }
 
     public toggle(){

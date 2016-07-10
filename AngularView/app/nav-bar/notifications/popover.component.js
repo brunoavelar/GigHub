@@ -49,8 +49,10 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.shown.emit(null);
                 };
                 PopoverComponent.prototype.close = function () {
-                    this.closed = true;
-                    this.hidden.emit(null);
+                    if (!this.closed) {
+                        this.closed = true;
+                        this.hidden.emit(null);
+                    }
                 };
                 PopoverComponent.prototype.toggle = function () {
                     this.closed ? this.open() : this.close();
