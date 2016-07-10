@@ -2,7 +2,8 @@ import { Injectable,Inject } from "angular2/core";
 import { Request, Headers, ResponseOptions, Response } from 'angular2/http';
 
 import { Notification } from "../nav-bar/notifications/notification";
-import { Gig, Attendance } from "../gigs/index";
+import { Gig } from "../gigs/index";
+import { Attendance } from '../gigs/attendance';
 import { Gigs, Attendances, Users, Tokens, InvalidLogin, UserNotifications } from './server-data'
 import { User, UserNotification } from './interfaces'
 
@@ -62,7 +63,7 @@ export class GigApi extends Api {
     }
 
     getGig(request:Request):Response {
-        let gigId = /\d+/.exec(request.url)[0];
+        let gigId = /(\d+)(?!.*\d)/.exec(request.url)[0];
         let gig = this.gigs.find(gig => gig.id.toString() === gigId);
         
         return this.createResponseBasedOnContent(gig, request.url);
@@ -117,7 +118,6 @@ export class AttendanceApi extends Api {
      getAttendances(request:Request):Response {
         let attendeeId:string = this.userApi.userId;
         let result = this.attendances.filter((at:Attendance) => at.attendeeId === attendeeId);
-        console.log(attendeeId);
         
         return this.createOkResponse(result, request.url); 
      }

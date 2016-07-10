@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AuthorizedHttp } from '../shared/authorized.http';
 import { Gig } from "./index";
+import { AttendanceService } from './attendance.service';
 
 
 @Injectable()

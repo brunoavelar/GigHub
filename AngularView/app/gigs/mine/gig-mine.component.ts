@@ -2,6 +2,7 @@ import { Component, OnInit } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
 import { AttendanceButtonComponent } from '../list/attendance-button.component'
+
 import { Gig } from '../gig';
 import { GigService } from '../gig.service';
 import { GigFilterPipe } from '../gigs-filter.pipe'

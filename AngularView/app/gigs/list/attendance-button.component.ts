@@ -1,6 +1,6 @@
 //btn-default - btn-info
 import { Component, OnInit, Input } from 'angular2/core';
-import { AttendanceService } from './attendance.service';
+import { AttendanceService } from '../attendance.service';
 
 @Component({
     moduleId: __moduleName,

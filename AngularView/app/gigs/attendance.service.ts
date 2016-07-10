@@ -2,7 +2,7 @@ import { Injectable } from "angular2/core";
 import { Http, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthorizedHttp } from '../../shared/authorized.http';
+import { AuthorizedHttp } from '../shared/authorized.http';
 import { Attendance } from './Attendance';
 
 @Injectable()

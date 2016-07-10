@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', "../../shared/follow-button.component", "../gig", '../gig.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', "../../shared/follow-button.component", "../gig", '../gig.service', '../attendance.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', "../../shared/follow-button
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, follow_button_component_1, gig_1, gig_service_1;
+    var core_1, router_1, follow_button_component_1, gig_1, gig_service_1, attendance_service_1;
     var GigDetailComponent;
     return {
         setters:[
@@ -28,11 +28,15 @@ System.register(['angular2/core', 'angular2/router', "../../shared/follow-button
             },
             function (gig_service_1_1) {
                 gig_service_1 = gig_service_1_1;
+            },
+            function (attendance_service_1_1) {
+                attendance_service_1 = attendance_service_1_1;
             }],
         execute: function() {
             GigDetailComponent = (function () {
-                function GigDetailComponent(gigService, routeParams, router) {
+                function GigDetailComponent(gigService, attendanceService, routeParams, router) {
                     this.gigService = gigService;
+                    this.attendanceService = attendanceService;
                     this.routeParams = routeParams;
                     this.router = router;
                     this.gig = new gig_1.Gig();
@@ -49,7 +53,7 @@ System.register(['angular2/core', 'angular2/router', "../../shared/follow-button
                         _this.gig = gig;
                     })
                         .catch(function (error) { return console.log(error); });
-                    this.gigService.getAttendance(gigId)
+                    this.attendanceService.getAttendance(gigId.toString())
                         .then(function (result) { return _this.isAttending = result; });
                 };
                 GigDetailComponent = __decorate([
@@ -58,7 +62,7 @@ System.register(['angular2/core', 'angular2/router', "../../shared/follow-button
                         templateUrl: 'gig-detail.component.html',
                         directives: [follow_button_component_1.FollowButtonComponent]
                     }), 
-                    __metadata('design:paramtypes', [gig_service_1.GigService, router_1.RouteParams, router_1.Router])
+                    __metadata('design:paramtypes', [gig_service_1.GigService, attendance_service_1.AttendanceService, router_1.RouteParams, router_1.Router])
                 ], GigDetailComponent);
                 return GigDetailComponent;
             }());

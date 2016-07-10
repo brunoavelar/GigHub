@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 import { GigService, GigListComponent, GigMineComponent, GigDetailComponent } from './gigs/index';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginService } from './account/login.service';
-import { AttendanceService } from './gigs/list/attendance.service';
+import { AttendanceService } from './gigs/attendance.service';
 import { LoginComponent } from './account/login.component';
 import { UserInfo } from './account/user-info';
 import { LoggedInRouterOutlet } from './account/logged-in-router-outlet';

@@ -4,7 +4,7 @@ import { RouteParams, Router} from 'angular2/router';
 import { FollowButtonComponent } from "../../shared/follow-button.component";
 import { Gig } from "../gig";
 import { GigService } from '../gig.service';
-
+import { AttendanceService } from '../attendance.service';
 
 @Component({
     moduleId: __moduleName,
@@ -16,7 +16,7 @@ export class GigDetailComponent implements OnInit {
     private isAttending: boolean;
     private isFollowing: boolean;
 
-    constructor(private gigService: GigService, private routeParams: RouteParams, private router: Router) { 
+    constructor(private gigService: GigService, private attendanceService:AttendanceService, private routeParams: RouteParams, private router: Router) { 
         this.gig = new Gig();
     }
     
@@ -33,7 +33,7 @@ export class GigDetailComponent implements OnInit {
             })
             .catch((error) => console.log(error));
 
-        this.gigService.getAttendance(gigId)
+        this.attendanceService.getAttendance(gigId.toString())
             .then(result => this.isAttending = result);
     }
 
