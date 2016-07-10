@@ -1,7 +1,7 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit, provide } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
-import { AttendanceButtonComponent } from '../../shared/attendance-button.component'
+import { AttendanceButtonComponent } from './attendance-button.component'
 import { Gig } from '../index';
 import { GigService } from '../gig.service';
 import { GigFilterPipe } from './../gigs-filter.pipe'

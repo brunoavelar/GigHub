@@ -11,40 +11,10 @@ export class GigService {
     private gigsUrl = '/gigs';
     private myGigsUrl = '/gigs/artist';
     private gigUrl = '/gigs/:id';
-    private attendanceUrl = '/attendances/:id';
-    private followingUrl = '/followings/:id';
 
     constructor(private http: AuthorizedHttp){
 
     }   
-    
-    getAttendance(gigId:number):Promise<boolean> {
-        return this.http.get(this.attendanceUrl.replace(":id", gigId.toString()))
-                .map((response:Response) => {
-                    return true;
-                })
-                .toPromise()
-                .catch(error => {
-                    if(error.status === 404)
-                        return false
-                    else
-                        Promise.reject(error)
-                });
-    }
-
-    getFollowing(artistId:string):Promise<boolean> {
-        return this.http.get(this.followingUrl.replace(":id", artistId))
-                .map((response:Response) => {
-                    return true;
-                })
-                .toPromise()
-                .catch(error => {
-                    if(error.status === 404)
-                        return false
-                    else
-                        Promise.reject(error)
-                });
-    }
 
     getGig(gigId:number):Promise<Gig> {
         return this.http.get(this.gigUrl.replace(":id", gigId.toString()))

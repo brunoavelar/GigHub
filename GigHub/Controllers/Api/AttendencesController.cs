@@ -4,6 +4,7 @@ using GigHub.Core.Dtos;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 using System.Web.Http;
+using System.Linq;
 
 namespace GigHub.Controllers.Api
 {
@@ -18,6 +19,15 @@ namespace GigHub.Controllers.Api
         }
 
         [HttpGet]
+        public IHttpActionResult GetAttendances()
+        {
+            string userId = User.Identity.GetUserId();
+            var attendances = unitOfWork.Attendances.GetFutureAttendances(userId);
+
+            var attendancesDto = attendances.Select(a => Mapper.Map<Attendance, AttendanceDto>(a));
+            return Ok(attendancesDto);
+        }
+
         public IHttpActionResult Get(int id)
         {
             string userId = User.Identity.GetUserId();

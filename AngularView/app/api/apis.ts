@@ -2,9 +2,9 @@ import { Injectable,Inject } from "angular2/core";
 import { Request, Headers, ResponseOptions, Response } from 'angular2/http';
 
 import { Notification } from "../nav-bar/notifications/notification";
-import { Gig } from "../gigs/index";
+import { Gig, Attendance } from "../gigs/index";
 import { Gigs, Attendances, Users, Tokens, InvalidLogin, UserNotifications } from './server-data'
-import { Attendance, User, UserNotification } from './interfaces'
+import { User, UserNotification } from './interfaces'
 
 @Injectable()
 class Api {
@@ -103,8 +103,16 @@ export class NotificationApi extends Api {
 export class AttendanceApi extends Api {
     private attendances:Attendance[] = Attendances;
 
-    constructor(@Inject(UserApi)private userApi:UserApi) {
+    constructor(private userApi:UserApi) {
         super();
+     }
+
+     getAttendances(request:Request):Response {
+        let attendeeId:string = this.userApi.userId;
+        let result = this.attendances.filter((at:Attendance) => at.attendeeId === attendeeId);
+        console.log(attendeeId);
+        
+        return this.createOkResponse(result, request.url); 
      }
 
     isAttending(request:Request):Response {

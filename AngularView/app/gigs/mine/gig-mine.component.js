@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../../shared/attendance-button.component', '../gig.service', '../gigs-filter.pipe', "../gig-date.component"], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../list/attendance-button.component', '../gig.service', '../gigs-filter.pipe', "../gig-date.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

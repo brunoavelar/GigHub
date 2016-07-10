@@ -1,4 +1,4 @@
-System.register(['./list/gig-list.component', './mine/gig-mine.component', './details/gig-detail.component', './gig-date.component', './gig.service', './gigs-filter.pipe', './gig', './id.name'], function(exports_1, context_1) {
+System.register(['./list/gig-list.component', './list/attendance-button.component', './list/attendance.service', './mine/gig-mine.component', './details/gig-detail.component', './gig-date.component', './gig.service', './gigs-filter.pipe', './gig', './id.name'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -12,6 +12,12 @@ System.register(['./list/gig-list.component', './mine/gig-mine.component', './de
         setters:[
             function (gig_list_component_1_1) {
                 exportStar_1(gig_list_component_1_1);
+            },
+            function (attendance_button_component_1_1) {
+                exportStar_1(attendance_button_component_1_1);
+            },
+            function (attendance_service_1_1) {
+                exportStar_1(attendance_service_1_1);
             },
             function (gig_mine_component_1_1) {
                 exportStar_1(gig_mine_component_1_1);

@@ -9,6 +9,8 @@ using GigHub.Core.Repositories;
 using GigHub.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http.Results;
 
 namespace GigHub.Tests.Controllers.Api
@@ -117,6 +119,32 @@ namespace GigHub.Tests.Controllers.Api
 
             var result = controller.Get(gigId + 1);
             result.Should().BeOfType<NotFoundResult>();
+        }
+
+        [TestMethod]
+        public void GetAttendances_ShouldReturnAttendances()
+        {
+            var attendances = new Attendance[]
+            {
+                new Attendance
+                {
+                    GigId = 1,
+                    AttendeeId = userId
+                },
+                new Attendance
+                {
+                    GigId = 2,
+                    AttendeeId = userId
+                }
+            };
+
+            repository.Setup(x => x.GetFutureAttendances(userId)).Returns(attendances);
+
+            var result = controller.GetAttendances();
+            var content = (result as OkNegotiatedContentResult<IEnumerable<AttendanceDto>>).Content;
+
+            result.Should().BeOfType<OkNegotiatedContentResult<IEnumerable<AttendanceDto>>>();
+            content.Count().Should().Be(2);
         }
     }
 }

@@ -6,7 +6,6 @@ import { AttendanceService } from './attendance.service';
     moduleId: __moduleName,
     selector: 'attendance-button',
     templateUrl: 'attendance-button.component.html',
-    providers: [AttendanceService]
 })
 export class AttendanceButtonComponent implements OnInit {
     private isAttending: boolean;

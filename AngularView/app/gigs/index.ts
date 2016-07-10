@@ -1,4 +1,7 @@
 export * from './list/gig-list.component';
+export * from './list/attendance';
+export * from './list/attendance-button.component';
+export * from './list/attendance.service';
 export * from './mine/gig-mine.component';
 export * from './details/gig-detail.component';
 export * from './gig-date.component'

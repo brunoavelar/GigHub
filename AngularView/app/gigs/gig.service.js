@@ -30,35 +30,7 @@ System.register(["angular2/core", '../shared/authorized.http', "./index"], funct
                     this.gigsUrl = '/gigs';
                     this.myGigsUrl = '/gigs/artist';
                     this.gigUrl = '/gigs/:id';
-                    this.attendanceUrl = '/attendances/:id';
-                    this.followingUrl = '/followings/:id';
                 }
-                GigService.prototype.getAttendance = function (gigId) {
-                    return this.http.get(this.attendanceUrl.replace(":id", gigId.toString()))
-                        .map(function (response) {
-                        return true;
-                    })
-                        .toPromise()
-                        .catch(function (error) {
-                        if (error.status === 404)
-                            return false;
-                        else
-                            Promise.reject(error);
-                    });
-                };
-                GigService.prototype.getFollowing = function (artistId) {
-                    return this.http.get(this.followingUrl.replace(":id", artistId))
-                        .map(function (response) {
-                        return true;
-                    })
-                        .toPromise()
-                        .catch(function (error) {
-                        if (error.status === 404)
-                            return false;
-                        else
-                            Promise.reject(error);
-                    });
-                };
                 GigService.prototype.getGig = function (gigId) {
                     return this.http.get(this.gigUrl.replace(":id", gigId.toString()))
                         .map(function (response) {

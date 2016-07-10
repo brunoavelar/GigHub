@@ -94,6 +94,7 @@
     <Compile Include="Extensions\MockDbSetExtensions.cs" />
     <Compile Include="Models\GigTests.cs" />
     <Compile Include="Persistence\Repository\GigRepositoryTests.cs" />
+    <Compile Include="Persistence\Repository\AttendanceRepositoryTests.cs" />
     <Compile Include="Persistence\Repository\NotificationRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

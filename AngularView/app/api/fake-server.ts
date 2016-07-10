@@ -26,6 +26,7 @@ export class FakeServer {
         this.routes = [
             new Route(RequestMethod.Post, /\/token/, this.userApi.loginUser.bind(this.userApi)),
             new Route(RequestMethod.Get, /\/api\/attendances\/\d+/, this.attendanceApi.isAttending.bind(this.attendanceApi)),
+            new Route(RequestMethod.Get, /\/api\/attendances/, this.attendanceApi.getAttendances.bind(this.attendanceApi)),
             new Route(RequestMethod.Get, /\/api\/gigs\/\d+/, this.gigsApi.getGig.bind(gigsApi)),
             new Route(RequestMethod.Get, /\/api\/gigs/, this.gigsApi.getGigs.bind(gigsApi)),
             new Route(RequestMethod.Post, /\/api\/attendances/, this.attendanceApi.attend.bind(this.attendanceApi)),
@@ -41,8 +42,13 @@ export class FakeServer {
             var route = this.routes[i];
             if(route.matches(request)){
                 response = route.callback(request);
+                console.log("HTTP Request: ", request, response);
                 break;
             }
+        }
+
+        if(!response){
+            console.warn("HTTP Request to a route not implemented: ", request);
         }
         
         return response;

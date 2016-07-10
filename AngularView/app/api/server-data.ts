@@ -171,220 +171,143 @@ export let Gigs =
 ];
 
 
-export let Attendances = 
-[
-    {
-        "gigId":1,
-        "gig":{
-        "id":1,
-        "isCanceled":false,
-        "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        },
-        "datetime":"2017-01-02T22:00:00",
-        "venue":"NYC",
-        "genre":{
-            "id":3,
-            "name":"Rock"
-        }
-        },
-        "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-        "attendee":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        }
-    },
-    // {
-    //     "gigId":1,
-    //     "gig":{
-    //     "id":1,
-    //     "isCanceled":false,
-    //     "artist":{
-    //         "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-    //         "name":"Bruno Avelar"
-    //     },
-    //     "datetime":"2017-01-02T22:00:00",
-    //     "venue":"NYC",
-    //     "genre":{
-    //         "id":3,
-    //         "name":"Rock"
-    //     }
-    //     },
-    //     "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-    //     "attendee":{
-    //         "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-    //         "name":"User 01"
-    //     }
-    // },
-    {
-        "gigId":2,
-        "gig":{
-        "id":2,
-        "isCanceled":false,
-        "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        },
-        "datetime":"2017-01-03T22:00:00",
-        "venue":"Orlando",
-        "genre":{
-            "id":2,
-            "name":"Blues"
-        }
-        },
-        "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-        "attendee":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        }
-    },
-    {
-        "gigId":2,
-        "gig":{
-        "id":2,
-        "isCanceled":false,
-        "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        },
-        "datetime":"2017-01-03T22:00:00",
-        "venue":"Orlando",
-        "genre":{
-            "id":2,
-            "name":"Blues"
-        }
-        },
-        "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "attendee":{
-            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-            "name":"User 01"
-        }
-    },
-    {
-        "gigId":3,
-        "gig":{
-        "id":3,
-        "isCanceled":false,
-        "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        },
-        "datetime":"2017-01-04T12:00:00",
-        "venue":"San Francisco",
-        "genre":{
-            "id":4,
-            "name":"Country"
-        }
-        },
-        "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-        "attendee":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        }
-    },
-    {
-        "gigId":3,
-        "gig":{
-        "id":3,
-        "isCanceled":false,
-        "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        },
-        "datetime":"2017-01-04T12:00:00",
-        "venue":"San Francisco",
-        "genre":{
-            "id":4,
-            "name":"Country"
-        }
-        },
-        "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "attendee":{
-            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-            "name":"User 01"
-        }
-    },
-    {
-        "gigId":4,
-        "gig":{
-        "id":4,
-        "isCanceled":false,
-        "artist":{
-            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-            "name":"User 01"
-        },
-        "datetime":"2017-01-01T11:30:00",
-        "venue":"Teste",
-        "genre":{
-            "id":1,
-            "name":"Jazz"
-        }
-        },
-        "attendeeId":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-        "attendee":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        }
-    },
-    {
-        "gigId":4,
-        "gig":{
-        "id":4,
-        "isCanceled":false,
-        "artist":{
-            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-            "name":"User 01"
-        },
-        "datetime":"2017-01-01T11:30:00",
-        "venue":"Teste",
-        "genre":{
-            "id":1,
-            "name":"Jazz"
-        }
-        },
-        "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "attendee":{
-            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-            "name":"User 01"
-        }
-    },
-    {
-        "gigId":5,
-        "gig":{
-        "id":5,
-        "isCanceled":false,
-        "artist":{
-            "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
-            "name":"Bruno Avelar"
-        },
-        "datetime":"2017-01-01T20:00:00",
-        "venue":"Miami",
-        "genre":{
-            "id":1,
-            "name":"Jazz"
-        }
-        },
-        "attendeeId":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "attendee":{
-            "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-            "name":"User 01"
-        }
-    }
+export let Attendances = [
+  {
+    "attendeeId": "27bc1acd-3885-46a5-b4bc-0e657deecf88",
+    "gigId": 97
+  },
+  {
+    "attendeeId": "8c479653-b10e-40ff-a31f-031a831023da",
+    "gigId": 97
+  },
+  {
+    "attendeeId": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+    "gigId": 97
+  },
+  {
+    "attendeeId": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+    "gigId": 97
+  },
+  {
+    "attendeeId": "27bc1acd-3885-46a5-b4bc-0e657deecf88",
+    "gigId": 98
+  },
+  {
+    "attendeeId": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+    "gigId": 98
+  },
+  {
+    "attendeeId": "27bc1acd-3885-46a5-b4bc-0e657deecf88",
+    "gigId": 99
+  },
+  {
+    "attendeeId": "8c479653-b10e-40ff-a31f-031a831023da",
+    "gigId": 99
+  },
+  {
+    "attendeeId": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+    "gigId": 99
+  },
+  {
+    "attendeeId": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+    "gigId": 99
+  },
+  {
+    "attendeeId": "27bc1acd-3885-46a5-b4bc-0e657deecf88",
+    "gigId": 100
+  },
+  {
+    "attendeeId": "8c479653-b10e-40ff-a31f-031a831023da",
+    "gigId": 100
+  },
+  {
+    "attendeeId": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+    "gigId": 100
+  },
+  {
+    "attendeeId": "27bc1acd-3885-46a5-b4bc-0e657deecf88",
+    "gigId": 101
+  },
+  {
+    "attendeeId": "8c479653-b10e-40ff-a31f-031a831023da",
+    "gigId": 101
+  },
+  {
+    "attendeeId": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+    "gigId": 101
+  },
+  {
+    "attendeeId": "27bc1acd-3885-46a5-b4bc-0e657deecf88",
+    "gigId": 102
+  },
+  {
+    "attendeeId": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+    "gigId": 102
+  },
+  {
+    "attendeeId": "27bc1acd-3885-46a5-b4bc-0e657deecf88",
+    "gigId": 103
+  },
+  {
+    "attendeeId": "8c479653-b10e-40ff-a31f-031a831023da",
+    "gigId": 103
+  },
+  {
+    "attendeeId": "8c479653-b10e-40ff-a31f-031a831023da",
+    "gigId": 105
+  },
+  {
+    "attendeeId": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+    "gigId": 105
+  },
+  {
+    "attendeeId": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+    "gigId": 105
+  },
+  {
+    "attendeeId": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+    "gigId": 106
+  },
+  {
+    "attendeeId": "8c479653-b10e-40ff-a31f-031a831023da",
+    "gigId": 107
+  },
+  {
+    "attendeeId": "9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+    "gigId": 107
+  },
+  {
+    "attendeeId": "a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+    "gigId": 107
+  },
+  {
+    "attendeeId": "8c479653-b10e-40ff-a31f-031a831023da",
+    "gigId": 108
+  }
 ];
 
 
 export let Users = 
 [
     {
-        "id":"2e530ed5-f088-434f-8d31-9a59aa75c971",
+        "id":"27bc1acd-3885-46a5-b4bc-0e657deecf88",
         "name":"Bruno Avelar",
         "email":"brunoavelar@gmail.com"
     },
     {
-        "id":"94cd5e02-faac-46b4-a912-7c6ef8413b2c",
-        "name":"User 01",
-        "email":"user01@user.com"
+        "id":"8c479653-b10e-40ff-a31f-031a831023da",
+        "name":"Iron Maiden",
+        "email":"ironmaiden@gighub.com"
+    },
+    {
+        "id":"9c55ceaf-1d9b-43c2-a10b-33d829aac59e",
+        "name":"Dream Theater",
+        "email":"dreamtheater@gighub.com"
+    },
+    {
+        "id":"a4175aa0-942b-4b1b-94f7-d06efbf24b8c",
+        "name":"Joe Satriani",
+        "email":"satriani@gighub.com"
     }
 ];
 
