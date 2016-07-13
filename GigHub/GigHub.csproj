@@ -288,6 +288,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Core\Dtos\AttendanceDto.cs" />
     <Compile Include="Core\Dtos\FollowingDto.cs" />
+    <Compile Include="Core\Dtos\FutureDate.cs" />
     <Compile Include="Core\Dtos\GenreDto.cs" />
     <Compile Include="Core\Dtos\GigDto.cs" />
     <Compile Include="Core\Dtos\NotificationDto.cs" />

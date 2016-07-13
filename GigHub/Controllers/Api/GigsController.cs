@@ -35,6 +35,28 @@ namespace GigHub.Controllers.Api
             return upcomingGigs.Select(g => Mapper.Map<Gig, GigDto>(g));
         }
 
+        [HttpPost]
+        public IHttpActionResult Post(GigDto gig)
+        {
+            string userId = User.Identity.GetUserId();
+
+            Validate(gig);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var entity = Mapper.Map<GigDto, Gig>(gig);
+            entity.ArtistId = userId;
+
+            var newGig = unitOfWork.Gigs.Add(entity);
+            unitOfWork.Complete();
+
+            var newGigDto = Mapper.Map<Gig, GigDto>(newGig);
+
+            return Created<GigDto>(Request.RequestUri + "/" + newGigDto.Id.ToString(), newGigDto);
+        }
+
         public IHttpActionResult Get(int id)
         {
             var gig = unitOfWork.Gigs.GetGig(id);

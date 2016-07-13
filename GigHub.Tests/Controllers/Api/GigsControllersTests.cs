@@ -9,8 +9,11 @@ using GigHub.Core.Repositories;
 using GigHub.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Web.Http;
 using System.Web.Http.Results;
 
 namespace GigHub.Tests.Controllers.Api
@@ -21,6 +24,7 @@ namespace GigHub.Tests.Controllers.Api
         private GigsController controller;
         private Mock<IGigRepository> repository;
         private string userId;
+        private string gigsEndpoint = "http://localhost/api/gigs";
 
         [TestInitialize]
         public void TestInitialize()
@@ -35,6 +39,11 @@ namespace GigHub.Tests.Controllers.Api
             userId = "1";
 
             controller = new GigsController(mockUoW.Object);
+            controller.Configuration = new HttpConfiguration();
+            controller.Request = new HttpRequestMessage
+            {
+                RequestUri = new Uri(gigsEndpoint)
+            };
             controller.MockCurrentUser(userId, "user01@user.com");
         }
 
@@ -148,6 +157,89 @@ namespace GigHub.Tests.Controllers.Api
             repository.Setup(r => r.GetUpcomingGigsByArtist("1")).Returns(gigs);
             var result = controller.GetGigsForArtist().ToList();
             result.Count.Should().Be(2);
+        }
+
+        [TestMethod]
+        public void Post_WithInvalidVenue_ShouldReturnBadRequest()
+        {
+            GigDto gig = CreateValidGigDto();
+            gig.Venue = null;
+            AssertBadRequestPostMethod(gig);
+        }
+
+        [TestMethod]
+        public void Post_WithInvalidGenre_ShouldReturnBadRequest()
+        {
+            GigDto gig = CreateValidGigDto();
+            gig.GenreId = null;
+            AssertBadRequestPostMethod(gig);
+        }
+
+        [TestMethod]
+        public void Post_WithInvalidArtist_ShouldReturnBadRequest()
+        {
+            GigDto gig = CreateValidGigDto();
+            gig.ArtistId = null;
+            AssertBadRequestPostMethod(gig);
+        }
+
+        [TestMethod]
+        public void Post_WithDateTimeInThePast_ShouldReturnBadRequest()
+        {
+            GigDto gig = CreateValidGigDto();
+            gig.Datetime = DateTime.Now.AddDays(-2);
+            AssertBadRequestPostMethod(gig);
+        }
+
+        [TestMethod]
+        public void Post_WitValidRequest_ShouldReturnCreated()
+        {
+            int futureGigId = 1;
+            GigDto gig = CreateValidGigDto();
+            repository.Setup(x => x.Add(It.IsAny<Gig>()))
+                .Returns((Gig g) =>
+                {
+                    g.Id = futureGigId;
+                    gig = Mapper.Map<Gig, GigDto>(g);
+                    return g;
+                });
+
+
+            var result = controller.Post(gig);
+            var created = result as CreatedNegotiatedContentResult<GigDto>;
+
+            result.Should().BeOfType<CreatedNegotiatedContentResult<GigDto>>();
+            created.Location.AbsoluteUri.Should().Be(gigsEndpoint + "/" + futureGigId);
+            created.Content.Should().Be(gig);
+        }
+
+
+        private static GigDto CreateValidGigDto()
+        {
+            return new GigDto
+            {
+                Artist = new UserDto
+                {
+                    Id = "1",
+                    Name = "Test artist"
+                },
+                ArtistId = "1",
+                Datetime = DateTime.Now.AddDays(1),
+                Venue = "Venue 01",
+                Genre = new GenreDto
+                {
+                    Id = 1,
+                    Name = "Rock"
+                },
+                GenreId = 1,
+                IsCanceled = false,
+            };
+        }
+
+        private void AssertBadRequestPostMethod(GigDto gig)
+        {
+            var result = controller.Post(gig);
+            result.Should().BeOfType<BadRequestResult>();
         }
     }
 }

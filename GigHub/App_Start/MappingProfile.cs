@@ -20,6 +20,10 @@ namespace GigHub.App_Start
             CreateMap<Genre, GenreDto>();
             CreateMap<Gig, GigDto>();
 
+            CreateMap<UserDto, ApplicationUser>();
+            CreateMap<GenreDto, Genre>();
+            CreateMap<GigDto, Gig>();
+
             //var config = new MapperConfiguration(cfg => {
             //    cfg.CreateMap<ApplicationUser, UserDto>();
             //    cfg.CreateMap<Notification, NotificationDto>();

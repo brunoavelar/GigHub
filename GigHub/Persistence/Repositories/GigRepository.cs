@@ -56,9 +56,9 @@ namespace GigHub.Persistence.Repositories
                 .ToList();
         }
 
-        public void Add(Gig gig)
+        public Gig Add(Gig gig)
         {
-            context.Gigs.Add(gig);
+            return context.Gigs.Add(gig);
         }
 
         public IEnumerable<Gig> GetUpcomingGigs(string searchTerms = null)
