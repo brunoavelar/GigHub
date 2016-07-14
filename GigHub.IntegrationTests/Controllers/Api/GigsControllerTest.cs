@@ -53,8 +53,7 @@ namespace GigHub.IntegrationTests.Controllers.Api
             controller.MockCurrentUser(user.Id, user.UserName);
 
             var genre = context.Genres.First();
-            string gigName = Guid.NewGuid().ToString();
-            var gigDto = new GigDto { Datetime = DateTime.Now.AddDays(1), GenreId = genre.Id, Venue = gigName };
+            var gigDto = new GigDto { Datetime = DateTime.Now.AddDays(1), GenreId = genre.Id, Venue = "Gig Venue" };
 
             //Act
             GigDto created = (controller.Post(gigDto) as CreatedNegotiatedContentResult<GigDto>).Content;
@@ -62,6 +61,35 @@ namespace GigHub.IntegrationTests.Controllers.Api
 
             //Assert
             gigFromDb.Should().NotBeNull();
+        }
+
+        [Test, Isolated]
+        public void Put_WhenCalledWithAValidGig_ShouldUpdateTheGig()
+        {
+            //Arrange
+            var user = context.Users.First();
+            controller.MockCurrentUser(user.Id, user.UserName);
+
+            var genre = context.Genres.OrderBy(x => x.Id).First();
+            var genreUpdated = context.Genres.OrderBy(x => x.Id).Skip(1).FirstOrDefault();
+            var gig = new Gig { Datetime = DateTime.Now.AddDays(1), GenreId = genre.Id, Venue = "Gig Venue", ArtistId = user.Id };
+            gig = context.Gigs.Add(gig);
+            context.SaveChanges();
+
+            //Act
+            GigDto dto = Mapper.Map<Gig, GigDto>(gig);
+            dto.Venue = dto.Venue + "-";
+            dto.Datetime = dto.Datetime.AddDays(2);
+            dto.Genre.Id = genreUpdated.Id;
+
+            GigDto updated = (controller.Put(dto.Id, dto) as OkNegotiatedContentResult<GigDto>).Content;
+            var gigFromDb = context.Gigs.SingleOrDefault(x => x.Id == dto.Id);
+
+            //Assert
+            gigFromDb.Should().NotBeNull();
+            gigFromDb.Venue.Should().Be(dto.Venue);
+            gigFromDb.Datetime.Should().Be(dto.Datetime);
+            gigFromDb.GenreId.Should().Be(dto.GenreId);
         }
     }
 }

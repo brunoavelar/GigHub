@@ -36,17 +36,19 @@ namespace GigHub.IntegrationTests.Controllers
             //Arrange
             var user = context.Users.First();
             controller.MockCurrentUser(user.Id, user.UserName);
+            var gigCountForUser = context.Gigs.Count(x => x.ArtistId == user.Id);
+
 
             var genre = context.Genres.First();
             var gig = new Gig { Artist = user, Datetime = DateTime.Now.AddDays(1), Genre = genre, Venue = "-" };
             context.Gigs.Add(gig);
             context.SaveChanges();
-
+            gigCountForUser++;
             //Act
             var result = controller.Mine();
 
             //Assert
-            (result.ViewData.Model as IEnumerable<Gig>).Should().HaveCount(1);
+            (result.ViewData.Model as IEnumerable<Gig>).Should().HaveCount(gigCountForUser);
         }
 
         [Test, Isolated]

@@ -176,14 +176,6 @@ namespace GigHub.Tests.Controllers.Api
         }
 
         [TestMethod]
-        public void Post_WithInvalidArtist_ShouldReturnBadRequest()
-        {
-            GigDto gig = CreateValidGigDto();
-            gig.ArtistId = null;
-            AssertBadRequestPostMethod(gig);
-        }
-
-        [TestMethod]
         public void Post_WithDateTimeInThePast_ShouldReturnBadRequest()
         {
             GigDto gig = CreateValidGigDto();
@@ -192,7 +184,7 @@ namespace GigHub.Tests.Controllers.Api
         }
 
         [TestMethod]
-        public void Post_WitValidRequest_ShouldReturnCreated()
+        public void Post_WithValidRequest_ShouldReturnCreated()
         {
             int futureGigId = 1;
             GigDto gig = CreateValidGigDto();
@@ -239,7 +231,98 @@ namespace GigHub.Tests.Controllers.Api
         private void AssertBadRequestPostMethod(GigDto gig)
         {
             var result = controller.Post(gig);
-            result.Should().BeOfType<BadRequestResult>();
+            result.Should().BeOfType<InvalidModelStateResult>();
+        }
+
+        [TestMethod]
+        public void Put_WithValidRequest_ShouldReturnOk()
+        {
+            int gigId = 1;
+            GigDto gigDto = CreateValidGigDto();
+            gigDto.Id = gigId;
+            Gig gig = Mapper.Map<GigDto, Gig>(gigDto);
+            repository.Setup(x => x.GetGigWithAttendees(gigId)).Returns(gig);
+
+            gigDto.Venue = gigDto.Venue + "-";
+            gigDto.Datetime = gigDto.Datetime.AddDays(2);
+            gigDto.GenreId = 2;
+
+
+            var result = controller.Put(gigId, gigDto);
+            var created = result as OkNegotiatedContentResult<GigDto>;
+
+            result.Should().BeOfType<OkNegotiatedContentResult<GigDto>>();
+            created.Content.Should().Be(gigDto);
+        }
+
+        [TestMethod]
+        public void Put_WithInvalidGigId_ShouldReturnNotFound()
+        {
+            int gigId = 1;
+            GigDto gigDto = CreateValidGigDto();
+            gigDto.Id = gigId;
+            Gig gig = Mapper.Map<GigDto, Gig>(gigDto);
+            repository.Setup(x => x.GetGigWithAttendees(gigId)).Returns(gig);
+
+            var result = controller.Put(gigId + 2, gigDto);
+            result.Should().BeOfType<NotFoundResult>();
+        }
+
+        [TestMethod]
+        public void Put_WithGigIdFromAnotherUser_ShouldReturnUnauthorized()
+        {
+            GigDto gigDto = CreateValidGigDto();
+            gigDto.Id = 1;
+            gigDto.ArtistId = "- ";
+            Gig gig = Mapper.Map<GigDto, Gig>(gigDto);
+
+            repository.Setup(x => x.GetGigWithAttendees(1)).Returns(gig);
+
+            var result = controller.Put(1, gigDto);
+            result.Should().BeOfType<UnauthorizedResult>();
+        }
+
+        [TestMethod]
+        public void Put_WithInvalidVenue_ShouldReturnBadRequest()
+        {
+            GigDto gigDto = CreateValidGigDto();
+            gigDto.Id = 1;
+            Gig gig = Mapper.Map<GigDto, Gig>(gigDto);
+            repository.Setup(x => x.GetGigWithAttendees(1)).Returns(gig);
+
+            gigDto.Venue = null;
+
+            AsserBadRequestPutMethod(gigDto);
+        }
+
+        [TestMethod]
+        public void Put_WithInvalidGenre_ShouldReturnBadRequest()
+        {
+            GigDto gigDto = CreateValidGigDto();
+            gigDto.Id = 1;
+            Gig gig = Mapper.Map<GigDto, Gig>(gigDto);
+            repository.Setup(x => x.GetGigWithAttendees(1)).Returns(gig);
+
+            gigDto.GenreId = null;
+            AsserBadRequestPutMethod(gigDto);
+        }
+
+        [TestMethod]
+        public void Put_WithDateTimeInThePast_ShouldReturnBadRequest()
+        {
+            GigDto gigDto = CreateValidGigDto();
+            gigDto.Id = 1;
+            Gig gig = Mapper.Map<GigDto, Gig>(gigDto);
+            repository.Setup(x => x.GetGigWithAttendees(1)).Returns(gig);
+
+            gigDto.Datetime = DateTime.Now.AddDays(-2);
+            AsserBadRequestPutMethod(gigDto);
+        }
+
+        private void AsserBadRequestPutMethod(GigDto gigDto)
+        {
+            var result = controller.Put(1, gigDto);
+            result.Should().BeOfType<InvalidModelStateResult>();
         }
     }
 }

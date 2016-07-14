@@ -57,6 +57,33 @@ namespace GigHub.Controllers.Api
             return Created<GigDto>(Request.RequestUri + "/" + newGigDto.Id.ToString(), newGigDto);
         }
 
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody] GigDto gigToUpdate)
+        {
+            string userId = User.Identity.GetUserId();
+
+            var gig = unitOfWork.Gigs.GetGigWithAttendees(id);
+
+            if (gig == null)
+                return NotFound();
+
+            if (gig.ArtistId != User.Identity.GetUserId())
+                return Unauthorized();
+
+            Validate(gigToUpdate);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            gig.Modify(gigToUpdate.Datetime, gigToUpdate.Venue, gigToUpdate.GenreId.Value);
+
+            unitOfWork.Complete();
+
+
+            return Ok(Mapper.Map<Gig, GigDto>(gig));
+        }
+
         public IHttpActionResult Get(int id)
         {
             var gig = unitOfWork.Gigs.GetGig(id);
