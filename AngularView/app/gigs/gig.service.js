@@ -30,7 +30,17 @@ System.register(["angular2/core", '../shared/authorized.http', "./index"], funct
                     this.gigsUrl = '/gigs';
                     this.myGigsUrl = '/gigs/artist';
                     this.gigUrl = '/gigs/:id';
+                    this.genresUrl = '/genres/';
                 }
+                GigService.prototype.saveGig = function (gig) {
+                    var body = JSON.stringify(gig);
+                    return this.http.post(this.gigsUrl, body)
+                        .map(function (response) {
+                        var gig = new index_1.Gig(response.json());
+                        return gig;
+                    })
+                        .toPromise();
+                };
                 GigService.prototype.getGig = function (gigId) {
                     return this.http.get(this.gigUrl.replace(":id", gigId.toString()))
                         .map(function (response) {
@@ -44,6 +54,12 @@ System.register(["angular2/core", '../shared/authorized.http', "./index"], funct
                     var _this = this;
                     return this.http.get(this.gigsUrl)
                         .map(function (response) { return _this.parseGigs(response); })
+                        .toPromise()
+                        .catch(this.handleError);
+                };
+                GigService.prototype.getGenres = function () {
+                    return this.http.get(this.genresUrl)
+                        .map(function (response) { return response.json(); })
                         .toPromise()
                         .catch(this.handleError);
                 };

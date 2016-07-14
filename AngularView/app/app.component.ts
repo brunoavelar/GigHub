@@ -4,7 +4,7 @@ import { HTTP_PROVIDERS, Http } from 'angular2/http';
 import { ROUTER_PROVIDERS, RouteConfig } from 'angular2/router';
 import 'rxjs/Rx';
 
-import { GigService, GigListComponent, GigMineComponent, GigDetailComponent } from './gigs/index';
+import { GigService, GigListComponent, GigMineComponent, GigDetailComponent, GigFormComponent } from './gigs/index';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginService } from './account/login.service';
 import { AttendanceService } from './gigs/attendance.service';
@@ -32,18 +32,19 @@ import { FakeHttp } from './api/fake.http';
                 AuthorizedHttp,
                 HTTP_PROVIDERS,
                 AttendanceService,
-                provide(
-                    Http,
-                    {
-                        useClass: FakeHttp
-                    }
-                ),
+                // provide(
+                //     Http,
+                //     {
+                //         useClass: FakeHttp
+                //     }
+                // ),
                 ROUTER_PROVIDERS],
     directives: [LoggedInRouterOutlet, NavBarComponent]
 })
 @RouteConfig([
     { path: '/gigs', name: 'Gigs', component: GigListComponent, useAsDefault: true },
     { path: '/gigs/mine', name: 'MyGigs', component: GigMineComponent },
+    { path: '/gigs/manage', name: 'AddGig', component: GigFormComponent },
     { path: '/login', name: 'Login', component: LoginComponent },
     { path: '/gig/:id', name: 'GigDetail', component: GigDetailComponent }
 ])

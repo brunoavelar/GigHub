@@ -4,6 +4,7 @@ export * from './list/attendance-button.component';
 export * from './attendance.service';
 export * from './mine/gig-mine.component';
 export * from './details/gig-detail.component';
+export * from './form/gig-form.component';
 export * from './gig-date.component'
 export * from './gig.service'
 export * from './gigs-filter.pipe'

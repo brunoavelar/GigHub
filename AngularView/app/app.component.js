@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx', './gigs/index', './nav-bar/nav-bar.component', './account/login.service', './gigs/attendance.service', './account/login.component', './account/user-info', './account/logged-in-router-outlet', './shared/authorized.http', './api/fake.http'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx', './gigs/index', './nav-bar/nav-bar.component', './account/login.service', './gigs/attendance.service', './account/login.component', './account/user-info', './account/logged-in-router-outlet', './shared/authorized.http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, router_1, index_1, nav_bar_component_1, login_service_1, attendance_service_1, login_component_1, user_info_1, logged_in_router_outlet_1, authorized_http_1, fake_http_1;
+    var core_1, http_1, router_1, index_1, nav_bar_component_1, login_service_1, attendance_service_1, login_component_1, user_info_1, logged_in_router_outlet_1, authorized_http_1;
     var AppComponent;
     return {
         setters:[
@@ -47,9 +47,6 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
             },
             function (authorized_http_1_1) {
                 authorized_http_1 = authorized_http_1_1;
-            },
-            function (fake_http_1_1) {
-                fake_http_1 = fake_http_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -65,15 +62,19 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
                             authorized_http_1.AuthorizedHttp,
                             http_1.HTTP_PROVIDERS,
                             attendance_service_1.AttendanceService,
-                            core_1.provide(http_1.Http, {
-                                useClass: fake_http_1.FakeHttp
-                            }),
+                            // provide(
+                            //     Http,
+                            //     {
+                            //         useClass: FakeHttp
+                            //     }
+                            // ),
                             router_1.ROUTER_PROVIDERS],
                         directives: [logged_in_router_outlet_1.LoggedInRouterOutlet, nav_bar_component_1.NavBarComponent]
                     }),
                     router_1.RouteConfig([
                         { path: '/gigs', name: 'Gigs', component: index_1.GigListComponent, useAsDefault: true },
                         { path: '/gigs/mine', name: 'MyGigs', component: index_1.GigMineComponent },
+                        { path: '/gigs/manage', name: 'AddGig', component: index_1.GigFormComponent },
                         { path: '/login', name: 'Login', component: login_component_1.LoginComponent },
                         { path: '/gig/:id', name: 'GigDetail', component: index_1.GigDetailComponent }
                     ]), 

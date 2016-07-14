@@ -3,7 +3,7 @@ import { Http, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthorizedHttp } from '../shared/authorized.http';
-import { Gig } from "./index";
+import { Gig, IdName } from "./index";
 import { AttendanceService } from './attendance.service';
 
 
@@ -12,9 +12,20 @@ export class GigService {
     private gigsUrl = '/gigs';
     private myGigsUrl = '/gigs/artist';
     private gigUrl = '/gigs/:id';
+    private genresUrl = '/genres/';
 
     constructor(private http: AuthorizedHttp){
 
+    }   
+
+    saveGig(gig:Gig):Promise<Gig> {
+        let body = JSON.stringify(gig);
+        return this.http.post(this.gigsUrl, body)
+            .map((response:Response) => {
+                let gig = new Gig(response.json());
+                return gig;
+            })
+            .toPromise();
     }   
 
     getGig(gigId:number):Promise<Gig> {
@@ -30,6 +41,13 @@ export class GigService {
     getGigs(): Promise<Gig[]> {
         return this.http.get(this.gigsUrl)
             .map((response) => this.parseGigs(response))
+            .toPromise()
+            .catch(this.handleError);
+    }
+
+    getGenres(): Promise<IdName[]> {
+        return this.http.get(this.genresUrl)
+            .map((response) => <IdName[]>response.json())
             .toPromise()
             .catch(this.handleError);
     }

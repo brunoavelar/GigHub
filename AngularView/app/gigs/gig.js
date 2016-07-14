@@ -16,6 +16,7 @@ System.register(['./index'], function(exports_1, context_1) {
                         this.venue = object.venue;
                         this.artist = object.artist;
                         this.genre = object.genre;
+                        this.genreId = parseInt(object.genreId);
                         this.datetime = new Date(object.datetime);
                         this.isCanceled = object.isCanceled;
                     }

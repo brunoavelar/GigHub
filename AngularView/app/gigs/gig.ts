@@ -5,6 +5,7 @@ export class Gig {
     venue: string;
     artist: IdName;
     genre:IdName;
+    genreId:number;
     datetime: Date;
     isCanceled: boolean;
 
@@ -14,6 +15,7 @@ export class Gig {
             this.venue = object.venue;
             this.artist = object.artist;
             this.genre = object.genre;
+            this.genreId = parseInt(object.genreId);
             this.datetime = new Date(object.datetime);
             this.isCanceled = object.isCanceled;
         }else{
